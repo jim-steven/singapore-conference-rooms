@@ -146,7 +146,8 @@
                     const hotelPerNight = parsePrice(hotel.perNight);
                     const hotelTotal = parsePrice(hotel.total);
                     const hotelCurrency = hotel.currency || 'USD';
-                    const hotelTotalUSD = hotelTotal ? toUSD(hotelTotal * people, hotelCurrency) : toUSD(hotelPerNight * people * nights, hotelCurrency);
+                    // If hotel has a total, it's already the full cost for all people; otherwise calculate from perNight
+                    const hotelTotalUSD = hotelTotal ? toUSD(hotelTotal, hotelCurrency) : toUSD(hotelPerNight * people * nights, hotelCurrency);
                     
                     let venueTotalUSD = 0, venuePending = false;
                     const venueCurrency = venue.currency || 'SGD';
@@ -186,7 +187,7 @@
                 const vcur = c.venueCurrency === 'USD' ? '$' : 'S$';
                 const venuePriceLabel = c.venue.hourlyRate ? `${vcur}${c.venue.hourlyRate}/hr × 8h × 5d → $${c.venueTotalUSD.toLocaleString()}` : (c.venue.price ? `${vcur}${c.venue.price} → $${c.venueTotalUSD.toLocaleString()}` : 'Pending');
                 const hcur = c.hotelCurrency === 'USD' ? '$' : 'S$';
-                const hotelPriceLabel = c.hotelTotal ? `${hcur}${c.hotelTotal.toLocaleString()} × ${c.people}p → $${c.hotelTotalUSD.toLocaleString()}` : `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
+                const hotelPriceLabel = c.hotelTotal ? `${hcur}${c.hotelTotal.toLocaleString()} → $${c.hotelTotalUSD.toLocaleString()}` : `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
                 const totalLabel = c.venuePending ? 'Pending' : `$${c.totalCostUSD.toLocaleString()}`;
                 const perPersonLabel = c.venuePending ? '—' : `$${Math.round(c.totalCostUSD/c.people)}/person`;
                 return `<tr data-idx="${i}" ${c.venuePending ? 'style="opacity:0.6"' : ''}>
