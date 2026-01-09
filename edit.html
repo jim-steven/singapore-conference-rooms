@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data - Singapore Conference</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f8f9fa; color: #1a1a2e; font-family: 'Work Sans', system-ui, sans-serif; font-size: 13px; line-height: 1.4; }
+        .header { background: #fff; border-bottom: 1px solid #e9ecef; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .header h1 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; }
+        .header-actions { display: flex; gap: 10px; }
+        .btn { padding: 6px 14px; border-radius: 5px; font-size: 12px; cursor: pointer; border: none; text-decoration: none; }
+        .btn-primary { background: #0066CC; color: #fff; }
+        .btn-secondary { background: #e9ecef; color: #495057; }
+        .tabs { display: flex; gap: 4px; background: #fff; padding: 8px 24px; border-bottom: 1px solid #e9ecef; }
+        .tab { padding: 8px 16px; cursor: pointer; border-radius: 6px; font-weight: 500; }
+        .tab:hover { background: #f1f3f4; }
+        .tab.active { background: #0066CC; color: #fff; }
+        .table-container { padding: 16px 24px; overflow-x: auto; max-height: calc(100vh - 120px); }
+        table { width: max-content; min-width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        th { text-align: left; padding: 10px 8px; background: #f8f9fa; font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; color: #6c757d; font-weight: 600; position: sticky; top: 0; white-space: nowrap; }
+        td { padding: 6px 8px; border-top: 1px solid #f1f3f4; }
+        input, select { width: 100%; padding: 5px 6px; border: 1px solid #dee2e6; border-radius: 4px; font-size: 11px; font-family: inherit; }
+        input:focus, select:focus { outline: none; border-color: #0066CC; }
+        input[type="number"] { width: 70px; }
+        .name-cell { min-width: 180px; }
+        .addr-cell { min-width: 150px; }
+        .notes-cell { min-width: 120px; }
+        .sm-cell { width: 70px; }
+        .hidden { display: none; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; color: #fff; padding: 12px 20px; border-radius: 8px; display: none; z-index: 200; }
+        .toast.show { display: block; }
+        .editable-select { position: relative; }
+        .editable-select input { width: 100%; }
+        .editable-select .dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #dee2e6; border-radius: 4px; max-height: 150px; overflow-y: auto; display: none; z-index: 50; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .editable-select.open .dropdown { display: block; }
+        .editable-select .dropdown div { padding: 6px 8px; cursor: pointer; font-size: 11px; }
+        .editable-select .dropdown div:hover { background: #f1f3f4; }
+        .editable-select .dropdown .add-new { color: #0066CC; font-style: italic; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Edit Data</h1>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-secondary">← Back</a>
+            <button class="btn btn-primary" onclick="saveData()">Save Changes</button>
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('venues')">Venues</div>
+        <div class="tab" onclick="showTab('hotels')">Hotels</div>
+        <button class="btn btn-primary" style="margin-left:auto;" onclick="addRow()">+ Add Row</button>
+    </div>
+    <div id="venuesTab" class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>District</th>
+                    <th>Lat</th>
+                    <th>Lng</th>
+                    <th>Capacity</th>
+                    <th>Currency</th>
+                    <th>Price</th>
+                    <th>Hourly</th>
+                    <th>Status</th>
+                    <th>Google</th>
+                    <th>Yelp</th>
+                    <th>TripAdv</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="venuesBody"></tbody>
+        </table>
+    </div>
+    <div id="hotelsTab" class="table-container hidden">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Lat</th>
+                    <th>Lng</th>
+                    <th>Stars</th>
+                    <th>Currency</th>
+                    <th>Per Night</th>
+                    <th>Navan</th>
+                    <th>Google</th>
+                    <th>Yelp</th>
+                    <th>TripAdv</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="hotelsBody"></tbody>
+        </table>
+    </div>
+    <div class="toast" id="toast">Changes saved!</div>
+
+    <script>
+        let venuesData = null, hotelsData = null;
+        const districtOptions = ['cbd', 'city-hall', 'clarke-quay', 'marina', 'orchard', 'expo', 'other'];
+        const statusOptions = ['', 'available', 'responded', 'emailed', 'waiting', 'pass'];
+        const currencyOptions = ['SGD', 'USD'];
+
+        async function loadData() {
+            try {
+                const [vRes, hRes] = await Promise.all([fetch('venues.json'), fetch('hotels.json')]);
+                venuesData = await vRes.json();
+                hotelsData = await hRes.json();
+                renderVenues();
+                renderHotels();
+            } catch (e) {
+                alert('Error loading data. Make sure venues.json and hotels.json exist.');
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function editableSelect(value, field, options, defaultVal) {
+            const val = value || defaultVal || '';
+            const optionsHtml = options.map(o => `<div data-val="${o}">${o || '—'}</div>`).join('');
+            return `<div class="editable-select" data-field="${field}">
+                <input type="text" value="${escapeHtml(val)}" onfocus="openDropdown(this)" onblur="closeDropdown(this)" oninput="filterDropdown(this)">
+                <div class="dropdown">${optionsHtml}<div class="add-new" data-val="__add__">+ Add new...</div></div>
+            </div>`;
+        }
+
+        function renderVenues() {
+            const tbody = document.getElementById('venuesBody');
+            const venues = [];
+            venuesData.sections.forEach(s => s.venues.forEach(v => venues.push(v)));
+            tbody.innerHTML = venues.map((v, i) => `
+                <tr data-idx="${i}">
+                    <td class="name-cell"><input type="text" value="${escapeHtml(v.name)}" data-field="name"></td>
+                    <td class="addr-cell"><input type="text" value="${escapeHtml(v.address)}" data-field="address"></td>
+                    <td>${editableSelect(v.district, 'district', districtOptions, '')}</td>
+                    <td><input type="number" step="any" value="${v.lat || ''}" data-field="lat"></td>
+                    <td><input type="number" step="any" value="${v.lng || ''}" data-field="lng"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(v.capacityDisplay)}" data-field="capacityDisplay"></td>
+                    <td>${editableSelect(v.currency, 'currency', currencyOptions, 'SGD')}</td>
+                    <td class="sm-cell"><input type="number" value="${v.price || ''}" data-field="price"></td>
+                    <td class="sm-cell"><input type="number" value="${v.hourlyRate || ''}" data-field="hourlyRate"></td>
+                    <td>${editableSelect(v.status, 'status', statusOptions, '')}</td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(v.googleRating)}" data-field="googleRating" placeholder="4.5"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(v.yelpRating)}" data-field="yelpRating" placeholder="4.0"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(v.tripadvisorRating)}" data-field="tripadvisorRating" placeholder="4.5"></td>
+                    <td><input type="text" value="${escapeHtml(v.phone)}" data-field="phone"></td>
+                    <td><input type="text" value="${escapeHtml(v.email)}" data-field="email"></td>
+                    <td class="notes-cell"><input type="text" value="${escapeHtml(v.notes)}" data-field="notes"></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderHotels() {
+            const tbody = document.getElementById('hotelsBody');
+            tbody.innerHTML = hotelsData.map((h, i) => `
+                <tr data-idx="${i}">
+                    <td class="name-cell"><input type="text" value="${escapeHtml(h.name)}" data-field="name"></td>
+                    <td class="addr-cell"><input type="text" value="${escapeHtml(h.address)}" data-field="address"></td>
+                    <td><input type="number" step="any" value="${h.latitude || ''}" data-field="latitude"></td>
+                    <td><input type="number" step="any" value="${h.longitude || ''}" data-field="longitude"></td>
+                    <td><input type="text" value="${escapeHtml(h.starRating)}" data-field="starRating"></td>
+                    <td>${editableSelect(h.currency, 'currency', currencyOptions, 'USD')}</td>
+                    <td><input type="text" value="${escapeHtml(h.perNight)}" data-field="perNight"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(h.navanRating)}" data-field="navanRating"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(h.googleRating)}" data-field="googleRating" placeholder="4.5"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(h.yelpRating)}" data-field="yelpRating" placeholder="4.0"></td>
+                    <td class="sm-cell"><input type="text" value="${escapeHtml(h.tripadvisorRating)}" data-field="tripadvisorRating" placeholder="4.5"></td>
+                    <td class="notes-cell"><input type="text" value="${escapeHtml(h.notes)}" data-field="notes"></td>
+                </tr>
+            `).join('');
+        }
+
+        function openDropdown(input) {
+            const wrapper = input.closest('.editable-select');
+            setTimeout(() => wrapper.classList.add('open'), 100);
+        }
+
+        function closeDropdown(input) {
+            const wrapper = input.closest('.editable-select');
+            setTimeout(() => wrapper.classList.remove('open'), 200);
+        }
+
+        function filterDropdown(input) {
+            const wrapper = input.closest('.editable-select');
+            const val = input.value.toLowerCase();
+            wrapper.querySelectorAll('.dropdown div:not(.add-new)').forEach(div => {
+                div.style.display = div.textContent.toLowerCase().includes(val) ? '' : 'none';
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.dropdown div')) {
+                const div = e.target.closest('.dropdown div');
+                const wrapper = div.closest('.editable-select');
+                const input = wrapper.querySelector('input');
+                if (div.dataset.val === '__add__') {
+                    const newVal = prompt('Enter new value:');
+                    if (newVal) {
+                        input.value = newVal;
+                        const field = wrapper.dataset.field;
+                        if (field === 'district') districtOptions.push(newVal);
+                        else if (field === 'status') statusOptions.push(newVal);
+                        else if (field === 'currency') currencyOptions.push(newVal);
+                    }
+                } else {
+                    input.value = div.dataset.val;
+                }
+                wrapper.classList.remove('open');
+            }
+        });
+
+        let currentTab = 'venues';
+        
+        function showTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.tab:nth-child(${tab === 'venues' ? 1 : 2})`).classList.add('active');
+            document.getElementById('venuesTab').classList.toggle('hidden', tab !== 'venues');
+            document.getElementById('hotelsTab').classList.toggle('hidden', tab !== 'hotels');
+        }
+        
+        function addRow() {
+            if (currentTab === 'venues') {
+                const newVenue = { id: 'new-' + Date.now(), name: '', address: '', district: '', lat: null, lng: null, capacity: null, capacityDisplay: '', price: null, priceDisplay: 'Contact', hourlyRate: null, currency: 'SGD', status: '', googleRating: '', yelpRating: '', tripadvisorRating: '', phone: '', email: '', notes: '' };
+                if (venuesData.sections.length > 0) {
+                    venuesData.sections[0].venues.unshift(newVenue);
+                }
+                renderVenues();
+                document.querySelector('#venuesBody tr:first-child input').focus();
+            } else {
+                const newHotel = { name: '', address: '', latitude: null, longitude: null, starRating: '', currency: 'USD', perNight: '', navanRating: '', googleRating: '', yelpRating: '', tripadvisorRating: '', notes: '' };
+                hotelsData.unshift(newHotel);
+                renderHotels();
+                document.querySelector('#hotelsBody tr:first-child input').focus();
+            }
+        }
+
+        function collectVenueData() {
+            const rows = document.querySelectorAll('#venuesBody tr');
+            const allVenues = [];
+            venuesData.sections.forEach(s => s.venues.forEach(v => allVenues.push(v)));
+            rows.forEach((row, i) => {
+                row.querySelectorAll('[data-field]').forEach(el => {
+                    const field = el.dataset.field;
+                    const input = el.tagName === 'INPUT' ? el : el.querySelector('input');
+                    let val = input.value;
+                    if (['price', 'hourlyRate'].includes(field)) val = val ? parseInt(val) : null;
+                    if (['lat', 'lng'].includes(field)) val = val ? parseFloat(val) : null;
+                    allVenues[i][field] = val || null;
+                    if (field === 'price') allVenues[i].priceDisplay = val ? `S$${parseInt(val).toLocaleString()}` : 'Contact';
+                });
+            });
+        }
+
+        function collectHotelData() {
+            const rows = document.querySelectorAll('#hotelsBody tr');
+            rows.forEach((row, i) => {
+                row.querySelectorAll('[data-field]').forEach(el => {
+                    const field = el.dataset.field;
+                    const input = el.tagName === 'INPUT' ? el : el.querySelector('input');
+                    let val = input.value;
+                    if (['latitude', 'longitude'].includes(field)) val = val ? parseFloat(val) : null;
+                    hotelsData[i][field] = val || null;
+                });
+            });
+        }
+
+        function saveData() {
+            collectVenueData();
+            collectHotelData();
+            
+            const venuesBlob = new Blob([JSON.stringify(venuesData, null, 2)], {type: 'application/json'});
+            const hotelsBlob = new Blob([JSON.stringify(hotelsData, null, 2)], {type: 'application/json'});
+            
+            const a1 = document.createElement('a');
+            a1.href = URL.createObjectURL(venuesBlob);
+            a1.download = 'venues.json';
+            a1.click();
+            
+            const a2 = document.createElement('a');
+            a2.href = URL.createObjectURL(hotelsBlob);
+            a2.download = 'hotels.json';
+            a2.click();
+            
+            const toast = document.getElementById('toast');
+            toast.textContent = 'JSON files downloaded! Replace the old files to apply changes.';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
