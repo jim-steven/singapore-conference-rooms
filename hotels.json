@@ -710,8 +710,9 @@
     "starRating": "",
     "navanRating": "",
     "perNight": "",
-    "total": "S$12,754.20",
+    "total": "$12,754",
     "latitude": 1.2914,
-    "longitude": 103.8363
+    "longitude": 103.8363,
+    "currency": "USD"
   }
 ]
