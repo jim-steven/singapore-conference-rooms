@@ -144,8 +144,9 @@
                     const grabTotalUSD = toUSD(grabFareSGD * people * 2 * workDays, 'SGD');
                     
                     const hotelPerNight = parsePrice(hotel.perNight);
+                    const hotelTotal = parsePrice(hotel.total);
                     const hotelCurrency = hotel.currency || 'USD';
-                    const hotelTotalUSD = toUSD(hotelPerNight * people * nights, hotelCurrency);
+                    const hotelTotalUSD = hotelTotal ? toUSD(hotelTotal * people, hotelCurrency) : toUSD(hotelPerNight * people * nights, hotelCurrency);
                     
                     let venueTotalUSD = 0, venuePending = false;
                     const venueCurrency = venue.currency || 'SGD';
@@ -162,7 +163,7 @@
                         venue, hotel, distance, 
                         grabFareSGD, grabTotalUSD, 
                         venueTotalUSD, venuePending, venueCurrency,
-                        hotelPerNight, hotelTotalUSD, hotelCurrency,
+                        hotelPerNight, hotelTotal, hotelTotalUSD, hotelCurrency,
                         totalCostUSD, nights, people, workDays 
                     });
                 });
@@ -185,14 +186,14 @@
                 const vcur = c.venueCurrency === 'USD' ? '$' : 'S$';
                 const venuePriceLabel = c.venue.hourlyRate ? `${vcur}${c.venue.hourlyRate}/hr × 8h × 5d → $${c.venueTotalUSD.toLocaleString()}` : (c.venue.price ? `${vcur}${c.venue.price} → $${c.venueTotalUSD.toLocaleString()}` : 'Pending');
                 const hcur = c.hotelCurrency === 'USD' ? '$' : 'S$';
-                const hotelPriceLabel = `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
+                const hotelPriceLabel = c.hotelTotal ? `${hcur}${c.hotelTotal.toLocaleString()} × ${c.people}p → $${c.hotelTotalUSD.toLocaleString()}` : `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
                 const totalLabel = c.venuePending ? 'Pending' : `$${c.totalCostUSD.toLocaleString()}`;
                 const perPersonLabel = c.venuePending ? '—' : `$${Math.round(c.totalCostUSD/c.people)}/person`;
                 return `<tr data-idx="${i}" ${c.venuePending ? 'style="opacity:0.6"' : ''}>
                     <td onclick="openPanel(${i},'venue',event)"><div class="venue-cell"><img class="venue-thumb" src="${defaultVenueImg}"><div><div class="venue-name">${c.venue.name}</div><div class="venue-meta">${c.venue.district?.replace(/-/g,' ')||''} · ${c.venue.capacityDisplay||'—'}</div><div class="venue-price">${venuePriceLabel}</div></div></div></td>
                     <td onclick="openPanel(${i},'hotel',event)"><div class="hotel-cell"><img class="hotel-thumb" src="${c.hotel.picture}"><div><div class="hotel-name">${c.hotel.name}</div><div class="hotel-rating"><span class="stars">${stars}</span> ${rating}</div><div class="hotel-price">${hotelPriceLabel}</div></div></div></td>
                     <td class="travel-cell"><div class="travel-distance">${c.distance.toFixed(1)} km</div><div class="travel-fare">~$${c.grabTotalUSD} Grab</div></td>
-                    <td class="total-cell"><div class="total-amount">${totalLabel}</div><div class="total-breakdown">${perPersonLabel}</div></td>
+                    <td class="total-cell"><div class="total-amount">${totalLabel}</div><div class="total-breakdown">Hotel $${c.hotelTotalUSD.toLocaleString()} · Venue $${c.venueTotalUSD.toLocaleString()} · Travel $${c.grabTotalUSD.toLocaleString()}</div></td>
                 </tr>`;
             }).join('');
         }
