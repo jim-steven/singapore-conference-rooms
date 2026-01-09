@@ -146,8 +146,11 @@
                     const hotelPerNight = parsePrice(hotel.perNight);
                     const hotelTotal = parsePrice(hotel.total);
                     const hotelCurrency = hotel.currency || 'USD';
-                    // If hotel has a total, it's already the full cost for all people; otherwise calculate from perNight
-                    const hotelTotalUSD = hotelTotal ? toUSD(hotelTotal, hotelCurrency) : toUSD(hotelPerNight * people * nights, hotelCurrency);
+                    // If hotel has perNight, calculate: perNight × people × nights
+                    // If only total (no perNight), use total as-is (already includes all people)
+                    const hotelTotalUSD = hotelPerNight 
+                        ? toUSD(hotelPerNight * people * nights, hotelCurrency) 
+                        : toUSD(hotelTotal, hotelCurrency);
                     
                     let venueTotalUSD = 0, venuePending = false;
                     const venueCurrency = venue.currency || 'SGD';
@@ -222,7 +225,8 @@
                 c.innerHTML = `<div class="detail-gallery"><img src="${defaultVenueImg.replace('w=200','w=600')}"></div><h2 class="detail-title">${v.name}</h2><p class="detail-subtitle">${v.address||'Singapore'}</p><div class="detail-section"><div class="detail-section-title">Details</div><div class="detail-row"><span class="label">District</span><span class="value">${v.district?.replace(/-/g,' ')||'—'}</span></div><div class="detail-row"><span class="label">Capacity</span><span class="value">${v.capacityDisplay||'—'}</span></div><div class="detail-row"><span class="label">Price</span><span class="value">${v.priceDisplay||'Contact'}</span></div><div class="detail-row"><span class="label">Hours</span><span class="value">${v.hours||'—'}</span></div></div><div class="detail-section"><div class="detail-section-title">Contact</div><div class="detail-row"><span class="label">Phone</span><span class="value">${v.phone||'—'}</span></div><div class="detail-row"><span class="label">Email</span><span class="value">${v.email||'—'}</span></div></div>`;
             } else {
                 const h = currentCombo.hotel, rm = h.navanRating?.match(/(\d+\.?\d*)/), rating = rm?rm[1]:'', stars = h.starRating?.includes('5')?'★★★★★':h.starRating?.includes('4')?'★★★★':'★★★';
-                c.innerHTML = `<div class="detail-gallery"><img src="${h.picture}"></div><h2 class="detail-title">${h.name}</h2><p class="detail-subtitle">Singapore</p><div class="detail-section"><div class="detail-section-title">Details</div><div class="detail-row"><span class="label">Rating</span><span class="value"><span style="color:#f59e0b">${stars}</span> ${rating}</span></div><div class="detail-row"><span class="label">Star Rating</span><span class="value">${h.starRating||'—'}</span></div><div class="detail-row"><span class="label">Per Night</span><span class="value">${h.perNight}</span></div><div class="detail-row"><span class="label">Booking</span><span class="value">${currentCombo.people} people × ${currentCombo.nights} nights = S$${currentCombo.hotelTotal.toLocaleString()}</span></div></div>`;
+                const navanBtn = h.navanLink ? `<a href="${h.navanLink}" target="_blank" style="display:inline-block;margin-top:12px;padding:10px 16px;background:#0066CC;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Book on Navan →</a>` : '';
+                c.innerHTML = `<div class="detail-gallery"><img src="${h.picture}"></div><h2 class="detail-title">${h.name}</h2><p class="detail-subtitle">Singapore</p><div class="detail-section"><div class="detail-section-title">Details</div><div class="detail-row"><span class="label">Rating</span><span class="value"><span style="color:#f59e0b">${stars}</span> ${rating}</span></div><div class="detail-row"><span class="label">Star Rating</span><span class="value">${h.starRating||'—'}</span></div><div class="detail-row"><span class="label">Per Night</span><span class="value">${h.perNight||'—'}</span></div><div class="detail-row"><span class="label">Total</span><span class="value">${h.total||'—'}</span></div></div>${navanBtn}`;
             }
         }
         function closePanel() { document.getElementById('splitLayout').classList.remove('panel-open'); currentCombo = null; }
