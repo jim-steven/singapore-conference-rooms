@@ -212,10 +212,10 @@
                 const rm = c.hotel.navanRating?.match(/(\d+\.?\d*)/), rating = rm ? rm[1] : '';
                 const stars = c.hotel.starRating?.includes('5') ? '★★★★★' : c.hotel.starRating?.includes('4') ? '★★★★' : '★★★';
                 const vcur = c.venueCurrency === 'USD' ? '$' : 'S$';
-                const venuePriceLabel = c.venue.hourlyRate ? `${vcur}${c.venue.hourlyRate}/hr × 8h × 5d → $${c.venueTotalUSD.toLocaleString()}` : (c.venue.price ? `${vcur}${c.venue.price} → $${c.venueTotalUSD.toLocaleString()}` : 'Pending');
+                const venuePriceLabel = c.venue.hourlyRate ? `${vcur}${c.venue.hourlyRate}/hr × 8h × 5d → $${c.venueTotalUSD.toLocaleString()}` : (c.venue.price ? `${vcur}${c.venue.price} → $${c.venueTotalUSD.toLocaleString()}` : 'Waiting on Response');
                 const hcur = c.hotelCurrency === 'USD' ? '$' : 'S$';
                 const hotelPriceLabel = c.hotelTotal ? `${hcur}${c.hotelTotal.toLocaleString()} → $${c.hotelTotalUSD.toLocaleString()}` : `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
-                const totalLabel = c.venuePending ? 'Pending' : `$${c.totalCostUSD.toLocaleString()}`;
+                const totalLabel = c.venuePending ? 'Waiting on Response' : `$${c.totalCostUSD.toLocaleString()}`;
                 const perPersonLabel = c.venuePending ? '—' : `$${Math.round(c.totalCostUSD/c.people)}/person`;
                 const noteAttr = c.venue.notes ? `title="${c.venue.notes.replace(/"/g, '&quot;')}"` : '';
                 return `<tr data-idx="${i}" ${c.venuePending ? 'style="opacity:0.6"' : ''}>
@@ -332,7 +332,7 @@
             tbody.innerHTML = sorted.map(v => {
                 const cur = v.currency === 'USD' ? '$' : 'S$';
                 const rateDisplay = v.hourlyRate ? `${cur}${v.hourlyRate}/hr` : (v.price ? `${cur}${v.price}` : 'Contact');
-                const totalDisplay = v.pending ? 'Pending' : `$${v.totalUSD.toLocaleString()}`;
+                const totalDisplay = v.pending ? 'Waiting on Response' : `$${v.totalUSD.toLocaleString()}`;
                 const noteAttr = v.notes ? `title="${v.notes.replace(/"/g, '&quot;')}"` : '';
                 return `<tr ${v.pending ? 'style="opacity:0.6"' : ''}>
                     <td><div class="venue-cell"><img class="venue-thumb" src="${defaultVenueImg}"><div><div class="venue-name" ${noteAttr}>${v.name}${v.notes ? ' ⚠️' : ''}</div><div class="venue-meta">${v.district?.replace(/-/g,' ') || ''}</div></div></div></td>
