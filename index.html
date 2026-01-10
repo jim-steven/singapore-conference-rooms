@@ -83,9 +83,9 @@
             </div>
         </header>
         <nav class="main-tabs">
-            <div class="main-tab active" onclick="switchMainTab('packages')">Packages</div>
-            <div class="main-tab" onclick="switchMainTab('hotels')">Hotels</div>
-            <div class="main-tab" onclick="switchMainTab('venues')">Venues</div>
+            <div class="main-tab active" onclick="switchMainTab('packages')" id="tabPackages">Packages</div>
+            <div class="main-tab" onclick="switchMainTab('hotels')" id="tabHotels">Hotels</div>
+            <div class="main-tab" onclick="switchMainTab('venues')" id="tabVenues">Venues</div>
         </nav>
         <div class="split-layout" id="splitLayout">
             <div class="table-panel">
@@ -137,6 +137,7 @@
                 generateCombinations();
                 renderHotelsTable();
                 renderVenuesTable();
+                updateTabCounts();
             } catch (e) {
                 document.getElementById('tableBody').innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px;color:#dc3545;">Error loading data. Run via a local server (e.g., python -m http.server)</td></tr>';
             }
@@ -252,6 +253,11 @@
             }
         }
         function closePanel() { document.getElementById('splitLayout').classList.remove('panel-open'); currentCombo = null; }
+        function updateTabCounts() {
+            document.getElementById('tabPackages').textContent = `Packages (${combinations.length})`;
+            document.getElementById('tabHotels').textContent = `Hotels (${hotelsData.length})`;
+            document.getElementById('tabVenues').textContent = `Venues (${venuesData.length})`;
+        }
         function switchMainTab(tab) {
             currentMainTab = tab;
             document.querySelectorAll('.main-tab').forEach((t, i) => {
