@@ -126,7 +126,7 @@
           "mapUrl": "https://maps.google.com/?q=HUONE+Clarke+Quay",
           "gallery": null,
           "virtualTour": null,
-          "notes": "",
+          "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2900576,
           "lng": 103.8454537
         },
@@ -148,7 +148,7 @@
           "mapUrl": "https://maps.google.com/?q=HUONE+Clarke+Quay+Singapore",
           "gallery": null,
           "virtualTour": null,
-          "notes": "",
+          "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
           "lng": 103.8455
         },
@@ -170,7 +170,7 @@
           "mapUrl": "https://maps.google.com/?q=HUONE+Clarke+Quay+Singapore",
           "gallery": null,
           "virtualTour": null,
-          "notes": "Pass - bit small",
+          "notes": "Pass - bit small. Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
           "lng": 103.8455
         },
@@ -192,7 +192,7 @@
           "mapUrl": "https://maps.google.com/?q=HUONE+Clarke+Quay",
           "gallery": null,
           "virtualTour": null,
-          "notes": "",
+          "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
           "lng": 103.8455
         },
@@ -1264,8 +1264,8 @@
           "address": "190 Clemenceau Ave #06-01",
           "status": "",
           "district": "orchard",
-          "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacity": 6,
+          "capacityDisplay": "6 pax",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -1276,7 +1276,7 @@
           "mapUrl": "https://maps.google.com/?q=Workcentral+Singapore+Shopping+Centre",
           "gallery": null,
           "virtualTour": null,
-          "notes": "",
+          "notes": "Only 6 pax capacity.",
           "lat": 1.2981147,
           "lng": 103.8441112
         }
