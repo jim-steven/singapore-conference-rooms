@@ -790,6 +790,28 @@
       "district": "cbd",
       "venues": [
         {
+          "id": "sg-land-tower-45a",
+          "name": "Singapore Land Tower Room 45A",
+          "address": "Level 45, Singapore Land Tower, 50 Raffles Place, Singapore 048623",
+          "status": "",
+          "district": "cbd",
+          "capacity": 14,
+          "capacityDisplay": "14 pax",
+          "price": 9070,
+          "priceDisplay": "S$9,070 (5 days)",
+          "hourlyRate": 181.49,
+          "hours": "07:00 - 17:00 (10 hours)",
+          "phone": "+65 6393 5888",
+          "email": "",
+          "website": "",
+          "mapUrl": "https://maps.google.com/?q=Singapore+Land+Tower+50+Raffles+Place",
+          "gallery": null,
+          "virtualTour": null,
+          "notes": "GST 9% included. Enquiry only.",
+          "lat": 1.2842,
+          "lng": 103.8518
+        },
+        {
           "id": "frasers-tower-17cd",
           "name": "Frasers Tower Room 17C & 17D",
           "address": "Level 17, Frasers Tower, 182 Cecil Street, Singapore 069547",
