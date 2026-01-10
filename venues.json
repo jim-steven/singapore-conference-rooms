@@ -768,6 +768,28 @@
       "district": "cbd",
       "venues": [
         {
+          "id": "wework-raffles-12b",
+          "name": "WeWork Room 12B (Projector)",
+          "address": "30 Raffles Place, 12th Floor, Singapore",
+          "status": "",
+          "district": "cbd",
+          "capacity": 16,
+          "capacityDisplay": "16 pax",
+          "price": 7115,
+          "priceDisplay": "S$7,115 (5 days)",
+          "hourlyRate": 163.25,
+          "hours": "9:30 AM - 5:30 PM (8 hours)",
+          "phone": "",
+          "email": "",
+          "website": "",
+          "mapUrl": "https://maps.google.com/?q=30+Raffles+Place+Singapore",
+          "gallery": null,
+          "virtualTour": null,
+          "notes": "Amenities: Projector, Whiteboard, TV. Cancellation: Full refund 24h before. GST 9% included.",
+          "lat": 1.2840,
+          "lng": 103.8517
+        },
+        {
           "id": "justco-central",
           "name": "JustCo @ Central Plaza",
           "address": "Central Plaza, Singapore CBD",
