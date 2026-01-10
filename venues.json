@@ -790,6 +790,28 @@
       "district": "cbd",
       "venues": [
         {
+          "id": "frasers-tower-17cd",
+          "name": "Frasers Tower Room 17C & 17D",
+          "address": "Level 17, Frasers Tower, 182 Cecil Street, Singapore 069547",
+          "status": "",
+          "district": "cbd",
+          "capacity": 16,
+          "capacityDisplay": "16 pax",
+          "price": 10585,
+          "priceDisplay": "S$10,585 (5 days)",
+          "hourlyRate": 211.73,
+          "hours": "07:00 - 17:00 (10 hours)",
+          "phone": "+65 6956 9000",
+          "email": "",
+          "website": "",
+          "mapUrl": "https://maps.google.com/?q=Frasers+Tower+182+Cecil+Street+Singapore",
+          "gallery": null,
+          "virtualTour": null,
+          "notes": "GST 9% included. Enquiry only.",
+          "lat": 1.2805,
+          "lng": 103.8480
+        },
+        {
           "id": "wework-raffles-12b",
           "name": "WeWork Room 12B (Projector)",
           "address": "30 Raffles Place, 12th Floor, Singapore",
