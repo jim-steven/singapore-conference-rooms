@@ -86,6 +86,7 @@
             <div class="main-tab active" onclick="switchMainTab('packages')" id="tabPackages">Packages</div>
             <div class="main-tab" onclick="switchMainTab('hotels')" id="tabHotels">Hotels</div>
             <div class="main-tab" onclick="switchMainTab('venues')" id="tabVenues">Venues</div>
+            <div class="main-tab" onclick="switchMainTab('travel')" id="tabTravel">Travel</div>
         </nav>
         <div class="split-layout" id="splitLayout">
             <div class="table-panel">
@@ -101,6 +102,9 @@
                     <thead><tr><th>Venue</th><th style="text-align:center;">Capacity</th><th style="text-align:center;">Rate</th><th style="text-align:right;">Total (8h × 5 days)</th></tr></thead>
                     <tbody id="venuesTableBody"></tbody>
                 </table>
+                <div id="travelPanel" style="display:none;padding:24px;">
+                    <iframe src="travel.html" style="width:100%;height:calc(100vh - 180px);border:none;border-radius:8px;"></iframe>
+                </div>
             </div>
             <aside class="detail-panel">
                 <div class="detail-header">
@@ -257,17 +261,22 @@
             document.getElementById('tabPackages').textContent = `Packages (${combinations.length})`;
             document.getElementById('tabHotels').textContent = `Hotels (${hotelsData.length})`;
             document.getElementById('tabVenues').textContent = `Venues (${venuesData.length})`;
+            document.getElementById('tabTravel').textContent = `Travel (7)`;
         }
         function switchMainTab(tab) {
             currentMainTab = tab;
             document.querySelectorAll('.main-tab').forEach((t, i) => {
-                t.classList.toggle('active', (tab === 'packages' && i === 0) || (tab === 'hotels' && i === 1) || (tab === 'venues' && i === 2));
+                t.classList.toggle('active', (tab === 'packages' && i === 0) || (tab === 'hotels' && i === 1) || (tab === 'venues' && i === 2) || (tab === 'travel' && i === 3));
             });
             document.getElementById('packagesTable').style.display = tab === 'packages' ? '' : 'none';
             document.getElementById('hotelsTable').style.display = tab === 'hotels' ? '' : 'none';
             document.getElementById('venuesTable').style.display = tab === 'venues' ? '' : 'none';
-            const count = tab === 'packages' ? combinations.length : (tab === 'hotels' ? hotelsData.length : venuesData.length);
-            const label = tab === 'packages' ? 'combinations' : tab;
+            document.getElementById('travelPanel').style.display = tab === 'travel' ? '' : 'none';
+            let count, label;
+            if (tab === 'packages') { count = combinations.length; label = 'combinations'; }
+            else if (tab === 'hotels') { count = hotelsData.length; label = 'hotels'; }
+            else if (tab === 'venues') { count = venuesData.length; label = 'venues'; }
+            else { count = 7; label = 'travelers'; }
             document.getElementById('comboCount').textContent = count.toLocaleString() + ' ' + label;
             closePanel();
         }
