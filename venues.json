@@ -105,7 +105,7 @@
   "sections": [
     {
       "id": "clarke-quay",
-      "label": "\ud83c\udfe2 Clarke Quay / River Valley",
+      "label": "🏢 Clarke Quay / River Valley",
       "district": "clarke-quay",
       "venues": [
         {
@@ -115,7 +115,7 @@
           "status": "",
           "district": "clarke-quay",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 1435,
           "priceDisplay": "S$1,435",
           "hourlyRate": null,
@@ -128,7 +128,8 @@
           "virtualTour": null,
           "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2900576,
-          "lng": 103.8454537
+          "lng": 103.8454537,
+          "picture": "images/venues/huone.jpg"
         },
         {
           "id": "huone-cottage",
@@ -137,7 +138,7 @@
           "status": "",
           "district": "clarke-quay",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 1435,
           "priceDisplay": "S$1,435",
           "hourlyRate": 180,
@@ -150,7 +151,8 @@
           "virtualTour": null,
           "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
-          "lng": 103.8455
+          "lng": 103.8455,
+          "picture": "images/venues/huone.jpg"
         },
         {
           "id": "huone-nest",
@@ -172,7 +174,8 @@
           "virtualTour": null,
           "notes": "Pass - bit small. Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
-          "lng": 103.8455
+          "lng": 103.8455,
+          "picture": "images/venues/huone.jpg"
         },
         {
           "id": "huone-time",
@@ -194,7 +197,8 @@
           "virtualTour": null,
           "notes": "Might be a bit small, chairs might not be comfortable for long sitting.",
           "lat": 1.2901,
-          "lng": 103.8455
+          "lng": 103.8455,
+          "picture": "images/venues/huone.jpg"
         },
         {
           "id": "queserser",
@@ -203,7 +207,7 @@
           "status": "",
           "district": "clarke-quay",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -216,13 +220,14 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2883093,
-          "lng": 103.8485589
+          "lng": 103.8485589,
+          "picture": null
         }
       ]
     },
     {
       "id": "city-hall",
-      "label": "\ud83c\udfe8 City Hall / Civic District",
+      "label": "🏨 City Hall / Civic District",
       "district": "city-hall",
       "venues": [
         {
@@ -245,7 +250,8 @@
           "virtualTour": null,
           "notes": "Amenities: Whiteboard, TV. Cancellation: Full refund 24h before. GST 9% included.",
           "lat": 1.2924,
-          "lng": 103.8520
+          "lng": 103.852,
+          "picture": "images/venues/wework.jpg"
         },
         {
           "id": "carlton",
@@ -267,7 +273,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2961064,
-          "lng": 103.852572
+          "lng": 103.852572,
+          "picture": "images/venues/carlton.jpg"
         },
         {
           "id": "grand-park-coleman",
@@ -289,7 +296,8 @@
           "virtualTour": null,
           "notes": "Small meeting rooms, max 10 pax for one suite.",
           "lat": 1.2926954,
-          "lng": 103.8502785
+          "lng": 103.8502785,
+          "picture": "images/venues/grand-park.jpg"
         },
         {
           "id": "grand-park-tablescape",
@@ -311,7 +319,8 @@
           "virtualTour": null,
           "notes": "Small meeting rooms, max 10 pax for one suite.",
           "lat": 1.2926954,
-          "lng": 103.8502785
+          "lng": 103.8502785,
+          "picture": "images/venues/grand-park.jpg"
         },
         {
           "id": "capitol-kempinski",
@@ -333,7 +342,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2925042,
-          "lng": 103.8537716
+          "lng": 103.8537716,
+          "picture": "images/venues/capitol-kempinski.jpg"
         },
         {
           "id": "raffles-city-cc",
@@ -342,7 +352,7 @@
           "status": "emailed",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 11250,
           "priceDisplay": "S$11,250",
           "hourlyRate": null,
@@ -355,7 +365,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2941133,
-          "lng": 103.8539484
+          "lng": 103.8539484,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "raffles-boardroom",
@@ -364,7 +375,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -377,7 +388,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.294941,
-          "lng": 103.8543027
+          "lng": 103.8543027,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "raffles-casuarina",
@@ -386,7 +398,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -399,7 +411,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.294941,
-          "lng": 103.8543027
+          "lng": 103.8543027,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "raffles-east-india",
@@ -408,7 +421,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -421,7 +434,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.294941,
-          "lng": 103.8543027
+          "lng": 103.8543027,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "peninsula-excelsior",
@@ -430,7 +444,7 @@
           "status": "emailed",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -443,7 +457,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2919781,
-          "lng": 103.8503909
+          "lng": 103.8503909,
+          "picture": null
         },
         {
           "id": "national-gallery",
@@ -452,7 +467,7 @@
           "status": "emailed",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -465,7 +480,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2902557,
-          "lng": 103.8514709
+          "lng": 103.8514709,
+          "picture": "images/venues/national-gallery.jpg"
         },
         {
           "id": "national-library",
@@ -474,7 +490,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -487,7 +503,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2975,
-          "lng": 103.8545
+          "lng": 103.8545,
+          "picture": "images/venues/national-library.jpg"
         },
         {
           "id": "arts-house",
@@ -496,7 +513,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -509,7 +526,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2886695,
-          "lng": 103.851099
+          "lng": 103.851099,
+          "picture": "images/venues/arts-house.jpg"
         },
         {
           "id": "lionsworld",
@@ -518,7 +536,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -531,7 +549,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2923249,
-          "lng": 103.8508298
+          "lng": 103.8508298,
+          "picture": null
         },
         {
           "id": "mit-space",
@@ -553,7 +572,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2923,
-          "lng": 103.8508
+          "lng": 103.8508,
+          "picture": null
         },
         {
           "id": "spaces-city-hall",
@@ -562,7 +582,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -575,7 +595,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2967174,
-          "lng": 103.8545721
+          "lng": 103.8545721,
+          "picture": "images/venues/spaces.jpg"
         },
         {
           "id": "hive-north-bridge",
@@ -597,7 +618,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2897707,
-          "lng": 103.8497566
+          "lng": 103.8497566,
+          "picture": "images/venues/hive.jpg"
         },
         {
           "id": "great-room-raffles",
@@ -606,7 +628,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -619,7 +641,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2960226,
-          "lng": 103.8542164
+          "lng": 103.8542164,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "o2work",
@@ -641,7 +664,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2961,
-          "lng": 103.854
+          "lng": 103.854,
+          "picture": null
         },
         {
           "id": "wework-funan",
@@ -650,7 +674,7 @@
           "status": "",
           "district": "city-hall",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 8004,
           "priceDisplay": "S$8,004",
           "hourlyRate": 667,
@@ -663,7 +687,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2914066,
-          "lng": 103.8494056
+          "lng": 103.8494056,
+          "picture": "images/venues/wework.jpg"
         },
         {
           "id": "109-north-bridge",
@@ -685,13 +710,14 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 05A",
           "lat": 1.2914066,
-          "lng": 103.8494056
+          "lng": 103.8494056,
+          "picture": null
         }
       ]
     },
     {
       "id": "marina",
-      "label": "\ud83c\udf0a Marina Bay / Marina Centre",
+      "label": "🌊 Marina Bay / Marina Centre",
       "district": "marina",
       "venues": [
         {
@@ -701,7 +727,7 @@
           "status": "waiting",
           "district": "marina",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 8500,
           "priceDisplay": "S$8,500",
           "hourlyRate": null,
@@ -714,7 +740,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2912,
-          "lng": 103.8571
+          "lng": 103.8571,
+          "picture": "images/venues/justco.jpg"
         },
         {
           "id": "mindchamps",
@@ -736,7 +763,8 @@
           "virtualTour": null,
           "notes": "Meeting room inside a school, similar feel to HUONE. Much bigger but chairs might not be comfortable for long sitting.",
           "lat": 1.2912,
-          "lng": 103.8571
+          "lng": 103.8571,
+          "picture": "images/venues/mindchamps.jpg"
         },
         {
           "id": "regus-centennial",
@@ -745,7 +773,7 @@
           "status": "",
           "district": "marina",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -758,7 +786,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2934139,
-          "lng": 103.8602867
+          "lng": 103.8602867,
+          "picture": "images/venues/regus.jpg"
         },
         {
           "id": "exec-centre-mbfc",
@@ -767,7 +796,7 @@
           "status": "",
           "district": "marina",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 9000,
           "priceDisplay": "S$9,000",
           "hourlyRate": 180,
@@ -780,13 +809,14 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2801328,
-          "lng": 103.8541795
+          "lng": 103.8541795,
+          "picture": null
         }
       ]
     },
     {
       "id": "cbd",
-      "label": "\ud83d\udcbc CBD Core / Raffles Place",
+      "label": "💼 CBD Core / Raffles Place",
       "district": "cbd",
       "venues": [
         {
@@ -809,7 +839,8 @@
           "virtualTour": null,
           "notes": "GST 9% included. Enquiry only.",
           "lat": 1.2842,
-          "lng": 103.8518
+          "lng": 103.8518,
+          "picture": null
         },
         {
           "id": "frasers-tower-17cd",
@@ -831,7 +862,8 @@
           "virtualTour": null,
           "notes": "GST 9% included. Enquiry only.",
           "lat": 1.2805,
-          "lng": 103.8480
+          "lng": 103.848,
+          "picture": null
         },
         {
           "id": "wework-raffles-12b",
@@ -852,8 +884,9 @@
           "gallery": null,
           "virtualTour": null,
           "notes": "Amenities: Projector, Whiteboard, TV. Cancellation: Full refund 24h before. GST 9% included.",
-          "lat": 1.2840,
-          "lng": 103.8517
+          "lat": 1.284,
+          "lng": 103.8517,
+          "picture": "images/venues/wework.jpg"
         },
         {
           "id": "justco-central",
@@ -862,7 +895,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 8500,
           "priceDisplay": "S$8,500",
           "hourlyRate": null,
@@ -875,7 +908,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2794,
-          "lng": 103.8534
+          "lng": 103.8534,
+          "picture": "images/venues/justco.jpg"
         },
         {
           "id": "regus-cbd",
@@ -884,7 +918,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -897,7 +931,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2842356,
-          "lng": 103.8511698
+          "lng": 103.8511698,
+          "picture": "images/venues/regus.jpg"
         },
         {
           "id": "rnn-ces",
@@ -906,7 +941,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -919,7 +954,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.286713,
-          "lng": 103.8401569
+          "lng": 103.8401569,
+          "picture": null
         },
         {
           "id": "rnn-gb",
@@ -928,7 +964,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -941,7 +977,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.278763,
-          "lng": 103.8480566
+          "lng": 103.8480566,
+          "picture": null
         },
         {
           "id": "venuesquare",
@@ -950,7 +987,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -963,7 +1000,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2796646,
-          "lng": 103.8483369
+          "lng": 103.8483369,
+          "picture": null
         },
         {
           "id": "exec-centre-orq",
@@ -972,7 +1010,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 10900,
           "priceDisplay": "S$10,900",
           "hourlyRate": 180,
@@ -985,7 +1023,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2807,
-          "lng": 103.852
+          "lng": 103.852,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "wework-robinson",
@@ -994,7 +1033,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 8004,
           "priceDisplay": "S$8,004",
           "hourlyRate": 667,
@@ -1007,7 +1046,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2783395,
-          "lng": 103.8487748
+          "lng": 103.8487748,
+          "picture": "images/venues/wework.jpg"
         },
         {
           "id": "n9-tanjong",
@@ -1029,7 +1069,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2773993,
-          "lng": 103.8458182
+          "lng": 103.8458182,
+          "picture": null
         },
         {
           "id": "9-battery",
@@ -1051,7 +1092,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 15A / 28A",
           "lat": 1.2847796,
-          "lng": 103.8524119
+          "lng": 103.8524119,
+          "picture": null
         },
         {
           "id": "21-collyer",
@@ -1073,7 +1115,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 02C",
           "lat": 1.2830628,
-          "lng": 103.8523899
+          "lng": 103.8523899,
+          "picture": null
         },
         {
           "id": "30-raffles",
@@ -1095,7 +1138,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 12B",
           "lat": 1.2841645,
-          "lng": 103.8519646
+          "lng": 103.8519646,
+          "picture": "images/venues/raffles-hotel.jpg"
         },
         {
           "id": "city-house",
@@ -1117,7 +1161,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 2A",
           "lat": 1.2812333,
-          "lng": 103.8497732
+          "lng": 103.8497732,
+          "picture": null
         },
         {
           "id": "suntec-5",
@@ -1139,7 +1184,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 17G / 18D",
           "lat": 1.2945258,
-          "lng": 103.8579722
+          "lng": 103.8579722,
+          "picture": null
         },
         {
           "id": "beach-centre",
@@ -1161,7 +1207,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 1A",
           "lat": 1.2958006,
-          "lng": 103.855498
+          "lng": 103.855498,
+          "picture": null
         },
         {
           "id": "71-robinson",
@@ -1183,7 +1230,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 13G",
           "lat": 1.2783395,
-          "lng": 103.8487748
+          "lng": 103.8487748,
+          "picture": null
         },
         {
           "id": "60-anson",
@@ -1205,7 +1253,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 17F",
           "lat": 1.2746286,
-          "lng": 103.845131
+          "lng": 103.845131,
+          "picture": null
         },
         {
           "id": "exec-centre-fre",
@@ -1214,7 +1263,7 @@
           "status": "",
           "district": "cbd",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": 1814,
           "priceDisplay": "S$1,814",
           "hourlyRate": 180,
@@ -1227,13 +1276,14 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2807,
-          "lng": 103.852
+          "lng": 103.852,
+          "picture": null
         }
       ]
     },
     {
       "id": "orchard",
-      "label": "\ud83d\udecd\ufe0f Orchard / Dhoby Ghaut",
+      "label": "🛍️ Orchard / Dhoby Ghaut",
       "district": "orchard",
       "venues": [
         {
@@ -1243,7 +1293,7 @@
           "status": "",
           "district": "orchard",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -1256,7 +1306,8 @@
           "virtualTour": null,
           "notes": "",
           "lat": 1.2976347,
-          "lng": 103.8481401
+          "lng": 103.8481401,
+          "picture": "images/venues/ymca.jpg"
         },
         {
           "id": "workcentral",
@@ -1278,18 +1329,19 @@
           "virtualTour": null,
           "notes": "Only 6 pax capacity.",
           "lat": 1.2981147,
-          "lng": 103.8441112
+          "lng": 103.8441112,
+          "picture": null
         }
       ]
     },
     {
       "id": "expo",
-      "label": "\u2708\ufe0f Expo / Changi",
+      "label": "✈️ Expo / Changi",
       "district": "expo",
       "venues": [
         {
           "id": "expo-opal",
-          "name": "Singapore EXPO \u2013 Opal Room",
+          "name": "Singapore EXPO – Opal Room",
           "address": "1 Expo Drive, #02-01, Singapore 486150",
           "status": "responded",
           "district": "expo",
@@ -1298,22 +1350,23 @@
           "price": 18480,
           "priceDisplay": "S$18,480",
           "hourlyRate": 2310,
-          "hours": "08:00\u201322:00 daily; 24h possible with overtime",
+          "hours": "08:00–22:00 daily; 24h possible with overtime",
           "phone": "+65 9821 1987",
           "email": "shanna.chia@constellar.co",
           "website": "https://www.singaporeexpo.com.sg/",
           "mapUrl": "https://maps.google.com/?q=Singapore+EXPO",
           "gallery": "Provided via brochure",
           "virtualTour": "https://www.singaporeexpo.com.sg/organise-an-event/virtual-tour",
-          "notes": "1 Opal room available; boardroom setup; projector and screen included; room can be held 2 weeks at no charge; aircon only 08:00\u201322:00; overtime applies 22:00\u201308:00",
+          "notes": "1 Opal room available; boardroom setup; projector and screen included; room can be held 2 weeks at no charge; aircon only 08:00–22:00; overtime applies 22:00–08:00",
           "lat": 1.335,
-          "lng": 103.9617
+          "lng": 103.9617,
+          "picture": "images/venues/expo.jpg"
         }
       ]
     },
     {
       "id": "other",
-      "label": "\ud83d\udccd Other Areas",
+      "label": "📍 Other Areas",
       "district": "other",
       "venues": [
         {
@@ -1323,7 +1376,7 @@
           "status": "pass",
           "district": "other",
           "capacity": null,
-          "capacityDisplay": "\u2014",
+          "capacityDisplay": "—",
           "price": null,
           "priceDisplay": "Contact",
           "hourlyRate": null,
@@ -1336,7 +1389,8 @@
           "virtualTour": null,
           "notes": "Pass - bit leisure",
           "lat": 1.2914,
-          "lng": 103.8494
+          "lng": 103.8494,
+          "picture": null
         },
         {
           "id": "380-jalan-besar",
@@ -1358,7 +1412,8 @@
           "virtualTour": null,
           "notes": "Max capacity from Room 15B",
           "lat": 1.3130844,
-          "lng": 103.860476
+          "lng": 103.860476,
+          "picture": null
         }
       ]
     }

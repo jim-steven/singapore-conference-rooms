@@ -1,0 +1,1837 @@
+<!doctype html>
+<html dir="ltr" lang="en" data-lang="" data-template="404" data-template-source="tc-theme">
+<head>
+<script>
+	var galaxyInfo = {
+		website_id: 10757,
+        tvs: 0,
+	    cms_id: 331047,
+	    iso: "en_US",
+	    local: "en",
+	    traduction_id: 1,
+	    env: "prod",
+	    domain_unique_id: "7d109343908337a50b59dc07bc5ed24b",
+	    proxy_url: "https://tc.galaxy.tf",
+	    proxy_key: "cd6c9570058d4b7190f73b5ecd3b3d6a",
+	    proxy_url_lead: "https://tc.galaxy.tf/leads?key=cd6c9570058d4b7190f73b5ecd3b3d6a&glx-website-id=10757&glx-trad-id=1",
+	    proxy_user_pool_id: "",
+	    item_previous:"",
+	    item_current:"",
+	    item_next_item:"",
+	    item_count:"0",
+	    auto_visibility_start: "",
+	    auto_visibility_end: "",
+	    visibility_redirect_url: "",
+	    locales_theme:"/json/locale/10757/1/1",
+	    live_website: true,
+	    backstage: "https://www.travelclick-websolutions.com"
+	}
+	</script>
+<script type="text/javascript" src="https://app.secureprivacy.ai/script/667e88b4911910543022cd70.js"></script>
+<script>
+    window.addEventListener("sp_init", function (evt) {
+        window.sp.switchLanguage('en');
+    }, false);
+</script>
+<script>var galaxyGMS=function(){var e;return{isUserLoggedIn:function(){try{var r=sessionStorage.getItem("gms_profil_data")||localStorage.getItem("gms_profil_data");return!!(r&&(e=JSON.parse(r))&&e.firstName&&e.timestamp&&45>(+new Date-e.timestamp)/1e3/60)}catch(e){return!1}},userTierKey:function(){if(this.isUserLoggedIn()){var r=e.levelName;if("string"==typeof r)return r.toLowerCase().replace(/ /g,"_")}return!1}}}();</script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap&subset=latin,latin-ext" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap&subset=latin,latin-ext"/></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i&display=swap&subset=latin,latin-ext" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i&display=swap&subset=latin,latin-ext"/></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap&subset=latin,latin-ext" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap&subset=latin,latin-ext"/></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap&subset=latin,latin-ext" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap&subset=latin,latin-ext"/></noscript>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1">
+<link rel="stylesheet" href="/css/custom/10757/1/main/5df4ef1d2780d86da432729db56c247e/main.css" data-theme-name="th1">
+<script>
+// Picture element HTML5 shiv
+document.createElement( "picture" );
+</script>
+<script>var BIDnumber = '358825';</script>
+
+<style>
+  :root {
+    --btn-animation-type: Instant;
+
+    --hero-animation-type: ;
+    --hero-animation-start: No animation;
+    --hero-animation-slider: Fade out image;
+    --hero-animation-slider-delay: 6000ms;
+    --hero-animation-pages: Homepage;
+
+    --on-scroll-animation: ;
+    --on-scroll-animation-pages: Homepage;
+  }
+</style>
+
+<link rel="preload" href="/css/custom/10757/307/main/64f97e9f9fec316798ae52df6b5e0284/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/custom/10757/307/main/64f97e9f9fec316798ae52df6b5e0284/main.css" /></noscript>
+<link rel="preload" href="/css/custom/10757/311/main/23809502e2e03fb741ff0a8d04fd0f83/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/custom/10757/311/main/23809502e2e03fb741ff0a8d04fd0f83/main.css"></noscript>
+<script>
+  if (!window.GLXExtensions) window.GLXExtensions = {};
+  window.GLXExtensions.tcGuestPortal = { isEnabled: true };
+  (function () {
+    const crossDomainParam = /gms=([^&]*)/.exec(window.location.hash);
+   if (crossDomainParam) {
+      window.GLXExtensions.tcGuestPortal.crossDomain = {
+        param: crossDomainParam[1]
+      };
+      const newURL = new URL(window.location.href);
+      newURL.hash = '';
+      history.replaceState(null, '', newURL);
+    }
+  })();
+
+  // title from the unit level
+  const gp_titles_website = "mr,mrs,miss,dr,prof,mr&mrs,mr&miss,othertitle";
+  const gp_titles_arr = !gp_titles_website ? null : gp_titles_website.split(",");
+  if (gp_titles_arr) {
+    window.GLXExtensions.tcGuestPortal.gmsTitles = gp_titles_arr;
+  }
+</script>
+
+
+<script>
+  const tcIntegratedDatalayerConfig = {
+    website: {
+  name: "Park Hotel Group",
+  type: '1',
+  tvs: '0',
+  nbHotel: 
+
+
+
+  '7'
+ ,
+},
+    websiteItem: {
+  bid: '358825',
+  
+  hotelId: false,
+  
+  bookingEngineHotelId: '0',
+  bookingEngineProvider: 
+
+
+
+"None"
+,
+  branding: {
+    name: 
+"Park Hotel Group "
+, // new
+    brand: 
+
+
+
+"not_applicable"
+,
+    masterBrand: 
+
+
+
+"Park Hotel Group "
+,
+    chainId: 'PHT',
+  },
+  location: {
+    city: "false",
+    country: "false",
+    countryCode: "SG",
+    state: "false",
+  },
+  rating: 'false',
+  roomTypesCount: 'false'
+},
+    hotelInDetail: 
+{
+  
+},
+    ibe: {
+  ibeGeneral: [],
+  ibeProductDisplay: []
+},
+  };
+  
+  if (!window.GLXExtensions){
+    window.GLXExtensions = { tcIntegratedDataLayer: { isEnabled: true, config: tcIntegratedDatalayerConfig } }
+  } else {
+    window.GLXExtensions.tcIntegratedDataLayer = { isEnabled: true, config: tcIntegratedDatalayerConfig }
+  } 
+</script>
+<style>
+/* While loading */
+glx-tc-lead-rate:not([data-state="ready"]) {
+    opacity: 0.5;
+    cursor: wait;
+}
+/* avoid content jumping after loading in case there is no fallback */
+glx-tc-lead-rate-member-value,
+glx-tc-lead-rate-value {
+    &:empty::before {
+        content: '\00a0'; /* &nbsp; equivalent to force taking space */
+    }
+}
+/* If there is no rate or fallback, we hide the rate */
+glx-tc-lead-rate[data-empty="true"] {
+    display: none!important;
+}
+</style>
+
+
+<!-- webcomponents for rates from proxy -->
+<script type="module" src="/integration-tools/rate-components/public/rates-proxy.js?v1.3.0" ></script>
+
+
+<link type="image/x-icon" href="https://image-tc.galaxy.tf/wipng-8kt13a95xt0rvfvo7i4ppqjmn/favicon.png" rel="shortcut icon"/>
+<meta name="google-site-verification" content="nDLdzQ6dKeksnaKicV_CD0zHqhC5rGEkmwA4XJljstg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+<style>.accordion__panel{border: 1px solid #ccc;} .m-footer-base_2--top .list-inline{text-transform:none; font-size:14px;} .m-footer-base_2--bottom .icon{font-size:22px;}.gallery-filters, .back-to-top{font-size:13px;} .m-color-box--illustration {width: 30px;height: 30px;} .m-content-object {
+margin-top: 0px;} .bm--area-search.has-no-hero .no-hero.bm--show{margin-top:0px !important;} .js-filter-container .accordion__panel .panel__body{padding:30px;} .js-filter-container .accordion__panel .accordion__panel__heading, .js-filter-container .accordion__panel .panel__body{border-bottom:0px;} .m-content-object--infos{text-align:left;} .page-footer__top-line{padding:0px !important; border-top: 1px solid #dfdfe0;} .page-footer__links-list a{text-transform:none; font-size:14px;} .m-footer-base_2--bottom .icon, .page-footer__socials .icon{font-size:20px;} .page-footer__newsletter {padding-bottom: 50px;} .accordion__panel__heading .btn-link{text-transform:none;}.checkbox-radio-custom .fake-input, .custom-radio .checkmark{border-color:#333;}.custom-radio input:checked~.checkmark {background: #333;border-color: #333;} .affiliates_main_container{display:flex; align-items: center; justify-content: center; width: 100%;} .affiliates_only{display:flex; align-items: center;} .language-switcher-dropdown .dropdown-menu{box-shadow: 0px 0px 0px #fff;} .page-footer__title{text-align:center; margin-top:50px;} .page-footer__newsletter .btn{width:100%;} h3, .h3{margin-bottom:15px;} .info-price--twolines .m-content-object--footer-price{text-align:left;}
+/**
+@media (min-width: 1200px) {
+.header__logo-wrapper img{max-height:69px;}
+}
+@media (max-width: 1199px) {
+.header__logo-wrapper img{max-height:50px;}
+}
+**/
+@media (max-width: 767px) {
+.affiliates_main_container{display:block; align-items: center; justify-content: center; width: 100%;} .affiliates_only{display:block; align-items: center; margin-bottom:30px;} .affiliates_main_container .bar{display:none;}.bm-as__wrapper .bm-as__modify-booking-cta {margin: 20px 0 0 0;} .header__logo-wrapper img{height:50px;}
+}
+
+/* Case 005294673 */
+@media (min-width: 768px) {
+    .bm-pu__room-popup .bm-pu__room-pop-up {
+        width: auto;
+    }
+}
+
+@media (max-width: 576px) {
+	.bm-pu__room-popup .bm-pu__room-options {
+  		flex-direction: column !important;
+  	}
+  
+  	.room-popup__detail.ada-select__wrapper.bm-childAges  {
+  		flex: 1 !important;
+  	}
+  
+}
+
+.bm-pu__room-popup .bm-pu__room-options.bm__option-ages{
+	margin-top: 0px !important;
+}
+
+</style>
+<title>404 | Park Hotel Group</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta property="og:site_name" content="Park Hotel Group" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="robots" content="index, follow" />
+<meta name="google-site-verification" content="Tu9_hQKe3-5XKVvz2_td3UiEhcc80MUbxebac-VZ3EE" />
+<link rel="canonical" href="https://www.parkhotelgroup.com/404" />
+<link rel="alternate" href="https://www.parkhotelgroup.com/404" hreflang="en" />
+<link rel="alternate" href="https://www.parkhotelgroup.com/ja/404" hreflang="ja" />
+<link rel="alternate" href="https://www.parkhotelgroup.com/zt/404" hreflang="zh-Hant" />
+<meta property="og:url" content="https://www.parkhotelgroup.com/404" />
+<meta property="og:title" content="404 | Park Hotel Group" />
+<meta property="og:description" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="msvalidate.01" content="FC8DDDBA14DDD21A3DE6171B9064C163" />
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/www.parkhotelgroup.com\/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/www.parkhotelgroup.com\/404","name":"404"}}]}</script>
+<script>var websiteID = 10757;</script>
+<script>var cms = 331047</script>
+<script>var ts_roll_up_tracking = 'enabled';</script>
+<script> var ts_analytics = {"master_brand_bid":358825,"brand_bid":358825,"master_brand_chain_id":"PHT"}</script>
+<script>
+var dl = {"pageLanguage":"en","tvs":"tvs_no","websiteLanguage":"en","pageSection":"not_applicable","pageSubSection":"not_applicable","contentGroup":"not_applicable","globalProduct":"web","event":"datalayer-first-render","productPurchased":"essentials","propertyWebsiteLanguages":6,"webHostname":"parkhotelgroup.com","parentHostname":"not_applicable"};
+				dl.loggedIn = galaxyGMS.isUserLoggedIn() ? "yes" : "no";
+				dl.memberTier = galaxyGMS.userTierKey() ? galaxyGMS.userTierKey() : "null";
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-TL2MM4B');
+		</script>
+
+<style>
+/* For WYSIWYG content, CSS class are added to figure/images instead of relying only on inline style attribute. These images have the class "glx-cke5-image" added so we can target them safely. */
+figure.image_resized.glx-cke5-image[style*="width"] img {
+    width: 100%;
+    height: auto;
+}
+</style>
+<script>
+				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer','GTM-KKDV4LZ');
+				</script>
+<script>_dynamic_base = "https://dynamic.travelclick-websolutions.com"</script>
+</head>
+<body class="g_404 no-js sticky-footer header1
+     remove-level-three-navigation" 
+   
+   
+>
+<script>document.body.classList.remove("no-js");document.body.classList.add('js-loading');</script>
+<script>
+  var websiteGlobalVariables = {
+    'rates': {
+      'hideOldPrices': false
+    }
+  };
+
+  // Set the CSS custom property dynamically
+  document.documentElement.setAttribute(
+    'data-hide-old-prices',
+    websiteGlobalVariables.rates.hideOldPrices
+);
+</script>
+<a href="#header-content" class="skip-main">Skip to navigation</a>
+
+<a href="#site-content" class="skip-main">Skip to main content</a>
+
+<a href="#footer-content" class="skip-main">Skip to footer</a>
+
+<img id="tc-theme-svg-list" src="/integration/tc-theme/public/svg/svg-icons.svg" alt="Website's SVG icons" width="0" height="0"/>
+
+    <style>
+        .id-2a1b4ba6992fa9c456572fed108a90e9 .dialog-close, .id-2a1b4ba6992fa9c456572fed108a90e9.m-popup {
+            color: #000000;
+        }
+    </style>
+
+
+
+<div id="gms-header-dropdown">
+  <header-dropdown
+    :configs="{
+      headerSmallData:'points',
+      loginText: 'Login / Sign Up',
+      login: '/login',
+      customIcon: {
+        main: '',
+        hover: ''
+      },
+      triggerIsButton: false,
+      customColors: {
+        dropdownHead: {
+          enabled: false,
+          background: {
+            default: '',
+            hover:''
+          },
+          text: {
+            default:'',
+            hover:''
+          }
+        },
+        dropdownPanel: {
+          enabled: false,
+          background: {
+            default: ''
+          },
+          text: {
+            default:'',
+            hover:''
+          }
+        }
+      },
+      dropdown:[
+{
+    title: 'Home',
+    url: '/',
+    target: '_self',
+},
+
+{
+    title: 'Dashboard',
+    url: '/gp-dashboard',
+    target: '_self',
+},
+  ]}"
+  :translations='{
+    logout: "Sign Out",
+    signOut: "Sign Out",
+    hello: "Hello,",
+    point:"Point",
+    points:"Points",
+    night:"Night",
+    nights:"Nights Achieved",
+    stay:"Stay",
+    stays:"Stays",
+  }'></header-dropdown>
+</div>
+
+
+
+
+  <script type="text/template" id="extension-zone-cs-container">
+<div class="cs-container"></div>
+</script>
+<script>
+  if(!window.hotelModule) {
+    window.hotelModule = [];
+  }
+  window.hotelModule['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+    url: '/json/search/1/1/hotels-dropdown-data.json'
+  }
+  window.headerMenu = {navItems: [{"url":"#","current":"","name":"Explore","target":"","subpages":[{"url":"\/explore\/our-hotels","current":"","name":"Our Hotels","target":""},{"url":"\/explore\/our-destinations","current":"","name":"Our Destinations","target":""},{"url":"\/explore\/our-brands","current":"","name":"Our Brands","target":"","subpages":[{"url":"\/explore\/our-brands\/grand-park","current":"","name":"Grand Park","target":""},{"url":"\/explore\/our-brands\/park-hotel","current":"","name":"Park Hotel","target":""},{"url":"\/explore\/our-brands\/destination","current":"","name":"Destination","target":"","subpages":[{"url":"\/explore\/our-brands\/destination\/destination-singapore","current":"","name":"Destination Singapore","target":""}]}]},{"url":"\/explore\/travel-blog","current":"","name":"Travel Blog","target":""}]},{"url":"\/offers","current":"","name":"Offers","target":""},{"url":"\/park-rewards","current":"","name":"Park Rewards","target":""},{"url":"#","current":"","name":"Corporate & Development","target":"","subpages":[{"url":"\/corporate-development\/business-travel","current":"","name":"Business Travel","target":""},{"url":"\/corporate-development\/development","current":"","name":"Development","target":""},{"url":"\/corporate-development\/affiliates","current":"","name":"Affiliates","target":""}]},{"url":"#","current":"","name":"About Us","target":"","subpages":[{"url":"\/about-us\/our-story","current":"","name":"Our Story","target":""},{"url":"\/about-us\/corporate-responsibility","current":"","name":"Corporate Responsibility","target":""},{"url":"\/about-us\/best-rate-guarantee","current":"","name":"Best Rate Guarantee","target":""},{"url":"\/about-us\/careers","current":"","name":"Careers","target":""},{"url":"\/about-us\/media-centre","current":"","name":"Media","target":"","subpages":[{"url":"\/about-us\/media-centre\/archive","current":"","name":"Media Centre - Archive","target":""}]},{"url":"\/about-us\/contact","current":"","name":"Contact Us","target":""}]}]}
+  window.headerConfigs = {
+      headerId: 'id-a48853dcf64f984a642f63d6dbbc2d5e',
+      hrefLanguage: 'en',
+      showSecondaryNavigation: false,
+      showLevelThreeNavigation: false,
+      secondaryNav: [],
+      logo: {
+        link: '/',
+        linkTarget: false,
+        title: 'Back to the homepage',
+        hasBackground: true,
+        background: '#FFFFFF',
+        hasScrollLogo: false,
+        scrollLogo: 'https://image-tc.galaxy.tf/wipng-6ydalzw83uhb0yx29c6aobar8/phg-logo-2021-v-en-rgb-full-colour.png?width=500',
+        scrollLogoAlt: '',
+        hasMobileLogo: false,
+        mobileLogo: '',
+        logo:'https://image-tc.galaxy.tf/wipng-223rjj0g8getka3dypwafljvk/colour-park-hotel-group-spacing.png?width=500',
+        logoAlt: '',
+        additionalLanguagesLogosSettings: {
+          isEnabled: false,
+          hasLogo: false,
+          logo: '',
+          hasScrollLogo: true,
+          scrollLogo: '',
+          scrollLogoAlt: '',
+          hasMobileLogo: false,
+          mobileLogo: '',
+          hasBackground: false,
+          background: '',
+        },
+      },
+      showLanguageSwitcher: true,
+      languageSwitcher: {
+  
+    languageCount: '3',
+    currentLanguage: 'English',
+    currentLanguageShort: 'en',
+    languages: [
+              {
+          url: '/ja/404 ',
+          local: 'ja',
+          full: '日本語',
+          short: '日本語',
+        },
+              {
+          url: '/zt/404 ',
+          local: 'zt',
+          full: '繁體中文',
+          short: '繁體中文',
+        },
+          ]
+  
+},
+      showCurrencySwitcher: true,
+      hasPhoneNumber: false,
+      phoneNumber: '',
+      phoneNumberSanitized: '',
+      phoneNumberLabel: '',
+      hasSubpages: true,
+      maxNavItems:'8',
+      hamburgerIconColor: '',
+      bookNowLabel: 'Book Now',
+      dropShadowOnScroll: false,
+      headerMenu:{ navItems:'' },
+      gmsHeaderDropdown: {},
+      hotelDropdownConfig:{
+        crossWebsiteLinking: false,
+        homeLink: '',
+        homeLinkLabel: ``,
+        homeIcon: false,
+        customHomeIcon: '',
+        groupHotelsDropdowns: '',
+        defaultHotel: ``,
+        uncategorisedHotel: ``,
+      },
+      locales: {
+        showSubMenuFor:'show submenu for ',
+        moreLink:'More link',
+        mainNavigation:'main navigation',
+        opensBookingMask:'opens booking mask',
+        closeBookingMask:'close booking mask',
+        closeMoreMenu:'close more menu',
+        backToTheMenu:'back to menu',
+        gms_helloUser:'Hello,',
+        gms_signOut:'Sign Out',
+        gms_point: 'Point',
+        gms_points: 'Points',
+        gms_night:'Night',
+        gms_nights:'Nights',
+        gms_stay:'Stay',
+        gms_stays:'Stays',
+        call_us:'call us at',
+        menu:'Menu'
+      }  
+    }
+</script>
+<div id="header-one" class="header-one header-logo-alts" data-scroll-logo-alt="Official logo of Park Hotel Group" data-logo-alt="Official logo of Park Hotel Group" >
+  <header-one></header-one>
+</div>
+ 
+   
+
+<!-- BM CORE SETTING EXAMPLE -->
+<script>
+  const calendarSettings = {
+  
+    displayDateFormat:"MM/DD/YYYY",
+    isLargeLayout: false,
+  
+  siteLanguage: 'en',
+  firstDayOfTheWeek: 0,
+  monthsToShow: 1,
+  showDaysInNextAndPreviousMonths: false,
+  
+  useDefaultArrows: false,
+  arrowsCustomClass: {
+    prev: 'icon icon-arrow-left',
+    next: 'icon icon-arrow-right',
+  },
+  checkIn: {
+    field: 'bm-checkin-input',
+    trigger: 'bm-checkin-trigger',
+    container: 'bm-calendars',
+  },
+  checkOut:{
+    field: 'bm-checkout-input',
+    trigger: 'bm-checkout-trigger',
+    container: 'bm-calendars',
+  },
+  flexibleDates: {
+    enabled: false,
+    field: 'flexible-dates-input',
+    content: 'My dates are flexible',
+    checkedMark: '<svg class="icon icon-arrow-bottom"><use href="#icon-check"></use></svg>'
+  },
+  ratesInCalendar: {
+    enabled: false,
+    device: 'desktop',
+    dailyRatesData: [],
+    indicatorColor: '#0AE000',
+    customCalendar: {
+      calendarContainer: 'bm-rates-calendar',
+      monthsContainer: 'bm-rates-calendar-months',
+      monthsTrigger: 'bm-rates-month-trigger',
+      daysContainer: 'bm-rates-calendar-days',
+      daysTigger: 'bm-rates-calendar-days',
+      applyTigger: 'bm-rate-calendar-apply',
+      closeTigger: 'bm-rate-calendar-close',
+    },
+    indicatorLabel: "Lowest available rate",
+    rateLabel: "Rates from ",
+    backBtnLabel: "Go back",
+    monthSelectorLabel: "Select your dates",
+    applyBtnLabel: "Apply dates",
+  },
+  wcag: {
+    selectedCheckInDate: "Selected check in date is",
+    selectedCheckOutDate: "Selected check out date is",
+    selectedCheckInDateText: "This button opens the calendar to select check in date.",
+    selectedCheckOutDateText: "This button opens the calendar to select check out date.",
+    selected: "Selected",
+    checkInLiveRegionId: 'checkin-region',
+    checkOutLiveRegionId: 'checkout-region',
+    incorrectDateFormatEntered: "Incorrect date format used, please use date format",
+    minimumDaysOfStay: "Minimum Night Stay",
+    calendarExpanded: "Calendar Expanded",
+  },
+  labels: {
+    previousMonth: "Previous Month",
+    nextMonth: "Next Month",
+  }
+};
+  const bm_core_settings = {
+  dataContainer: 'bm-app',
+  container: 'bm-box-wrapper',
+
+  startingDate: '',
+
+  calendars: calendarSettings,
+  leadRates: {
+    showRates:  1 ,
+    showStrikeThroughRate: false,
+    displayPrice: 'lead-rates-price',
+    bestRateLogo: {
+      enabled: false,
+      logo: "",
+      fallbackText: "Best Rate Guarantee"
+    } 
+  },
+  wcag: {
+    bookNow:{
+      id: 'booking-mask-submit',
+      opensInANewTab: "opens in a new tab"
+    }
+  },
+
+  saveBookingSession:  false ,
+  website: {
+  hotelTypeId: '1',
+  booking_engine_hotel_id: '0',
+  booking_mask_url: '',
+  booking_engine_provider_id:  '1' ,
+  second_booking_engine_provider_id: 'false',
+  second_booking_engine_hotel_id: 'false',
+  second_booking_engine_url: 'false',
+  second_booking_mask_url: 'false',
+  hasFamilyPricing: false,
+  be_open_in_new_tab: true ,
+  
+    hotels: [{"id":10847,"name":"Grand Park Wuxi","booking_engine_hotel_id":"","booking_mask_url":"","booking_engine_url":"","booking_engine_provider_id":0,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":12,"max_infant_id":2,"max_infant_age":1,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"China","country_id":243,"region":"Jiangsu","region_id":571,"city":"Wuxi","location":"Wuxi","location_id":1183,"min_children_age_id":0},{"id":10607,"name":"Park Hotel Hong Kong","booking_engine_hotel_id":116233,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116233?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116233?HotelId=116233&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":11,"max_infant_id":1,"max_infant_age":3,"max_room_id":10,"max_adult_id":5,"weight":0,"country":"Hong Kong","country_id":243,"region":"Kowloon","region_id":563,"city":"Kowloon","location":"Hong Kong","location_id":1169,"min_children_age_id":4},{"id":10873,"name":"Grand Park Kunming","booking_engine_hotel_id":"","booking_mask_url":"","booking_engine_url":"","booking_engine_provider_id":0,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":12,"max_infant_id":2,"max_infant_age":1,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"China","country_id":243,"region":"Yunnan","region_id":573,"city":"Kunming","location":"Kunming","location_id":1185,"min_children_age_id":0},{"id":10619,"name":"Park Hotel Kyoto","booking_engine_hotel_id":116237,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116237?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116237?HotelId=116237&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":6,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":4,"weight":0,"country":"Japan","country_id":239,"region":"Kyoto","region_id":561,"city":"Kyoto","location":"Kyoto","location_id":1173,"min_children_age_id":1},{"id":10621,"name":"Grand Park City Hall","booking_engine_hotel_id":95980,"booking_mask_url":"https:\/\/reservations.travelclick.com\/95980?","booking_engine_url":"https:\/\/reservations.travelclick.com\/95980?HotelId=95980&languageid=1&rooms=1&adults=2","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":5,"max_children_age":5,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Singapore","country_id":233,"region":"","region_id":549,"city":"Singapore","location":"Singapore","location_id":1165,"min_children_age_id":1},{"id":10623,"name":"Grand Park Otaru","booking_engine_hotel_id":116229,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116229?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116229?HotelId=116229&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":6,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Japan","country_id":239,"region":"Hokkaido","region_id":559,"city":"Otaru","location":"Otaru","location_id":1171,"min_children_age_id":1},{"id":10625,"name":"Grand Park Kodhipparu, Maldives","booking_engine_hotel_id":116235,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116235?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116235?HotelId=116235&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":11,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Maldives","country_id":241,"region":"","region_id":565,"city":"","location":"Mal\u00e9","location_id":1167,"min_children_age_id":1}]
+  
+},
+
+
+  
+
+module: 'master_brand',
+id: '4103',
+
+showHotels:true,
+
+};
+  const bm_ui_settings = {
+  dataContainer: 'bm-app',
+container: 'bm-box-wrapper',
+containers: {
+  'header1': {
+    vertical: { 
+      base: '#bm-hero-container',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    }, 
+    horizontal: {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'area-search': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'horizontal-hotel-plus-air': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    }
+  },
+  'header2': {
+    vertical: { 
+      base: '#bm-vertical-base',
+      noHero: '#no-hero',
+      collapsed: '#bm-vertical-base',
+      triggers: '.bm-collapsed-wrapper'
+    }, 
+    horizontal: {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'area-search': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'horizontal-hotel-plus-air': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    }
+  },
+  'headerAdvanced': {
+    vertical: { 
+      base: '#bm-hero-container',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    }, 
+    horizontal: {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'area-search': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    },
+    'horizontal-hotel-plus-air': {
+      base: '#bm-horizontal-hero',
+      belowHero: '#bm-horizontal-below-hero',
+      noHero: '#no-hero',
+      collapsed: '#bm-collapsed-horizontal-wrapper',
+      triggers: '.bm-collapsed-wrapper'
+    }
+  },
+},
+hero: {
+  container: 'm-hero',
+  typeShort: 'm-hero_short'
+},
+//area-search
+areaSearch: {
+  enabled: false,
+  URL: '/explore/our-hotels',
+  URLTarget: '',
+  sortResultsBy: 'Destination',
+  helperText: true,
+  locationFieldSearch: true,
+  disableCountrySearch: true,
+  disableRegionSearch: true,
+  disableCitySearch: true,
+  disablePoiSearch: false,
+  disableSearchIcons: false,
+  enableAllDestinationSearch: false,
+  hideCounterPerLevel: false,
+  hideSecondaryInfomation: false,
+  promocodePopUp: {
+    container: 'bm-as-promocode-popup',
+    trigger: 'bm-as-promocode-trigger',
+    mobileClose: 'bm-as-promocode-close',
+    mobileSaveChanges: 'bm-as-promocode-save-changes',
+  }
+},
+roomPopUp: {
+  enabled: 
+    
+      false
+    ,
+  cmsShowChildrenAges:  false ,
+  container: 'bm-pu-room-options',
+  roomContainer: 'bm-pu__rooms-container',
+  roomsSelector: 'js-as-room',
+  roomNumber: 'js-room-number',
+  childAgesContainer: 'js-room-child-ages',
+  infantAgesContainer: 'js-room-infant-ages',
+  trigger: 'bm-pu-room-trigger',
+  triggerGuestCount: 'guest_count',
+  triggerGuestLabel: 'guest_label',
+  triggerAdultCount: 'adult_count',
+  triggerAdultLabel: 'adult_label',
+  triggerChildrenCount: 'children_count',
+  triggerChildrenLabel: 'children_label',
+  triggerRoomCount: 'room_count',
+  triggerRoomLabel: 'room_label',
+  mobileClose: 'bm-pu-room-close',
+  mobileSaveChanges: 'bm-pu-room-save-changes',
+  selectRoomLabel: "This button opens the room selector.",
+  addRoom: 'add-room',
+  removeRoom: 'subtract-room',
+  trashRoom: 'bm-pu__room-remove',
+  roomCounter: 'bm-pu-room-counter',
+  adultSelector: 'bmadults',
+  childSelector: 'bm-children',
+  infantSelector: 'bm-infants',
+  labels: {
+    roomOptionsSaveChanges: "Save Changes",
+    roomSingular: "Room",
+    roomPlural: "Rooms",
+    guestSingular: "Guest",
+    guestPlural: "Guests",
+    labelAdults: "Adults",
+    labelChildren: "Children",
+    childAgeInformation: "< 11 years old",
+    infantAgeInformation: "< 2 years old",
+    selectYourOccupancy: "Select your occupancy",
+    addRoom: "Add Room",
+    removeRoom: "Subtract Room",
+    occupancy: "Occupancy",
+  }
+},
+// button only
+buttonOnly: {
+  enabled: false,
+  URL: '',
+  URLTarget: '',
+  buttonClass: ''
+},
+//book  now buttons
+bookNow: {
+  mobile: {
+    open: 'js-trigger-open-collapse',
+    openLabel: "Book now",
+    close: 'js-trigger-close-collapse',
+    closeLabel: "close"
+  },
+  desktop: {
+    id: 'booking-mask-submit',
+    label: "Book now",
+    open: 'js-trigger-open-collapse',
+    openLabel: "Book now",
+    close: 'js-trigger-close-collapse',
+    closeLabel: "close"
+  }
+},
+// layout
+layout: 'horizontal',
+fullyExpanded: false,
+horizontalIsFullWidth: false,
+isSticky: true,
+position: 'right',
+collapsed: 'opened',
+collapsePosition: 'below the nav bar',
+//check in/out labels
+checkInLabel: "Check In",
+checkOutLabel: "Check Out",
+requiredFieldsLocal: "* Fields Required",
+headerType: null,
+  //calendars information shared with core
+  calendars: calendarSettings,
+  //hotel select
+hotelSelect: 'booking-mask-hotel',
+hotelSelectWrapper: 'booking-mask-hotel-wrapper',
+selectHotelLabel: "Please Select Property",
+selectHotelPlaceHolder: "Select Hotel",
+showNumberOfHotels: false,
+hotelSelectRequired: true,
+showHotelCountry: false,
+//rooms
+showRooms: false,
+rooms: {
+  id:'bm-rooms',
+  min: '1',
+  max: '10',
+  defaultValue: "1",
+  label: "Rooms",
+  required: false
+},
+
+//adults 
+showAdults: true,
+adults: {
+  id:'bmadults',
+  min: '1',
+  max: '10',
+  defaultValue: "1",
+  label: "Adults",
+  required: false
+},
+
+//children
+showChildren: true,
+children: {
+  id:'bm-children',
+  min: '0',
+  max: '10',
+  defaultValue: '' || 0 ,
+  label: "Children",
+  required: false,
+  disabled: false
+},
+childAges: {
+  id:'bm-childAges',
+  min: 0,
+  max: 12,
+  defaultValue:  0 ,
+  label: "Child Age",
+  required: false,
+  infantEnabled: false
+},
+
+//infants
+showInfants:  false ,
+infants: {
+  id: 'bm-infants',
+  min: '0',
+  max: '2',
+  defaultValue: '' || 0,
+  label: "Infants",
+  required: false,
+  disabled: false
+},
+infantAges: {
+  id: 'bm-infantAges',
+  min: 0,
+  max: 1,
+  defaultValue:  0 ,
+  label: "Infants Age",
+  required: false
+},
+//hotel + air
+showHotelAir: false,
+hotelAir: {
+  preselectHotelAir: false,
+  hotelId:'hotel-only-btn',
+  airId:'hotel-air-btn',
+  srLabel: "Select booking type",
+  hotelLabel: "Hotel",
+  airLabel: "Hotel + Air",
+  departureCityLabel: "Departure City",
+  departureLoadingText: "Searching",
+  departureCityWrapperId: 'departure-city-wrapper',
+  departureCityId: 'departure-city',
+  trigger: 'hotel-air___btn',
+  triggerHotelAir: '#hotel-air-btn',
+  required: true
+},
+
+showRates: true,
+showRetailRates: !websiteGlobalVariables.rates.hideOldPrices,
+leadRates: {
+  defaultRate: "Make a reservation",
+  rate: '',
+  label: "Best rates from",
+  opensInANewTab: "opens in a new tab",
+  
+    customRatesURL: false,
+    URL: '',
+  
+  bestRateLogo: {
+    enabled: false,
+    logo: "",
+    fallbackText: "Best Rate Guarantee"
+  } ,
+  iHotelierConfig: 'false',
+  locales: {
+    loadingText: "Loading",
+    ratesFrom: "Rates from "
+  }
+},
+  showModifyLink:  1 ,
+modify: {
+  id:'modifyBooking',
+  bookingMaskURL: '',
+  bookingEngineURL: '',
+  text: {
+    modifyBooking: "MODIFY BOOKING",
+    openPopup: "Opens modify booking window",
+    closePopup: "Close modify booking window",
+    enterReservationNumber: "Please, enter your reservation number.",
+    reservationNumber: "Reservation number",
+    submitReservationNumber: "Submit reservation number",
+    required: "required",
+    allFieldsAreRequired: "(All fields are required)",
+    opensInANewTab: "opens in a new tab",
+    submit:  "Submit",
+    selecHotel: "Please Select Property"
+  }
+},
+  //promocode
+
+    hasPromocode: true,
+    promocodeId: 'booking-mask-promocode',
+    multiPromocodeValueInput: 'js-bm-source-promocode-value',
+    multiPromocodeTypeInput: 'js-bm-source-promocode-name',
+    multiPromocodeRealInput: 'js-bm-fill-promocode',
+    
+    
+    
+    
+    
+    numberOfPromoCodes: 4,
+    promocodeWCAG: {
+        gotACode: "Got a promocode?",
+        openPromocode: "Opens promocode window",
+        enterYourPromo: "Enter your promocode",
+        clearPromocode: "Clear promocode",
+        closePromocodeWindow: "Close promocode window",
+        addYourCode: "Select\/Enter Code",
+        selectCodeType: "Select code type",
+        enterYourPromo: "Enter your promocode",
+        applyPromocode: "Apply promocode",
+        addPromo: "Add",
+        promocodeWindowDescription: "This window allows you to enter one of the available types of promocodes",
+    },
+
+
+
+showPromo:  1 ,
+
+  promoCode: {
+    label: "Discount code",
+    labelPlaceholder: "Discount code",
+    promocodeType: 'discount',
+    hasDefaultValue:  false ,
+    defaultValue: "",
+  },
+
+
+showTravelAgencyPromo:  1 ,
+
+  travelAgencyPromo: {
+    label: "IATA Code",
+    labelPlaceholder: "IATA Code",
+    promocodeType: 'iata',
+  },
+
+
+showGroupPromo:  1 ,
+
+  groupPromo: {
+    label: "Group code",
+    labelPlaceholder: "Group code",
+    promocodeType: 'groupid',
+  },
+
+
+showRateAccessCorporatePromo:  1 ,
+
+  rateAccessCorporatePromo: {
+    label: "Corporate Code",
+    labelPlaceholder: "Corporate Code",
+    promocodeType: 'identifier',
+    hasDefaultValue:  false ,
+    defaultValue: "",
+  },
+
+  website: {
+  hotelTypeId: '1',
+  booking_engine_hotel_id: '0',
+  booking_mask_url: '',
+  booking_engine_provider_id:  '1' ,
+  second_booking_engine_provider_id: 'false',
+  second_booking_engine_hotel_id: 'false',
+  second_booking_engine_url: 'false',
+  second_booking_mask_url: 'false',
+  hasFamilyPricing: false,
+  be_open_in_new_tab: true ,
+  
+    hotels: [{"id":10847,"name":"Grand Park Wuxi","booking_engine_hotel_id":"","booking_mask_url":"","booking_engine_url":"","booking_engine_provider_id":0,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":12,"max_infant_id":2,"max_infant_age":1,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"China","country_id":243,"region":"Jiangsu","region_id":571,"city":"Wuxi","location":"Wuxi","location_id":1183,"min_children_age_id":0},{"id":10607,"name":"Park Hotel Hong Kong","booking_engine_hotel_id":116233,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116233?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116233?HotelId=116233&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":11,"max_infant_id":1,"max_infant_age":3,"max_room_id":10,"max_adult_id":5,"weight":0,"country":"Hong Kong","country_id":243,"region":"Kowloon","region_id":563,"city":"Kowloon","location":"Hong Kong","location_id":1169,"min_children_age_id":4},{"id":10873,"name":"Grand Park Kunming","booking_engine_hotel_id":"","booking_mask_url":"","booking_engine_url":"","booking_engine_provider_id":0,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":12,"max_infant_id":2,"max_infant_age":1,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"China","country_id":243,"region":"Yunnan","region_id":573,"city":"Kunming","location":"Kunming","location_id":1185,"min_children_age_id":0},{"id":10619,"name":"Park Hotel Kyoto","booking_engine_hotel_id":116237,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116237?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116237?HotelId=116237&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":6,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":4,"weight":0,"country":"Japan","country_id":239,"region":"Kyoto","region_id":561,"city":"Kyoto","location":"Kyoto","location_id":1173,"min_children_age_id":1},{"id":10621,"name":"Grand Park City Hall","booking_engine_hotel_id":95980,"booking_mask_url":"https:\/\/reservations.travelclick.com\/95980?","booking_engine_url":"https:\/\/reservations.travelclick.com\/95980?HotelId=95980&languageid=1&rooms=1&adults=2","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":5,"max_children_age":5,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Singapore","country_id":233,"region":"","region_id":549,"city":"Singapore","location":"Singapore","location_id":1165,"min_children_age_id":1},{"id":10623,"name":"Grand Park Otaru","booking_engine_hotel_id":116229,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116229?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116229?HotelId=116229&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":2,"max_children_age":6,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Japan","country_id":239,"region":"Hokkaido","region_id":559,"city":"Otaru","location":"Otaru","location_id":1171,"min_children_age_id":1},{"id":10625,"name":"Grand Park Kodhipparu, Maldives","booking_engine_hotel_id":116235,"booking_mask_url":"https:\/\/reservations.travelclick.com\/116235?","booking_engine_url":"https:\/\/reservations.travelclick.com\/116235?HotelId=116235&languageid=1&rooms=1&adults=1","booking_engine_provider_id":29,"be_open_in_same_tab":false,"second_booking_engine_provider_id":0,"second_booking_engine_hotel_id":0,"second_booking_engine_url":"","date_booking_from":null,"default_duration":1,"max_children_id":6,"max_children_age":11,"max_infant_id":2,"max_infant_age":3,"max_room_id":10,"max_adult_id":10,"weight":0,"country":"Maldives","country_id":241,"region":"","region_id":565,"city":"","location":"Mal\u00e9","location_id":1167,"min_children_age_id":1}]
+  
+},
+
+
+  
+
+module: 'master_brand',
+id: '4103',
+
+showHotels:true,
+
+}
+  bm_ui_settings.areaSearch.labels = {
+    searchHint: 'Please enter 3 or more characters',
+    noResultsFound: 'No results found',
+    locationSearchLabel: 'Where do you want to go?',
+    locationSearchPlaceholder: 'Hotel *',
+    asCalendarMonthPlaceholder: 'month label',
+    bestRateGuaranteeLabel: 'Best Rate Guarantee',
+    specialCode: 'Special Code',
+    codeType: 'Code Type',
+    code: 'Code',
+    applyCode: 'Apply Code',
+    searchDropDownDescription: 'Search location or property',
+    searchBMInAreaSearchPage: 'ASM Search',
+    updateBMInAreaSearchPage: 'Update',
+};
+
+</script>
+
+
+
+
+
+  
+  
+    
+    
+    
+  
+
+
+
+
+  
+
+
+<!-- BM DATA ATTR EXAMPLE -->
+<div id="bm-app"
+  data-booking-mask-type="bmho1" 
+  data-mobile-booking-mask-type="bmco1" 
+></div>
+
+
+
+<div id="main-content" role="main">
+    
+
+
+
+
+<div id="no-hero" class="no-hero"></div>
+
+
+    
+      
+        <script>
+          if(!window.heroSliderItemList) {
+            window.heroSliderItemList = [];
+          }
+
+</script>    
+
+
+
+<style>
+    .id-912254cad8a47d3ddebd369fd427e377 .m-hero--slide__overlay {
+        
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+        
+        
+        height: 800px;
+        
+    }
+  </style>
+
+ 
+<script>
+
+window.heroSliderItemList.push({
+  blockId: 'id-912254cad8a47d3ddebd369fd427e377',
+  showOverlay: 'custom overlay',
+  overlayColor: 'rgba(0, 0, 0, 0.6)',
+  overlayHeight: '800',
+  bannerEnabled: '',
+  bannerBackgroundColor: '',
+  textAlignment: 'left',
+  textColor: '#fff',
+  borderOrShadow: '',
+  bannerBorderColor: '#fff',
+  video: ``,
+  tabletVideo: ``,
+  mobileVideo: ``,
+  mediaType: 'image',
+  title: `404 Error!`,
+  subtitle: `Page not found!`,
+  bannerImgPosition: 'left',
+  bannerImgEnabled: '',
+  buttonEnabled: 'Enable',
+  url: '/',
+  urlTarget: '',
+  linkTitle: `Back to Homepage`,
+  buttonStyle: 'Secondary',
+  desktopVideoObj:{
+    isTVS: '',
+    lazy: ``,
+  },
+  tabletVideoObj:{
+    isTVS: '',
+    lazy: ``,
+  },
+  mobileVideoObj:{
+    isTVS: '',
+    lazy: ``,
+  },
+  imgResponsive:{
+    img: {
+      url:'https://image-tc.galaxy.tf/wijpeg-c6avshwkw929zgcyl36uqezu0/daniam-chou-jd4p2rfakvc-unsplash.jpg?width=1920',
+      alt:`The Hong Kong skyline at night, featuring a dazzling array of lights at Park Hotel Group`
+    },
+    imgMobile:{
+      url:'https://image-tc.galaxy.tf/wijpeg-c6avshwkw929zgcyl36uqezu0/daniam-chou-jd4p2rfakvc-unsplash.jpg?height=700',	
+      alt:`The Hong Kong skyline at night, featuring a dazzling array of lights at Park Hotel Group`,	
+    },
+    imgTablet: {
+      url:'https://image-tc.galaxy.tf/wijpeg-c6avshwkw929zgcyl36uqezu0/daniam-chou-jd4p2rfakvc-unsplash.jpg?width=800',
+      alt:`The Hong Kong skyline at night, featuring a dazzling array of lights at Park Hotel Group`
+    },   
+  },
+  bannerImg:{
+    url:'',
+    alt:``
+  }, 
+  locales:{
+    openInANewTab: 'opens in a new tab'
+  }
+})
+  
+      </script>    
+          
+
+
+
+    <div id="site-content">
+        
+        
+
+<div
+    class="stripe-default-padding slider_block  id-8e8f87968107d7e9f475317d62ddab6b "
+    style="
+               padding-top: 0px;    padding-bottom: 0px;"
+>
+    <div class="">
+
+
+
+<style>
+    .id-8e8f87968107d7e9f475317d62ddab6b .m-plain-text {
+        max-width: 1200px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 1199px) and (min-width: 768px) {
+        .id-8e8f87968107d7e9f475317d62ddab6b .m-plain-text {
+            max-width: 970px;
+            padding-left: 21px;
+            padding-right: 21px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .id-8e8f87968107d7e9f475317d62ddab6b .m-plain-text {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+</style>
+
+  
+
+        <div class="js-slider__wrapper slider-img-full cms-custom-color">
+            <div class="js-slider" data-pagination="true" >
+<div
+    class="stripe-default-padding id-e81650c949e3b4345c6098900723b924 slider-img-full__item"
+    style="               padding-top: 100px;    padding-bottom: 220px;"
+> 
+            <div class="slider-img-full__item__background-img">
+    <picture>
+                    <source media="(max-width: 767px)" srcset="https://image-tc.galaxy.tf/wijpeg-2diqq0658wl0orefchsvk9w0l/phg-destination-singapore-thumb-4x3.jpg?width=1920">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+            data-lazy="https://image-tc.galaxy.tf/wijpeg-2diqq0658wl0orefchsvk9w0l/phg-destination-singapore-thumb-4x3.jpg?width=1920" alt="Supertree structures in Gardens by the Bay near Park Hotel Group">
+            </picture>
+</div>
+            <div class="slider-img-full__item__overlay" style="background-color: rgba(0, 0, 0, 0.24)"></div>
+        <div class="m-plain-text slider_content"
+        data-text-alignment="default"
+        style="    ">
+        <div class="m-plain-text--stripe cms-content">
+                        <h2 class="h2 m-plain-text--title cms-item">The page you are looking for is no longer available. </h2>
+                                    <div class="m-plain-text--content cms-item cms-html-var hidden-xs"><p>To continue exploring, click <a href="/">here</a> to return to our homepage or discover our latest offers below.</p>
+
+<p>Thank you for your understanding!</p>
+</div>
+                                                    <div class="stripe-btn-wrapper">
+                    <a href="/offers"  class="btn btn-action
+">
+                        Explore Our Latest Offers
+                                            </a>
+                </div>
+                    </div>
+    </div>
+</div>        </div>
+        <div class="js-slider__insert-grouped-actions"></div>
+    </div>
+    </div>
+</div>
+
+    <style>
+        
+
+        
+        .id-3b9a5154765c6726d7d0f2a5bccad65e.custom-block-padding {
+            padding-top: 0px;
+            padding-bottom: 0px;
+            }
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+
+        
+
+
+
+        
+
+        
+
+        
+          .id-3b9a5154765c6726d7d0f2a5bccad65e.stripe-default-padding.cms-background.lazy{
+                background-image: none;
+                background-color: #F1F1FA;
+          }
+
+          .id-3b9a5154765c6726d7d0f2a5bccad65e.stripe-default-padding.cms-background{
+              background-image: url('');
+          }
+
+            
+                .id-3b9a5154765c6726d7d0f2a5bccad65e.background-color {
+                    background-color: #F8F8F9;
+                }
+            
+        
+        
+        
+
+        
+    </style>
+
+
+
+<div class="id-3b9a5154765c6726d7d0f2a5bccad65e  stripe-default-padding  
+ 
+background-color">
+    <div class="container">
+        <div 
+        class="id-3b9a5154765c6726d7d0f2a5bccad65e m-plain-text 
+         
+         
+         
+        "
+        data-text-alignment="default">
+            <div class="m-plain-text--stripe cms-content">
+                
+                
+                <div class="m-plain-text--content cms-item cms-html-var"><p style="margin-bottom: 30px; text-align: center;"><img alt="Logo of Park Hotel Group used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-5gj6qs1bwsvjrbvoishddxova/file.svg" style="width: 600px; height: 18px;" /></p>
+
+<div class="affiliates_main_container">
+<div class="affiliates_only"><img alt="Official logo of Grand Park used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-c43wtsykpoldkt96owv7toknd/file.svg" style="width: 100px; height: 43px;" />&nbsp; &nbsp; &nbsp;&nbsp;</div>
+
+<div class="affiliates_only"><img alt="Official logo of Park Hotel used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-bktohdt97z9h89gxy5uatp48x/file.svg" style="width: 100px; height: 44px;" />&nbsp; &nbsp; &nbsp;&nbsp;</div>
+
+<div class="affiliates_only"><img alt="Destination logo used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-drjjkl1w5u75et8p978dlsc6r/file.svg" style="width: 84px; height: 43px;" />&nbsp; &nbsp; &nbsp;&nbsp;</div>
+
+<div class="affiliates_only bar"><img alt="Vertical gold line used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-6n64n0p94tpvmng90yajpi18k/file.svg" style="width: 1px; height: 70px;" />&nbsp; &nbsp; &nbsp;&nbsp;</div>
+
+<div class="affiliates_only"><a href="https://www.parkhotelgroup.com/park-rewards" target="_blank"><img alt="Park Rewards logo used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-evhvne5yh2cu1dtx4jc73zni5/file.svg" style="width: 126px; height: 38px; margin: 20px 0px;" /></a></div>
+</div>
+
+<p style="margin-bottom: 30px; text-align: center;"><img alt="Horizontal gold line used at Park Hotel Kyoto" src="https://image-tc.galaxy.tf/wisvg-2z9g514fiubca4kijo8xrttp8/file.svg" style="width: 600px;" /></p>
+</div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+</div><!-- #main-content -->
+
+
+
+
+
+    
+
+<div id="back-to-top" class="back-to-top__wrapper ">
+    <a class="back-to-top link-text" href="#top" data-page-height="1050">
+        <span>Back to top</span>
+        <div class="btn btn-ghost" aria-hidden="true" >
+            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.125 18.666">
+                <title>Back to top</title>
+                <path d="M.2 6.095a.662.662 0 0 0 .931.941L5.9 2.265v15.741a.655.655 0 0 0 .658.659.663.663 0 0 0 .668-.659V2.265l4.761 4.77a.675.675 0 0 0 .941 0 .659.659 0 0 0 0-.941l-5.9-5.9a.648.648 0 0 0-.931 0z"/>
+            </svg>
+        </div>
+    </a>
+</div>
+<script>
+    window.footerConfigs = {
+        "footerLanguages": {
+  
+    languageCount: '3',
+    currentLanguage: 'English',
+    currentLanguageShort: 'en',
+    currentLanguageIcon: 'https://image-tc.galaxy.tf/wisvg-38ik1cqndysd7mdveqwcraqid/english.svg',
+    languages: [
+              {
+          url: '/ja/404 ',
+          local: 'ja',
+          full: '日本語',
+          short: '日本語',
+          icon: 'https://cdn.galaxy.tf',
+        },
+              {
+          url: '/zt/404 ',
+          local: 'zt',
+          full: '繁體中文',
+          short: '繁體中文',
+          icon: 'https://cdn.galaxy.tf',
+        },
+          ]
+  
+}
+    }
+
+    if(!window.footerThreeTextFields) {
+        window.footerThreeTextFields = [];
+    }
+    window.footerThreeTextFields['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+        hotelName: ``,
+        contact: ``,
+        copyright: `<p><a href=\"/privacy-policy\">Privacy Policy<\/a>&nbsp; |&nbsp; <a href=\"/terms-of-use\">Terms of Use<\/a>&nbsp; |&nbsp; <a href=\"/member-terms\" target=\"_blank\">Member Terms &amp; Conditions<\/a>&nbsp; &nbsp;&copy;<script>document.write(new Date().getFullYear())<\/script> Park Hotel Group<\/p>\r\n`
+    }
+
+    if(!window.footerThreeLinks) {
+        window.footerThreeLinks = {};
+    }
+    window.footerThreeLinks['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {footerLinksList: [
+{
+    url: '/about-us/careers',
+    target: false,
+    text: `Careers`
+},
+{
+    url: '/corporate-development/development',
+    target: false,
+    text: `Development`
+},
+{
+    url: '/about-us/media-centre',
+    target: false,
+    text: `Media`
+},
+{
+    url: '/explore/travel-blog',
+    target: false,
+    text: `Blog`
+},
+{
+    url: '/about-us/best-rate-guarantee',
+    target: false,
+    text: `Best Rate Guarantee`
+},]}
+
+    if(!window.footerThreeNewsLetter) {
+        window.footerThreeNewsLetter = [];
+    }
+    window.footerThreeNewsLetter['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+        title: `Receive Latest Offers and Updates`,
+        placeholder: `Your email`,
+        btnTitle: `Subscribe to newsletter`
+    };
+
+    if (!window.footerThreeCustomHtml) {
+        window.footerThreeCustomHtml = [];
+    }
+    window.footerThreeCustomHtml['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+        contentHtml: ''
+    }
+
+    if(!window.footerThreePartners) {
+        window.footerThreePartners = {};
+    }
+    window.footerThreePartners['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+title: ``,
+partnersList: []}
+
+    if(!window.footerThreeLocales) {
+        window.footerThreeLocales = [];
+    }
+    window.footerThreeLocales['id-a48853dcf64f984a642f63d6dbbc2d5e'] = {
+        opensInANewTab: `opens in a new tab`,
+        addEmailToSub: `Add your email to subscribe`,
+        followUs: `Follow us`
+    }
+</script>
+    <footer id="footer-content" class="js-footer-three-app page-footer m-footer-base_3" data-footer-name="ft3" v-cloak>
+        <footer-three-app
+            :configs="{
+                websiteType: 'master_brand',
+                blockId: 'id-a48853dcf64f984a642f63d6dbbc2d5e',
+                languageSelectorEnabled: false,
+                socialIcons: {
+                    enabled: true,
+                    label: false
+                },
+                socialIconLinks: {iconStyles: {
+    iconStyle: 'filled',
+    socialIconColor: ''
+},
+socialLinks: {
+    facebook: 'https://www.facebook.com/parkhotelgroup',
+    facebookTarget: true,
+    twitter: '',
+    twitterTarget: false,
+    tripAdvisor: '',
+    tripAdvisorTarget: false,
+    instagram: 'https://www.instagram.com/parkhotelgroup/',
+    instagramTarget: true,
+    youTube: '',
+    youTubeTarget: false,
+    pinterest: '',
+    pinterestTarget: false,
+    weChat: '',
+    weChatTarget: false,
+    linkedin: 'https://www.linkedin.com/company/parkhotelgroup',
+    linkedinTarget: true,
+    tiktok: '',
+    tiktokTarget: false,
+    xing: '',
+    xingTarget: false,
+    google: 'https://g.co/kgs/F9iiVQQ',
+    googleTarget: true,
+    lineMessenger: '',
+    lineMessengerTarget: false,
+    whatsapp: '',
+    whatsappTarget: false,
+    weibo: '',
+    weiboTarget: false,
+    flickr: '',
+    flickrTarget: false,
+    foursquare: '',
+    foursquareTarget: false,
+    snapchat: '',
+    snapchatTarget: false
+},
+locales: {
+    opensInANewTab: 'opens in a new tab',
+}},
+                customSocialIconsList: {iconColor: '',
+customSocialIconsList: [{
+  socialAccount: 'custom',
+  name: 'Xiao Hong Shu',
+  url: 'https://www.xiaohongshu.com/user/profile/6788cb75000000000803f527',
+  openInNewTab: true,
+  icon: 'https://image-tc.galaxy.tf/wipng-jydvqtv7ez44rzf3jvuet9sb/ph-social-xhs.png?width=32'
+},]},
+                logo: {
+                    logoTop: '',
+                    logoBottom: '',
+                    customBackground: {
+                        enabled: false,
+                        backgroundColor: ''
+                    },
+                    additionalLanguages: {
+                        enabled: false,
+                        logoTop: '',
+                        logoBottom: '',
+                        backgroundColor: ''
+                    }
+                },
+                hr: {
+                    enabled: false,
+                    width: '100',
+                    devices: 'All Devices'
+                },
+                partners: {
+                    enabled: true
+                },
+                newsletter: {
+                    enabled: true,
+                    buttonOnly: true,
+                    url: '/newsletter-signup',
+                    opensInNewTab: true,
+                    style: 'Action'
+                },
+                widgetEnabled: false
+            }"
+        >
+
+        </footer-three-app>
+         
+    </footer>
+<script type="text/javascript" id="lightbox_json_store">
+	var GalaxyPersonalization = { pageCampaigns : [],
+	allActiveCampaigns : [{"id":"075ff5fee5d130eac04205024b988bf5e82fc0ec","visits_type":""},{"id":"53c9e033f2e36a88d6adf3a64c766b3d02bc6d49","visits_type":""},{"id":"3d60758d29d5c1190242c8cc36316352a4dafec8","visits_type":""},{"id":"1a45e37b0db808ce83fa76df3ad981ad40b1c76a","visits_type":""}]}
+</script>
+
+<script src="/frontend/galaxy-helpers/public/galaxy-helpers.js?v=l-ff6073f5-348a-4591-b290-38b715fe404e"></script><!-- Generated by Galaxy-->
+<script type="text/template" id="sliderPrevArrow">
+    <button class="slick-prev" aria-label="Go to previous slideshow element" type="button"><svg aria-hidden="true" class="icon icon-arrow-left"><use href="#icon-arrow-left"></use></svg> <span class="sr-only">Previous</span></button>
+</script>
+<script type="text/template" id="sliderNextArrow">
+    <button class="slick-next" aria-label="Go to next slideshow element" type="button"><svg aria-hidden="true" class="icon icon-arrow-right"><use href="#icon-arrow-right"></svg><span class="sr-only">Next</span></button>
+</script>
+<script type="text/template" id="sliderPagination">
+    <div class="slick-custom-pagination"><span class="slick-current-slide"></span> / <span class="slick-total-slide"></span></div>
+</script>
+<script type="text/template" id="sliderPlayPause">
+    <button class="slick-play-pause" type="button">
+        <span class="slick-play-pause__pause"><svg aria-hidden="true" class="icon icon-pause"><use href="#icon-pause"></svg><span class="sr-only">Pause slideshow</span></span>
+        <span class="slick-play-pause__play"><svg aria-hidden="true" class="icon icon-play"><use href="#icon-play"></svg><span class="sr-only">Play slideshow</span></span>
+    </button>
+</script>
+<script type="text/template" id="sliderGroupedActions">
+    <div class="slider__actions slider__actions--flat">
+		<span class="sr-only">Slideshow control buttons</span>
+		<span class="sr-only">Clicking on the following links will update the content above</span>
+        <div class="slider__action js-slider-prev-container"></div>
+        <div class="slider__action js-slider-pagination-container"></div>
+        <div class="slider__action js-slider-next-container"></div>
+    </div>
+</script>
+<script type="text/template" id="sliderGroupedActionsAutoRotate">
+    <div class="slider__actions slider__actions--flat">
+		<span class="sr-only">Slideshow control buttons</span>
+		<span class="sr-only">Clicking on the following links will update the content above</span>
+        <div class="slider__action js-slider-pagination-container"></div>
+        <div class="slider__action js-slider-prev-container"></div>
+        <div class="slider__action js-slider-playpause-container"></div>
+        <div class="slider__action js-slider-next-container"></div>
+    </div>
+</script>
+<script type="text/template" id="templateReadMore">
+    <a class="l-read-more" href="#"  aria-label="Read more about Park Hotel Group " ><span>VIEW DETAILS</span><svg aria-hidden="true" class="icon icon-arrow-left"><use href="#icon-arrow-left"></use></svg></a>
+</script>
+<script type="text/template" id="templateReadLess">
+    <a class="l-read-less" href="#"  aria-label="Read less about Park Hotel Group "><span>Read less</span><svg aria-hidden="true" class="icon icon-arrow-left"><use href="#icon-arrow-left"></use></svg></a>
+</script>
+<script>
+var traductionBM = {
+    previousMonth: 'Previous Month',
+    nextMonth: 'Next Month',
+}
+</script>
+<script>
+var validationMessages = {
+    required: "This field is required.",
+    email: "Please enter a valid e-mail address.",
+    url: "Please enter a valid URL.",
+    date: "Please enter a valid date.",
+}
+</script>
+<script>
+  window.isHome = "0";
+
+  window.localeSlider = {
+  goToNextSlide: 'Go to next slide, slide {current} of {total}',
+  goToPrevSlide: 'Go to previous slide, slide {current} of {total}',
+  lastSlide: 'You are on the last slide',
+  firstSlide: 'You are on the first slide',
+  nowOnSlide: 'You are now on slide {current} of {total}',
+  videoPause: 'Slider is paused',
+  videoPlay: 'Slider is playing',
+  toggleFullScreen: 'Toggles gallery to full screen, {current} of {total}',
+  youAreOnFullScreen: 'You are on full image',
+  youCloseFullScreen: 'You closed the full image'
+  };
+</script>
+
+<script src="/integration/tc-theme/public/js/bundle.js?vb923fc5a721e3b9a73c3d8cc584f297b"></script>
+<div id="bm-calendars" class="bm-calendar-container bm___calendar-container"></div>
+<div class="dialog js-dialog-lightbox-vue" aria-hidden="true">
+  <div class="dialog-content--lightbox container">
+    <div class="js-slider-container container"></div>
+    <script type="text/template" class="js-template" id="js-template-lightbox">
+      <div class="js-slider__wrapper">
+        <div class="js-slider-lightbox slider-lightbox" data-pagination="true" [%? it.options.download %]data-download="true"[%?%]>
+          [%~ it.images :item%]
+          <div class="slider-lightbox__slide">
+            <div class="slider-lightbox__image-container">
+              [%? item.url && !item.caption%]
+                <div class="slider-lightbox__captions icon-chain">
+                    <a href="[%= item.url %]"
+                        [%? item.urlTarget && item.urlTarget.length %] target="[%= item.urlTarget %]"[%?%]
+                        [%? item.ariaLabel && item.ariaLabel.length %] aria-label="[%= item.ariaLabel %]"[%?%]
+                        class="icon-chain-wrapper">
+                        <svg class="icon icon-chain-link"><use href="#icon-chain-link" style="color: [%= item.color %];"></use></svg>
+                    </a>
+                </div>
+              [%?%]
+              [%? item.isVideo === true %]
+                <div class="slider-lightbox__video-wrapper">
+                  [%= item.video %]
+                </div>
+              [%?? item.isVideo === false %]
+                <img crossorigin="anonymous" data-lazy="[%= item.src %]" alt="[%= item.alt %]" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+                [%? item.title || item.desc || item.caption%]
+                <div class="slider-lightbox__captions">
+                  [%? item.title %]<div class="slider-lightbox__captions-title">[%= item.title %]</div>[%?%]
+                  [%? item.desc %]<div class="slider-lightbox__captions-desc">[%= item.desc %]</div>[%?%]
+                  [%? item.caption %]<div class="m-gallery--itemCaption">[%= item.caption %]</div>[%?%]
+                </div>
+                [%?%]
+              [%?%]
+              [%? it.options.download %]
+                <div class="slider-lightbox__actions">
+                  <a class="download-link" href="[%= item.downloadLink %]" download>
+                    <svg class="icon icon-download-arrow" aria-hidden="1"><use href="#icon-download-arrow"></use></svg>
+                    Download
+                  </a>
+                </div>
+              [%?%]
+            </div>
+          </div>
+          [%~%]
+        </div>
+        <div class="slider-lightbox__slides-controls clearfix">
+          <div class="pull-right">
+            <div class="js-slider__insert-grouped-actions"></div>
+          </div>
+        </div>
+      </div>
+    </script>
+  </div>
+</div>
+<div id="generalAnnoucement" aria-atomic="true" aria-live="assertive" class="sr-only"></div>
+<div id="aria-announcer" class="sr-only" aria-live="polite" role="status" aria-atomic="true"></div>
+<script>
+  window.locale ={
+    moreMenuClosed : 'More menu closed',
+    moreMenuOpened :'More menu opened',
+    bookingMaskClosed: 'Booking mask closed',
+    bookingMaskOpened: 'Booking mask Opened'
+  }
+</script>
+<div id="tooltips-wrapper"></div>
+
+
+<script class="js-module-currency-switcher">
+  let currencySwitcherConfig = {
+
+    
+      chainCode: 'PHT',
+    
+    isChain: true,
+    geolocation: true,
+    defaultCurrency: '',
+    topCurrencies: [],
+    currenciesAsCode: [],
+
+    locales: {
+      search: 'Search',
+      topCurrencies: 'Top currencies',
+      allCurrencies: 'All currencies',
+      results: 'Results',
+      noResults: 'No results found',
+      removeButton: 'cleans the search input',
+      optionButton: 'will be set as the default currency',
+      selectYourCurrency: 'Select your currency',
+      opensThePopup: 'Opens the currency switcher dialog',
+      selectedCurrency: 'Selected currency:',
+      backToMenu: 'back to menu',
+      popupClose: 'back to menu'
+    }
+  };
+  
+  if (!window.GLXExtensions) {
+    window.GLXExtensions = { 
+      currencySwitcher: currencySwitcherConfig 
+    };
+  } else {
+    window.GLXExtensions.currencySwitcher = currencySwitcherConfig;
+  }
+</script>
+<script defer src="/integration/tc-ext-currency-switcher/public/js/bundle-ext-currency-switcher.js?vb923fc5a721e3b9a73c3d8cc584f297b" crossorigin="anonymous"></script>
+<script>
+  window.gmsSDKSession = true; // use sessionStorage and not localStorage for sdk (user token)
+  window.gmsJSPath = '/integration/tc-ext-guest-portal/public/compiled/js/';
+</script>
+
+<script defer src="https://cdn.galaxy.tf/asset-galaxy/js/gms-latest.min.js?vb923fc5a721e3b9a73c3d8cc584f297b"></script>
+
+<script defer src="/integration/tc-ext-guest-portal/public/compiled/js/main.bundle.js?vb923fc5a721e3b9a73c3d8cc584f297b"></script>
+<script>  
+  var gmsUrlReservation = '/gp-offers';
+  var gmsUrlReservationTarget = false;
+  var endpointBase = 'https://api.travelclick.com/loyalty/v2/PHT'
+;
+  var tokenEndpoint = 'proxy'
+;
+  var reservationUrl = '/gp-offers';
+  var gmsModifyBookingURL = ''; /* Link for the button "Modify" if no value */
+  var language = 'en';
+  var gmsLoginURL = '/login';
+  var gmsHomeURL = '/gp-dashboard';
+  var gmsSignUpURL = '/sign-up';
+  var gmsResetPasswordURL = '/gp-reset-password';
+  var gmsSignUpSuccessURL =  '/gp-sign-up-success';
+  var gmsResetPasswordCodeSuccessURL = '/gp-reset-password-step-2';
+  var gmsDateFormat = 'YYYY-MM-DD';
+  var gmsFirstDay =  2
+;
+  var gmsDatePlaceholder =  '';
+  var gmsCalendars = {
+    wcag: {
+      selectedCheckInDate: "Selected check in date is",
+      selectedCheckOutDate: "Selected check out date is",
+      selectedCheckInDateText: "This button opens the calendar to select check in date.",
+      selectedCheckOutDateText: "This button opens the calendar to select check out date.",
+      selected: "Selected",
+    },
+    labels: {
+      previousMonth: "Previous Month",
+      nextMonth: "Next Month",
+    }
+  }
+
+  
+
+  var gmsConfigObject = {
+    hotelsDefaultPhoto: 'https://via.placeholder.com/150',
+    consentTexts: {
+      popup: {
+        title: "Marketing Consent",
+        button: "Continue",
+        require_text: "Please select one option to continue"
+      },
+      email: {
+        opt_in: "<p>Yes, I would like to receive promotional emails, special offers, and updates from Park Rewards. By opting in, I consent to the collection and use of my personal information as described in the&nbsp;<a href=\"https:\/\/www.parkhotelgroup.com\/privacy-policy\" target=\"_blank\"><u>Privacy Policy<\/u><\/a>. My data will be used to personalise my experience and for latest offers and updates.&nbsp;<\/p>\r\n"
+,
+        opt_out: "No, I do not wish to receive marketing emails from Park Rewards.",
+      },
+      conditions: "<p>I agree to the&nbsp;<a href=\"https:\/\/www.parkhotelgroup.com\/member-terms\" onclick=\"window.open(this.href, '', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no'); return false;\"><strong>Terms and Conditions<\/strong><\/a>&nbsp;of Park Rewards.<\/p>\r\n",
+    }
+  };
+  var gmsBookingEngineProviderId =  
+
+
+
+'0'
+;
+  var gmsHotelsData = '/json/search/311/1/gp-hotels.json'
+  var tierData = '[{"id":1479,"name":"","gms_tier_id":"","background_color":"","text_color":"","hover_background_color":"","hover_text_color":"","url_image":"","url_tablet_image":"","url_mobile_image":""}]'
+  window.localesGuestPortalExtension = "/json/locale/10757/311/1"
+  
+</script>
+
+
+
+
+<script defer src="/integration/tc-ext-integrated-datalayer/public/js/bundle.js?vb923fc5a721e3b9a73c3d8cc584f297b" crossorigin="anonymous"></script>
+
+<script>
+
+window.addEventListener('load', () => {
+    const roomOptionsContainer = document.querySelector('.bm-pu__room-options');
+    const childAgesElement = document.querySelector('.bm-pu__room-popup .bm-pu__room-options.bm__option-ages');
+  	const infantAgesElement = document.querySelector('.bm__infant-ages');
+  	const sectionTitle = document.querySelector('.bm-pu__section-title');
+  
+    if (roomOptionsContainer && childAgesElement) {
+        roomOptionsContainer.append(childAgesElement, infantAgesElement);
+    } else {
+        console.error('Elements not found.');
+    }
+});
+
+</script></body></html>
