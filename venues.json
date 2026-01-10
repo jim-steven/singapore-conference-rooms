@@ -226,6 +226,28 @@
       "district": "city-hall",
       "venues": [
         {
+          "id": "wework-northbridge-05a",
+          "name": "WeWork Room 05A",
+          "address": "109 North Bridge Rd, 5th Floor, Singapore",
+          "status": "",
+          "district": "city-hall",
+          "capacity": 18,
+          "capacityDisplay": "18 pax",
+          "price": 10673,
+          "priceDisplay": "S$10,673 (5 days)",
+          "hourlyRate": 266.83,
+          "hours": "9:30 AM - 5:30 PM (8 hours)",
+          "phone": "",
+          "email": "",
+          "website": "",
+          "mapUrl": "https://maps.google.com/?q=109+North+Bridge+Road+Singapore",
+          "gallery": null,
+          "virtualTour": null,
+          "notes": "Amenities: Whiteboard, TV. Cancellation: Full refund 24h before. GST 9% included.",
+          "lat": 1.2924,
+          "lng": 103.8520
+        },
+        {
           "id": "carlton",
           "name": "Carlton Hotel Singapore",
           "address": "76 Bras Basah Rd",
