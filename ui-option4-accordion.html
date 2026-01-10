@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 4: Accordion Expandable View</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8f9fa; 
+      padding: 24px;
+      color: #333;
+    }
+    h1 { margin-bottom: 8px; color: #1a1a1a; }
+    .subtitle { color: #666; margin-bottom: 24px; }
+    
+    .config-panel {
+      background: #fff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .config-panel label { font-size: 0.9rem; color: #666; }
+    .config-panel input, .config-panel select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+    
+    .venue-accordion {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .venue-header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto auto auto;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .venue-header:hover { background: #f8f9fa; }
+    
+    .venue-thumb {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .venue-title-area {}
+    .venue-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
+    .venue-location { color: #666; font-size: 0.9rem; }
+    
+    .venue-stat {
+      text-align: center;
+      padding: 0 16px;
+    }
+    .venue-stat-label { font-size: 0.75rem; color: #888; margin-bottom: 2px; }
+    .venue-stat-value { font-weight: 600; font-size: 1rem; }
+    .venue-stat-value.price { color: #2563eb; }
+    .venue-stat-value.package { color: #059669; }
+    
+    .expand-icon {
+      font-size: 1.2rem;
+      color: #888;
+      transition: transform 0.3s;
+    }
+    .venue-accordion.open .expand-icon { transform: rotate(180deg); }
+    
+    .venue-content {
+      display: none;
+      border-top: 1px solid #eee;
+    }
+    .venue-accordion.open .venue-content { display: block; }
+    
+    .venue-gallery {
+      display: flex;
+      gap: 8px;
+      padding: 16px 20px;
+      background: #fafafa;
+      overflow-x: auto;
+    }
+    .venue-gallery img {
+      height: 100px;
+      width: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 20px;
+    }
+    
+    .hotel-mini-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .hotel-mini-card:hover {
+      border-color: #2563eb;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.15);
+    }
+    .hotel-mini-card.recommended {
+      border-color: #059669;
+      border-width: 2px;
+    }
+    
+    .hotel-mini-img {
+      height: 100px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .hotel-mini-body { padding: 12px; }
+    .hotel-mini-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+    .hotel-mini-rating { font-size: 0.8rem; color: #666; margin-bottom: 8px; }
+    .hotel-mini-rating .stars { color: #f59e0b; }
+    
+    .hotel-mini-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+    .hotel-mini-row .label { color: #888; }
+    .hotel-mini-row .value { font-weight: 500; }
+    
+    .hotel-mini-total {
+      background: #f0f7ff;
+      margin: 12px -12px -12px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .hotel-mini-total .label { font-size: 0.7rem; color: #666; }
+    .hotel-mini-total .amount { font-size: 1.1rem; font-weight: 700; color: #2563eb; }
+    
+    .hotel-mini-card.recommended .hotel-mini-total {
+      background: #ecfdf5;
+    }
+    .hotel-mini-card.recommended .hotel-mini-total .amount { color: #059669; }
+    
+    .recommended-badge {
+      background: #059669;
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Option 4: Accordion Expandable View</h1>
+  <p class="subtitle">Click venue rows to expand and see hotel options</p>
+  
+  <div class="config-panel">
+    <div>
+      <label>Nights:</label>
+      <input type="number" value="2" style="width: 60px;">
+    </div>
+    <div>
+      <label>Attendees:</label>
+      <input type="number" value="15" style="width: 60px;">
+    </div>
+    <div>
+      <label>Room sharing:</label>
+      <select>
+        <option>1 per room</option>
+        <option selected>2 per room</option>
+      </select>
+    </div>
+    <div>
+      <label>Sort venues by:</label>
+      <select>
+        <option>Best package price</option>
+        <option>Venue price</option>
+        <option>Nearest hotels</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Venue 1 - Open -->
+  <div class="venue-accordion open">
+    <div class="venue-header">
+      <img class="venue-thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=200" alt="">
+      <div class="venue-title-area">
+        <div class="venue-name">HUONE Clarke Quay - Time Room</div>
+        <div class="venue-location">📍 Clarke Quay · 👥 25 pax</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Venue</div>
+        <div class="venue-stat-value price">S$4,100</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Best Package</div>
+        <div class="venue-stat-value package">S$5,412</div>
+      </div>
+      <div class="expand-icon">▼</div>
+    </div>
+    <div class="venue-content">
+      <div class="venue-gallery">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=300" alt="">
+        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=300" alt="">
+        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300" alt="">
+        <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=300" alt="">
+      </div>
+      <div class="hotels-grid">
+        <div class="hotel-mini-card recommended">
+          <img class="hotel-mini-img" src="https://i.travelapi.com/lodging/94000000/93490000/93487000/93486994/448947f0_b.jpg" alt="">
+          <div class="hotel-mini-body">
+            <div class="hotel-mini-name">Pullman Hill Street <span class="recommended-badge">BEST</span></div>
+            <div class="hotel-mini-rating"><span class="stars">★★★★★</span> 8.7</div>
+            <div class="hotel-mini-row">
+              <span class="label">Distance</span>
+              <span class="value">0.4 km</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Grab fare</span>
+              <span class="value">~$4.50</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Per night</span>
+              <span class="value">$201</span>
+            </div>
+            <div class="hotel-mini-total">
+              <div class="label">TOTAL PACKAGE</div>
+              <div class="amount">S$5,412</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hotel-mini-card">
+          <img class="hotel-mini-img" src="https://i.travelapi.com/lodging/1000000/900000/893000/892942/670c6f3b_b.jpg" alt="">
+          <div class="hotel-mini-body">
+            <div class="hotel-mini-name">Grand Park City Hall</div>
+            <div class="hotel-mini-rating"><span class="stars">★★★★★</span> 8.0</div>
+            <div class="hotel-mini-row">
+              <span class="label">Distance</span>
+              <span class="value">0.6 km</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Grab fare</span>
+              <span class="value">~$5.20</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Per night</span>
+              <span class="value">$235</span>
+            </div>
+            <div class="hotel-mini-total">
+              <div class="label">TOTAL PACKAGE</div>
+              <div class="amount">S$5,690</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hotel-mini-card">
+          <img class="hotel-mini-img" src="https://i.travelapi.com/lodging/11000000/10590000/10589200/10589136/db201523_b.jpg" alt="">
+          <div class="hotel-mini-body">
+            <div class="hotel-mini-name">Capitol Kempinski</div>
+            <div class="hotel-mini-rating"><span class="stars">★★★★★</span> 8.9</div>
+            <div class="hotel-mini-row">
+              <span class="label">Distance</span>
+              <span class="value">0.8 km</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Grab fare</span>
+              <span class="value">~$5.80</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Per night</span>
+              <span class="value">$314</span>
+            </div>
+            <div class="hotel-mini-total">
+              <div class="label">TOTAL PACKAGE</div>
+              <div class="amount">S$6,346</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hotel-mini-card">
+          <img class="hotel-mini-img" src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg" alt="">
+          <div class="hotel-mini-body">
+            <div class="hotel-mini-name">Fairmont Singapore</div>
+            <div class="hotel-mini-rating"><span class="stars">★★★★★</span> 8.8</div>
+            <div class="hotel-mini-row">
+              <span class="label">Distance</span>
+              <span class="value">1.1 km</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Grab fare</span>
+              <span class="value">~$6.40</span>
+            </div>
+            <div class="hotel-mini-row">
+              <span class="label">Per night</span>
+              <span class="value">$259</span>
+            </div>
+            <div class="hotel-mini-total">
+              <div class="label">TOTAL PACKAGE</div>
+              <div class="amount">S$6,173</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Venue 2 - Closed -->
+  <div class="venue-accordion">
+    <div class="venue-header">
+      <img class="venue-thumb" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=200" alt="">
+      <div class="venue-title-area">
+        <div class="venue-name">Raffles Hotel - Boardroom</div>
+        <div class="venue-location">📍 City Hall · 👥 20 pax</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Venue</div>
+        <div class="venue-stat-value price">S$8,000</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Best Package</div>
+        <div class="venue-stat-value package">S$9,842</div>
+      </div>
+      <div class="expand-icon">▼</div>
+    </div>
+    <div class="venue-content">
+      <!-- Hotels would go here -->
+    </div>
+  </div>
+  
+  <!-- Venue 3 - Closed -->
+  <div class="venue-accordion">
+    <div class="venue-header">
+      <img class="venue-thumb" src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=200" alt="">
+      <div class="venue-title-area">
+        <div class="venue-name">National Gallery - Seminar Room</div>
+        <div class="venue-location">📍 City Hall · 👥 30 pax</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Venue</div>
+        <div class="venue-stat-value price">S$3,200</div>
+      </div>
+      <div class="venue-stat">
+        <div class="venue-stat-label">Best Package</div>
+        <div class="venue-stat-value package">S$4,518</div>
+      </div>
+      <div class="expand-icon">▼</div>
+    </div>
+    <div class="venue-content">
+      <!-- Hotels would go here -->
+    </div>
+  </div>
+  
+  <script>
+    document.querySelectorAll('.venue-header').forEach(header => {
+      header.addEventListener('click', () => {
+        header.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

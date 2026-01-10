@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Row Option 2: Compact Single-Line</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f8f9fa;
+            color: #1a1a2e;
+            font-family: 'Work Sans', system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .app-layout {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            height: 100vh;
+        }
+        
+        .app-header {
+            background: #fff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+        }
+        .header-config {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .header-config input {
+            width: 50px;
+            padding: 4px 8px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100%;
+            overflow: hidden;
+            transition: grid-template-columns 0.3s ease;
+        }
+        .split-layout.panel-open {
+            grid-template-columns: 1fr 400px;
+        }
+        
+        .table-panel {
+            background: #fff;
+            overflow: auto;
+        }
+        
+        /* Compact Row Style */
+        .package-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 100px 120px;
+            gap: 16px;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f1f3f4;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .package-row:hover { background: #f8f9fa; }
+        .package-row.selected { background: #e3f2fd; }
+        
+        .package-row.header {
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6c757d;
+            font-weight: 600;
+            cursor: default;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        /* Venue Block */
+        .venue-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .venue-img {
+            width: 48px;
+            height: 36px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #e9ecef;
+            cursor: pointer;
+        }
+        .venue-img:hover { box-shadow: 0 0 0 2px #0066CC; }
+        .venue-text {}
+        .venue-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #1a1a2e;
+        }
+        .venue-sub {
+            font-size: 11px;
+            color: #6c757d;
+        }
+        .venue-sub .price { color: #0066CC; font-weight: 500; }
+        
+        /* Hotel Block */
+        .hotel-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hotel-img {
+            width: 48px;
+            height: 36px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #e9ecef;
+            cursor: pointer;
+        }
+        .hotel-img:hover { box-shadow: 0 0 0 2px #7c3aed; }
+        .hotel-text {}
+        .hotel-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #1a1a2e;
+        }
+        .hotel-sub {
+            font-size: 11px;
+            color: #6c757d;
+        }
+        .hotel-sub .stars { color: #f59e0b; }
+        
+        /* Travel Block */
+        .travel-block {
+            text-align: center;
+        }
+        .travel-km {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .travel-grab {
+            font-size: 10px;
+            color: #2e7d32;
+        }
+        
+        /* Total Block */
+        .total-block {
+            text-align: right;
+        }
+        .total-amount {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a1a2e;
+        }
+        .total-pp {
+            font-size: 10px;
+            color: #6c757d;
+        }
+        
+        .best-tag {
+            display: inline-block;
+            background: #2e7d32;
+            color: #fff;
+            font-size: 8px;
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+        
+        /* Side Panel */
+        .detail-panel {
+            background: #fff;
+            border-left: 1px solid #e9ecef;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .split-layout.panel-open .detail-panel {
+            display: flex;
+        }
+        
+        .panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-tabs {
+            display: flex;
+            background: #f1f3f4;
+            border-radius: 6px;
+            padding: 3px;
+        }
+        .panel-tab {
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            color: #6c757d;
+        }
+        .panel-tab.active {
+            background: #fff;
+            color: #1a1a2e;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .panel-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        
+        .panel-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .panel-gallery {
+            height: 180px;
+            background: #e9ecef;
+        }
+        .panel-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .panel-info {
+            padding: 20px;
+        }
+        .panel-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        .panel-subtitle {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 16px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 10px 12px;
+            border-radius: 6px;
+        }
+        .info-label {
+            font-size: 10px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .info-value {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <header class="app-header">
+            <h1 class="app-title">Singapore Conference Packages</h1>
+            <div class="header-config">
+                <span>Nights:</span><input type="number" value="2">
+                <span>Rooms:</span><input type="number" value="8">
+            </div>
+        </header>
+        
+        <div class="split-layout panel-open" id="splitLayout">
+            <div class="table-panel">
+                <div class="package-row header">
+                    <div>Workspace</div>
+                    <div>Hotel</div>
+                    <div style="text-align:center">Travel</div>
+                    <div style="text-align:right">Total</div>
+                </div>
+                
+                <div class="package-row selected">
+                    <div class="venue-block">
+                        <img class="venue-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=150" onclick="showPanel('venue')">
+                        <div class="venue-text">
+                            <div class="venue-name">HUONE Time Room</div>
+                            <div class="venue-sub">Clarke Quay · 25p · <span class="price">$4,100</span></div>
+                        </div>
+                    </div>
+                    <div class="hotel-block">
+                        <img class="hotel-img" src="https://i.travelapi.com/lodging/94000000/93490000/93487000/93486994/448947f0_b.jpg" onclick="showPanel('hotel')">
+                        <div class="hotel-text">
+                            <div class="hotel-name">Pullman Hill St <span class="best-tag">BEST</span></div>
+                            <div class="hotel-sub"><span class="stars">★★★★★</span> 8.7 · $201/n</div>
+                        </div>
+                    </div>
+                    <div class="travel-block">
+                        <div class="travel-km">0.4 km</div>
+                        <div class="travel-grab">~$36</div>
+                    </div>
+                    <div class="total-block">
+                        <div class="total-amount">S$7,352</div>
+                        <div class="total-pp">$490/pp</div>
+                    </div>
+                </div>
+                
+                <div class="package-row">
+                    <div class="venue-block">
+                        <img class="venue-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=150">
+                        <div class="venue-text">
+                            <div class="venue-name">HUONE Time Room</div>
+                            <div class="venue-sub">Clarke Quay · 25p · <span class="price">$4,100</span></div>
+                        </div>
+                    </div>
+                    <div class="hotel-block">
+                        <img class="hotel-img" src="https://i.travelapi.com/lodging/1000000/900000/893000/892942/670c6f3b_b.jpg">
+                        <div class="hotel-text">
+                            <div class="hotel-name">Grand Park City Hall</div>
+                            <div class="hotel-sub"><span class="stars">★★★★★</span> 8.0 · $235/n</div>
+                        </div>
+                    </div>
+                    <div class="travel-block">
+                        <div class="travel-km">0.6 km</div>
+                        <div class="travel-grab">~$42</div>
+                    </div>
+                    <div class="total-block">
+                        <div class="total-amount">S$7,902</div>
+                        <div class="total-pp">$527/pp</div>
+                    </div>
+                </div>
+                
+                <div class="package-row">
+                    <div class="venue-block">
+                        <img class="venue-img" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=150">
+                        <div class="venue-text">
+                            <div class="venue-name">Raffles Boardroom</div>
+                            <div class="venue-sub">City Hall · 20p · <span class="price">$8,000</span></div>
+                        </div>
+                    </div>
+                    <div class="hotel-block">
+                        <img class="hotel-img" src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg">
+                        <div class="hotel-text">
+                            <div class="hotel-name">Fairmont Singapore</div>
+                            <div class="hotel-sub"><span class="stars">★★★★★</span> 8.8 · $259/n</div>
+                        </div>
+                    </div>
+                    <div class="travel-block">
+                        <div class="travel-km">0.3 km</div>
+                        <div class="travel-grab">~$34</div>
+                    </div>
+                    <div class="total-block">
+                        <div class="total-amount">S$12,178</div>
+                        <div class="total-pp">$812/pp</div>
+                    </div>
+                </div>
+                
+                <div class="package-row">
+                    <div class="venue-block">
+                        <img class="venue-img" src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=150">
+                        <div class="venue-text">
+                            <div class="venue-name">National Gallery</div>
+                            <div class="venue-sub">City Hall · 30p · <span class="price">$3,200</span></div>
+                        </div>
+                    </div>
+                    <div class="hotel-block">
+                        <img class="hotel-img" src="https://i.travelapi.com/lodging/1000000/10000/400/311/27d65d67_b.jpg">
+                        <div class="hotel-text">
+                            <div class="hotel-name">Swissotel Stamford</div>
+                            <div class="hotel-sub"><span class="stars">★★★★★</span> 8.7 · $227/n</div>
+                        </div>
+                    </div>
+                    <div class="travel-block">
+                        <div class="travel-km">0.5 km</div>
+                        <div class="travel-grab">~$38</div>
+                    </div>
+                    <div class="total-block">
+                        <div class="total-amount">S$6,870</div>
+                        <div class="total-pp">$458/pp</div>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="detail-panel">
+                <div class="panel-header">
+                    <div class="panel-tabs">
+                        <div class="panel-tab active">Venue</div>
+                        <div class="panel-tab">Hotel</div>
+                    </div>
+                    <button class="panel-close" onclick="closePanel()">×</button>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-gallery">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="">
+                    </div>
+                    <div class="panel-info">
+                        <h2 class="panel-title">HUONE Clarke Quay - Time Room</h2>
+                        <p class="panel-subtitle">3D River Valley Road, #03-01</p>
+                        
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">District</div>
+                                <div class="info-value">Clarke Quay</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Capacity</div>
+                                <div class="info-value">25 pax</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Price</div>
+                                <div class="info-value">S$4,100</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Hours</div>
+                                <div class="info-value">8AM-10PM</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone</div>
+                                <div class="info-value">+65 6255 4793</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Email</div>
+                                <div class="info-value" style="font-size:11px">info.sg@huone.events</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script>
+        function showPanel(type) {
+            document.getElementById('splitLayout').classList.add('panel-open');
+        }
+        function closePanel() {
+            document.getElementById('splitLayout').classList.remove('panel-open');
+        }
+    </script>
+</body>
+</html>

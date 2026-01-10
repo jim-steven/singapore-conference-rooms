@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f8f9fa;
+            color: #1a1a2e;
+            font-family: 'Work Sans', system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Layout */
+        .app-layout {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            height: 100vh;
+        }
+        
+        /* Header */
+        .app-header {
+            background: #fff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: #1a1a2e;
+        }
+        .app-meta {
+            font-size: 12px;
+            color: #6c757d;
+            margin-left: 16px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .header-btn {
+            padding: 8px 14px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            color: #495057;
+        }
+        .header-btn:hover {
+            background: #f8f9fa;
+        }
+        .header-btn.primary {
+            background: #0066CC;
+            color: #fff;
+            border-color: #0066CC;
+        }
+        
+        /* Split Layout */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100%;
+            overflow: hidden;
+            transition: grid-template-columns 0.3s ease;
+        }
+        .split-layout.detail-open {
+            grid-template-columns: 1fr 480px;
+        }
+        
+        /* Table Panel */
+        .table-panel {
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Filter Bar */
+        .filter-bar {
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 12px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .filter-label {
+            font-size: 11px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        .filter-select {
+            padding: 6px 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            font-size: 12px;
+            background: #fff;
+            min-width: 120px;
+        }
+        .filter-select:focus {
+            outline: none;
+            border-color: #0066CC;
+        }
+        .result-count {
+            margin-left: auto;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        /* Table Container */
+        .table-container {
+            flex: 1;
+            overflow: auto;
+        }
+        
+        /* Table */
+        .venue-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .venue-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #495057;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .venue-table th:hover {
+            background: #e9ecef;
+        }
+        .venue-table th .sort-icon {
+            margin-left: 4px;
+            opacity: 0.4;
+        }
+        .venue-table th.sorted .sort-icon {
+            opacity: 1;
+        }
+        .venue-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f1f3f4;
+            vertical-align: middle;
+        }
+        .venue-table tbody tr.venue-row {
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .venue-table tbody tr.venue-row:hover {
+            background: #f8f9fa;
+        }
+        .venue-table tbody tr.venue-row.selected {
+            background: #e3f2fd;
+        }
+        .venue-table tbody tr.venue-row.selected td {
+            border-bottom-color: #bbdefb;
+        }
+        .venue-table tbody tr.venue-row.hidden {
+            display: none;
+        }
+        
+        /* Status Dot */
+        .status-cell {
+            width: 36px;
+            text-align: center;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-dot.available { background: #28a745; }
+        .status-dot.responded { background: #17a2b8; }
+        .status-dot.emailed { background: #ffc107; }
+        .status-dot.waiting { background: #6c757d; }
+        .status-dot.pass { background: #dc3545; }
+        
+        /* Venue Cell */
+        .venue-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 220px;
+        }
+        .venue-thumb {
+            width: 44px;
+            height: 32px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #e9ecef;
+            flex-shrink: 0;
+        }
+        .venue-name {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 13px;
+        }
+        .venue-address {
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 1px;
+        }
+        
+        /* District Badge */
+        .district-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: #e9ecef;
+            color: #495057;
+            white-space: nowrap;
+        }
+        .district-badge.cbd { background: #e3f2fd; color: #1565c0; }
+        .district-badge.city-hall { background: #f3e5f5; color: #7b1fa2; }
+        .district-badge.clarke-quay { background: #e8f5e9; color: #2e7d32; }
+        .district-badge.marina { background: #fff3e0; color: #e65100; }
+        .district-badge.orchard { background: #fce4ec; color: #c2185b; }
+        .district-badge.expo { background: #e0f7fa; color: #00838f; }
+        .district-badge.other { background: #eceff1; color: #546e7a; }
+        
+        /* Price Cell */
+        .price-cell {
+            font-weight: 600;
+            color: #2e7d32;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+        .price-cell.na {
+            color: #6c757d;
+            font-weight: 400;
+        }
+        
+        /* Checkbox */
+        .checkbox-cell {
+            width: 36px;
+            text-align: center;
+        }
+        .venue-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        /* Group Header */
+        .group-header {
+            background: #f8f9fa;
+        }
+        .group-header td {
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #495057;
+            padding: 8px 14px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .group-header.hidden {
+            display: none;
+        }
+        
+        /* Detail Panel */
+        .detail-panel {
+            background: #fff;
+            border-left: 1px solid #e9ecef;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .split-layout.detail-open .detail-panel {
+            display: flex;
+        }
+        
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+        .detail-header-title {
+            font-weight: 600;
+            font-size: 13px;
+            color: #495057;
+        }
+        .detail-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6c757d;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .detail-close:hover {
+            background: #e9ecef;
+        }
+        
+        .detail-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        /* Gallery */
+        .detail-gallery {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+        .detail-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-count {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        .virtual-tour-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #0066CC;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 500;
+            text-decoration: none;
+            display: none;
+        }
+        .virtual-tour-badge.visible {
+            display: block;
+        }
+        .virtual-tour-badge:hover {
+            background: #0052a3;
+        }
+        .gallery-nav {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+        }
+        .gallery-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        /* Detail Info */
+        .detail-info {
+            padding: 20px;
+        }
+        .detail-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .detail-address {
+            color: #6c757d;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        .detail-status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .detail-status.available { background: #d4edda; color: #155724; }
+        .detail-status.responded { background: #d1ecf1; color: #0c5460; }
+        .detail-status.emailed { background: #fff3cd; color: #856404; }
+        .detail-status.waiting { background: #e2e3e5; color: #383d41; }
+        .detail-status.pass { background: #f8d7da; color: #721c24; }
+        
+        /* Meta Grid */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .meta-item {
+            text-align: center;
+        }
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .meta-value.price {
+            color: #2e7d32;
+        }
+        .meta-label {
+            font-size: 10px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 2px;
+        }
+        
+        /* Info Sections */
+        .info-section {
+            margin-bottom: 18px;
+        }
+        .info-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6c757d;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .info-content {
+            font-size: 13px;
+            color: #495057;
+            line-height: 1.6;
+        }
+        
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #495057;
+            transition: background 0.2s;
+        }
+        .contact-item:hover {
+            background: #e9ecef;
+        }
+        .contact-icon {
+            font-size: 16px;
+        }
+        .contact-label {
+            font-size: 10px;
+            color: #6c757d;
+        }
+        .contact-value {
+            font-size: 12px;
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+        
+        /* Action Buttons */
+        .detail-actions {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            border-top: 1px solid #e9ecef;
+            background: #fff;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .action-btn.primary {
+            background: #0066CC;
+            color: #fff;
+            border: none;
+        }
+        .action-btn.primary:hover {
+            background: #0052a3;
+        }
+        .action-btn.secondary {
+            background: #fff;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        .action-btn.secondary:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Compare Bar */
+        .compare-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 12px 24px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .compare-bar.visible {
+            display: flex;
+        }
+        .compare-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .compare-count {
+            font-size: 13px;
+        }
+        .compare-venues {
+            display: flex;
+            gap: 6px;
+        }
+        .compare-chip {
+            background: rgba(255,255,255,0.15);
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .compare-chip button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        .compare-btn {
+            background: #0066CC;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        /* Empty State */
+        .empty-detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
+            text-align: center;
+            padding: 40px;
+        }
+        .empty-detail-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        .empty-detail-text {
+            font-size: 14px;
+        }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #6c757d;
+        }
+        
+        /* Compare Modal */
+        .compare-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            pointer-events: none;
+            font-size: 13px;
+        }
+        .compare-modal.open {
+            display: block;
+            pointer-events: auto;
+        }
+        .compare-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .compare-modal-dialog {
+            position: relative;
+            margin: 40px auto;
+            max-width: 1200px;
+            height: calc(100vh - 80px);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .compare-modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+        .compare-modal-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin: 0;
+        }
+        .compare-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+            color: #6c757d;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .compare-modal-close:hover {
+            background: #e9ecef;
+            color: #343a40;
+        }
+        .compare-modal-body {
+            flex: 1;
+            overflow: auto;
+            padding: 0;
+        }
+        .compare-table-wrapper {
+            overflow-x: auto;
+            min-height: 100%;
+        }
+        .compare-table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 700px;
+        }
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #e9ecef;
+            padding: 12px 14px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .compare-table th.field-header {
+            width: 120px;
+            background: #f8f9fa;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #495057;
+            font-weight: 600;
+        }
+        .compare-table thead th {
+            background: #fff;
+            text-align: center;
+            border-bottom: 2px solid #dee2e6;
+            padding: 16px 14px;
+        }
+        .compare-table thead th.field-header {
+            background: #f8f9fa;
+        }
+        .venue-header-cell {
+            min-width: 180px;
+        }
+        .venue-header-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .venue-header-meta {
+            font-size: 11px;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+        .compare-table .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .compare-table .status-badge.available { background: #d4edda; color: #155724; }
+        .compare-table .status-badge.responded { background: #d1ecf1; color: #0c5460; }
+        .compare-table .status-badge.emailed { background: #fff3cd; color: #856404; }
+        .compare-table .status-badge.waiting { background: #e2e3e5; color: #383d41; }
+        .compare-table .status-badge.pass { background: #f8d7da; color: #721c24; }
+        .compare-shortlist-btn {
+            margin-top: 8px;
+            padding: 6px 12px;
+            font-size: 11px;
+            border-radius: 999px;
+            border: 1px solid #ffc107;
+            background: #fff9e6;
+            color: #856404;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .compare-shortlist-btn:hover {
+            background: #ffe8a1;
+        }
+        .compare-shortlist-btn.shortlisted {
+            background: #ffc107;
+            color: #000;
+        }
+        .compare-table td.price-cell {
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        .compare-table td a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+        .compare-table td a:hover {
+            text-decoration: underline;
+        }
+        .compare-table .notes-cell {
+            font-size: 12px;
+            color: #495057;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title" id="app-title">Singapore Conference Rooms</h1>
+                <span class="app-meta" id="app-meta">Loading...</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" onclick="exportCSV()">📤 Export CSV</button>
+                <button class="header-btn primary">+ Add Venue</button>
+            </div>
+        </header>
+        
+        <div class="split-layout" id="split-layout">
+            <!-- Table Panel -->
+            <div class="table-panel">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <span class="filter-label">Status:</span>
+                        <select class="filter-select" id="status-filter">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">District:</span>
+                        <select class="filter-select" id="district-filter">
+                            <option value="">All Districts</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">Capacity:</span>
+                        <select class="filter-select" id="capacity-filter">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">Sort:</span>
+                        <select class="filter-select" id="sort-select">
+                            <option value="name">Name A-Z</option>
+                            <option value="price-asc">Price: Low → High</option>
+                            <option value="price-desc">Price: High → Low</option>
+                            <option value="capacity">Capacity</option>
+                        </select>
+                    </div>
+                    <span class="result-count" id="result-count">Loading...</span>
+                </div>
+                
+                <div class="table-container">
+                    <table class="venue-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell"><input type="checkbox" class="venue-checkbox" id="select-all"></th>
+                                <th class="status-cell">Status</th>
+                                <th>Venue</th>
+                                <th>District</th>
+                                <th>Capacity</th>
+                                <th>Price (SGD)</th>
+                                <th>Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody id="venue-tbody">
+                            <tr><td colspan="7" class="loading">Loading venues...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Detail Panel -->
+            <aside class="detail-panel" id="detail-panel">
+                <div class="detail-header">
+                    <span class="detail-header-title">Venue Details</span>
+                    <button class="detail-close" onclick="closeDetail()">×</button>
+                </div>
+                
+                <div class="detail-content" id="detail-content">
+                    <div class="detail-gallery">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop" alt="" id="detail-image">
+                        <span class="gallery-count">📷 1/1</span>
+                        <a href="#" class="virtual-tour-badge" id="virtual-tour-link">🎥 Virtual Tour</a>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn">←</button>
+                            <button class="gallery-btn">→</button>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-info">
+                        <h2 class="detail-title" id="detail-title">Select a venue</h2>
+                        <p class="detail-address" id="detail-address">Click on a row to view details</p>
+                        <span class="detail-status" id="detail-status">—</span>
+                        
+                        <div class="meta-grid">
+                            <div class="meta-item">
+                                <div class="meta-value" id="detail-capacity">—</div>
+                                <div class="meta-label">Capacity</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value price" id="detail-price">—</div>
+                                <div class="meta-label">Per Day</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value" id="detail-hourly">—</div>
+                                <div class="meta-label">Per Hour</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Operating Hours</h3>
+                            <div class="info-content" id="detail-hours">—</div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Notes</h3>
+                            <div class="info-content" id="detail-notes">—</div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Contact</h3>
+                            <div class="contact-grid">
+                                <a href="#" class="contact-item" id="detail-email-link">
+                                    <span class="contact-icon">✉️</span>
+                                    <div>
+                                        <div class="contact-label">Email</div>
+                                        <div class="contact-value" id="detail-email">—</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="contact-item" id="detail-phone-link">
+                                    <span class="contact-icon">📞</span>
+                                    <div>
+                                        <div class="contact-label">Phone</div>
+                                        <div class="contact-value" id="detail-phone">—</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="contact-item" id="detail-map-link" target="_blank">
+                                    <span class="contact-icon">📍</span>
+                                    <div>
+                                        <div class="contact-label">Location</div>
+                                        <div class="contact-value">View on Maps</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="contact-item" id="detail-website-link" target="_blank">
+                                    <span class="contact-icon">🌐</span>
+                                    <div>
+                                        <div class="contact-label">Website</div>
+                                        <div class="contact-value" id="detail-website">—</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-actions">
+                    <a href="#" class="action-btn primary" id="email-btn">✉️ Email</a>
+                    <button class="action-btn secondary">⭐ Shortlist</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- Compare Bar (hidden by default) -->
+    <div class="compare-bar" id="compare-bar">
+        <div class="compare-info">
+            <span class="compare-count"><strong id="compare-count-num">0</strong> selected</span>
+            <div class="compare-venues" id="compare-venues"></div>
+        </div>
+        <button class="compare-btn" id="compare-btn">Compare Side-by-Side →</button>
+    </div>
+    
+    <!-- Compare Modal -->
+    <div class="compare-modal" id="compare-modal" aria-hidden="true">
+        <div class="compare-modal-backdrop" id="compare-modal-backdrop"></div>
+        <div class="compare-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="compare-modal-title">
+            <div class="compare-modal-header">
+                <h2 id="compare-modal-title">Compare Venues</h2>
+                <button class="compare-modal-close" id="compare-modal-close" aria-label="Close comparison">×</button>
+            </div>
+            <div class="compare-modal-body">
+                <div class="compare-table-wrapper">
+                    <table class="compare-table" id="compare-table">
+                        <!-- Filled dynamically -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allVenues = [];
+        let venueData = {};
+        let pageData = null;
+        let compareSelectionOrder = [];
+        let shortlistedVenues = new Set();
+        const MAX_COMPARE = 5;
+        
+        const defaultImages = [
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1606857521015-7f9fcf423571?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=400&fit=crop'
+        ];
+        
+        function getRandomImage(index) {
+            return defaultImages[index % defaultImages.length];
+        }
+        
+        function getDistrictLabel(district) {
+            const labels = {
+                'cbd': 'CBD',
+                'city-hall': 'City Hall',
+                'clarke-quay': 'Clarke Quay',
+                'marina': 'Marina Bay',
+                'orchard': 'Orchard',
+                'expo': 'Expo',
+                'other': 'Other'
+            };
+            return labels[district] || district;
+        }
+        
+        function getStatusLabel(status) {
+            if (!status) return 'No Status';
+            return status.charAt(0).toUpperCase() + status.slice(1);
+        }
+        
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                return await response.json();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                throw error;
+            }
+        }
+        
+        function renderPage(data) {
+            pageData = data;
+            
+            // Update page title
+            if (data.page) {
+                document.title = data.page.htmlTitle || 'Singapore Conference Rooms';
+                document.getElementById('app-title').textContent = data.page.name || 'Singapore Conference Rooms';
+            }
+            
+            // Populate filters
+            populateFilters(data.filters);
+            
+            // Render venues
+            renderVenues(data.sections);
+            
+            // Update count
+            updateResultCount();
+        }
+        
+        function populateFilters(filters) {
+            if (!filters) return;
+            
+            // Status filter
+            const statusSelect = document.getElementById('status-filter');
+            if (filters.status && statusSelect) {
+                statusSelect.innerHTML = '';
+                filters.status.options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.textContent = opt.label;
+                    statusSelect.appendChild(option);
+                });
+            }
+            
+            // District filter
+            const districtSelect = document.getElementById('district-filter');
+            if (filters.district && districtSelect) {
+                districtSelect.innerHTML = '';
+                filters.district.options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.textContent = opt.label;
+                    districtSelect.appendChild(option);
+                });
+            }
+            
+            // Capacity filter
+            const capacitySelect = document.getElementById('capacity-filter');
+            if (filters.capacity && capacitySelect) {
+                capacitySelect.innerHTML = '';
+                filters.capacity.options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.textContent = opt.label;
+                    capacitySelect.appendChild(option);
+                });
+            }
+        }
+        
+        function renderVenues(sections) {
+            const tbody = document.getElementById('venue-tbody');
+            if (!tbody || !sections) return;
+            
+            tbody.innerHTML = '';
+            allVenues = [];
+            venueData = {};
+            let venueIndex = 0;
+            
+            sections.forEach(section => {
+                // Group header
+                const headerRow = document.createElement('tr');
+                headerRow.className = 'group-header';
+                headerRow.setAttribute('data-district', section.district || '');
+                headerRow.innerHTML = `<td colspan="7">${section.label} (${section.venues?.length || 0} venues)</td>`;
+                tbody.appendChild(headerRow);
+                
+                // Venue rows
+                (section.venues || []).forEach(venue => {
+                    const row = document.createElement('tr');
+                    row.className = 'venue-row';
+                    row.setAttribute('data-venue', venue.id);
+                    row.setAttribute('data-status', venue.status || '');
+                    row.setAttribute('data-district', venue.district || '');
+                    row.setAttribute('data-capacity', venue.capacity || 0);
+                    row.setAttribute('data-price', venue.price || 999999);
+                    row.setAttribute('data-name', venue.name || '');
+                    row.onclick = function() { selectVenue(this); };
+                    
+                    const statusClass = venue.status || '';
+                    const image = getRandomImage(venueIndex);
+                    const shortAddress = venue.address?.split(',')[0] || venue.address || '—';
+                    
+                    row.innerHTML = `
+                        <td class="checkbox-cell"><input type="checkbox" class="venue-checkbox" data-venue-id="${venue.id}" onclick="event.stopPropagation(); updateCompareBar('${venue.id}', this.checked)"></td>
+                        <td class="status-cell"><span class="status-dot ${statusClass}" title="${getStatusLabel(venue.status)}"></span></td>
+                        <td>
+                            <div class="venue-cell">
+                                <img src="${image.replace('w=800&h=400', 'w=100&h=70')}" class="venue-thumb" alt="">
+                                <div>
+                                    <div class="venue-name">${venue.name}</div>
+                                    <div class="venue-address">${shortAddress}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="district-badge ${venue.district}">${getDistrictLabel(venue.district)}</span></td>
+                        <td>${venue.capacityDisplay || '—'}</td>
+                        <td class="price-cell ${venue.price ? '' : 'na'}">${venue.priceDisplay || 'Contact'}</td>
+                        <td>${venue.hours?.split('(')[0]?.trim() || '—'}</td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                    allVenues.push(row);
+                    
+                    // Store venue data for detail panel
+                    venueData[venue.id] = {
+                        ...venue,
+                        image: image
+                    };
+                    
+                    venueIndex++;
+                });
+            });
+            
+            // Update meta
+            document.getElementById('app-meta').textContent = `${allVenues.length} venues • ${pageData?.page?.dateDisplay || 'January 2026'}`;
+        }
+        
+        function selectVenue(row) {
+            // Remove selected class from all rows
+            document.querySelectorAll('.venue-row').forEach(r => r.classList.remove('selected'));
+            // Add selected class to clicked row
+            row.classList.add('selected');
+            
+            // Open detail panel
+            document.getElementById('split-layout').classList.add('detail-open');
+            
+            // Get venue data
+            const venueId = row.getAttribute('data-venue');
+            const venue = venueData[venueId];
+            
+            if (venue) {
+                document.getElementById('detail-title').textContent = venue.name || '—';
+                document.getElementById('detail-address').textContent = venue.address || '—';
+                document.getElementById('detail-capacity').textContent = venue.capacityDisplay || '—';
+                document.getElementById('detail-price').textContent = venue.priceDisplay || '—';
+                document.getElementById('detail-hourly').textContent = venue.hourlyRate ? `S$${venue.hourlyRate}` : '—';
+                document.getElementById('detail-hours').textContent = venue.hours || '—';
+                document.getElementById('detail-notes').textContent = venue.notes || 'No additional notes.';
+                document.getElementById('detail-email').textContent = venue.email || '—';
+                document.getElementById('detail-phone').textContent = venue.phone || '—';
+                document.getElementById('detail-website').textContent = venue.website ? new URL(venue.website).hostname.replace('www.', '') : '—';
+                document.getElementById('detail-image').src = venue.image;
+                
+                // Update status badge
+                const statusEl = document.getElementById('detail-status');
+                statusEl.className = 'detail-status ' + (venue.status || '');
+                statusEl.textContent = getStatusLabel(venue.status);
+                
+                // Update links
+                document.getElementById('detail-email-link').href = venue.email && venue.email !== 'NA' ? 'mailto:' + venue.email : '#';
+                document.getElementById('detail-phone-link').href = venue.phone && venue.phone !== 'NA' ? 'tel:' + venue.phone.replace(/\s/g, '') : '#';
+                document.getElementById('detail-map-link').href = venue.mapUrl || '#';
+                document.getElementById('detail-website-link').href = venue.website && venue.website !== 'NA' ? venue.website : '#';
+                document.getElementById('email-btn').href = venue.email && venue.email !== 'NA' ? 'mailto:' + venue.email : '#';
+                
+                // Virtual tour
+                const vtLink = document.getElementById('virtual-tour-link');
+                if (venue.virtualTour) {
+                    vtLink.href = venue.virtualTour;
+                    vtLink.classList.add('visible');
+                } else {
+                    vtLink.classList.remove('visible');
+                }
+            }
+        }
+        
+        function closeDetail() {
+            document.getElementById('split-layout').classList.remove('detail-open');
+            document.querySelectorAll('.venue-row').forEach(r => r.classList.remove('selected'));
+        }
+        
+        function applyFilters() {
+            const statusFilter = document.getElementById('status-filter').value.toLowerCase();
+            const districtFilter = document.getElementById('district-filter').value.toLowerCase();
+            const capacityFilter = parseInt(document.getElementById('capacity-filter').value) || 0;
+            const sortSelect = document.getElementById('sort-select').value;
+            
+            // Track which districts have visible venues
+            const visibleDistricts = new Set();
+            
+            allVenues.forEach(row => {
+                const status = row.getAttribute('data-status').toLowerCase();
+                const district = row.getAttribute('data-district').toLowerCase();
+                const capacity = parseInt(row.getAttribute('data-capacity')) || 0;
+                
+                let show = true;
+                
+                if (statusFilter && status !== statusFilter) show = false;
+                if (districtFilter && district !== districtFilter) show = false;
+                if (capacityFilter && capacity < capacityFilter) show = false;
+                
+                if (show) {
+                    row.classList.remove('hidden');
+                    visibleDistricts.add(district);
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+            
+            // Update group headers visibility
+            document.querySelectorAll('.group-header').forEach(header => {
+                const district = header.getAttribute('data-district')?.toLowerCase();
+                if (districtFilter) {
+                    header.classList.toggle('hidden', district !== districtFilter);
+                } else {
+                    header.classList.toggle('hidden', !visibleDistricts.has(district));
+                }
+            });
+            
+            // Sort if needed
+            sortVenues(sortSelect);
+            
+            updateResultCount();
+        }
+        
+        function sortVenues(sortBy) {
+            const tbody = document.getElementById('venue-tbody');
+            const rows = Array.from(allVenues);
+            
+            rows.sort((a, b) => {
+                switch (sortBy) {
+                    case 'name':
+                        return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+                    case 'price-asc':
+                        return (parseInt(a.getAttribute('data-price')) || 999999) - (parseInt(b.getAttribute('data-price')) || 999999);
+                    case 'price-desc':
+                        return (parseInt(b.getAttribute('data-price')) || 0) - (parseInt(a.getAttribute('data-price')) || 0);
+                    case 'capacity':
+                        return (parseInt(b.getAttribute('data-capacity')) || 0) - (parseInt(a.getAttribute('data-capacity')) || 0);
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Re-append in sorted order (after group headers)
+            rows.forEach(row => {
+                tbody.appendChild(row);
+            });
+        }
+        
+        function updateResultCount() {
+            const visible = allVenues.filter(r => !r.classList.contains('hidden')).length;
+            const total = allVenues.length;
+            document.getElementById('result-count').textContent = `Showing ${visible} of ${total} venues`;
+        }
+        
+        function updateCompareBar(clickedVenueId = null, isChecked = null) {
+            const compareBar = document.getElementById('compare-bar');
+            const countEl = document.getElementById('compare-count-num');
+            const venuesEl = document.getElementById('compare-venues');
+            
+            // Update selection order based on checkbox states
+            if (clickedVenueId !== null && isChecked !== null) {
+                if (isChecked) {
+                    // Adding venue
+                    if (!compareSelectionOrder.includes(clickedVenueId)) {
+                        if (compareSelectionOrder.length >= MAX_COMPARE) {
+                            // Uncheck and show message
+                            const row = document.querySelector(`tr.venue-row[data-venue="${clickedVenueId}"]`);
+                            const cb = row?.querySelector('.venue-checkbox');
+                            if (cb) cb.checked = false;
+                            alert(`You can only compare up to ${MAX_COMPARE} venues at a time.`);
+                            return;
+                        }
+                        compareSelectionOrder.push(clickedVenueId);
+                    }
+                } else {
+                    // Removing venue
+                    const idx = compareSelectionOrder.indexOf(clickedVenueId);
+                    if (idx !== -1) compareSelectionOrder.splice(idx, 1);
+                }
+            } else {
+                // Full rebuild from checkbox state (e.g., select all)
+                const newOrder = [];
+                document.querySelectorAll('.venue-row .venue-checkbox:checked').forEach(cb => {
+                    const row = cb.closest('.venue-row');
+                    const id = row.getAttribute('data-venue');
+                    if (compareSelectionOrder.includes(id)) {
+                        newOrder.push(id);
+                    } else if (newOrder.length < MAX_COMPARE) {
+                        newOrder.push(id);
+                    } else {
+                        cb.checked = false;
+                    }
+                });
+                // Preserve order for existing selections
+                compareSelectionOrder = compareSelectionOrder.filter(id => newOrder.includes(id));
+                newOrder.forEach(id => {
+                    if (!compareSelectionOrder.includes(id)) {
+                        compareSelectionOrder.push(id);
+                    }
+                });
+            }
+            
+            if (compareSelectionOrder.length > 0) {
+                compareBar.classList.add('visible');
+                countEl.textContent = compareSelectionOrder.length;
+                
+                venuesEl.innerHTML = '';
+                compareSelectionOrder.forEach(id => {
+                    const v = venueData[id];
+                    if (!v) return;
+                    const chip = document.createElement('span');
+                    chip.className = 'compare-chip';
+                    chip.innerHTML = `${v.name?.split(' - ')[0] || id} <button data-venue-id="${id}">×</button>`;
+                    chip.querySelector('button').addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const row = document.querySelector(`tr.venue-row[data-venue="${id}"]`);
+                        const cb = row?.querySelector('.venue-checkbox');
+                        if (cb) {
+                            cb.checked = false;
+                            updateCompareBar(id, false);
+                        }
+                    });
+                    venuesEl.appendChild(chip);
+                });
+            } else {
+                compareBar.classList.remove('visible');
+            }
+        }
+        
+        function exportCSV() {
+            let csv = 'Status,Venue Name,District,Capacity,Price (SGD),Hours,Address,Phone,Email,Website\n';
+            
+            allVenues.forEach(row => {
+                const venueId = row.getAttribute('data-venue');
+                const venue = venueData[venueId];
+                if (venue) {
+                    const values = [
+                        venue.status || '',
+                        `"${venue.name}"`,
+                        venue.district || '',
+                        venue.capacity || '',
+                        venue.price || '',
+                        `"${venue.hours || ''}"`,
+                        `"${venue.address || ''}"`,
+                        venue.phone || '',
+                        venue.email || '',
+                        venue.website || ''
+                    ];
+                    csv += values.join(',') + '\n';
+                }
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'singapore-conference-rooms.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // Compare Modal Functions
+        function openCompareModal() {
+            const modal = document.getElementById('compare-modal');
+            const table = document.getElementById('compare-table');
+            if (!modal || !table || !compareSelectionOrder.length) return;
+            
+            renderCompareTable(table, compareSelectionOrder);
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+        
+        function closeCompareModal() {
+            const modal = document.getElementById('compare-modal');
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+        
+        function renderCompareTable(tableEl, venueIds) {
+            tableEl.innerHTML = '';
+            if (!venueIds.length) return;
+            
+            // Build header row
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            const fieldHeader = document.createElement('th');
+            fieldHeader.className = 'field-header';
+            fieldHeader.textContent = '';
+            headerRow.appendChild(fieldHeader);
+            
+            venueIds.forEach(id => {
+                const v = venueData[id] || {};
+                const th = document.createElement('th');
+                th.className = 'venue-header-cell';
+                th.innerHTML = `
+                    <div class="venue-header-name">${v.name || '—'}</div>
+                    <div class="venue-header-meta">
+                        <span class="district-badge ${v.district || ''}">${getDistrictLabel(v.district || '')}</span>
+                    </div>
+                    <button class="compare-shortlist-btn ${shortlistedVenues.has(id) ? 'shortlisted' : ''}" data-venue-id="${id}">
+                        ${shortlistedVenues.has(id) ? '★ Shortlisted' : '⭐ Add to Shortlist'}
+                    </button>
+                `;
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            tableEl.appendChild(thead);
+            
+            // Define fields to display
+            const fields = [
+                { key: 'status', label: 'Status', render: v => `<span class="status-badge ${v.status || ''}">${getStatusLabel(v.status)}</span>` },
+                { key: 'price', label: 'Price', render: v => v.priceDisplay || '—', cellClass: 'price-cell' },
+                { key: 'capacity', label: 'Capacity', render: v => v.capacityDisplay || '—' },
+                { key: 'hours', label: 'Hours', render: v => v.hours || '—' },
+                { key: 'address', label: 'Address', render: v => v.address || '—' },
+                { key: 'email', label: 'Email', render: v => v.email && v.email !== 'NA' ? `<a href="mailto:${v.email}">${v.email}</a>` : '—' },
+                { key: 'phone', label: 'Phone', render: v => v.phone && v.phone !== 'NA' ? `<a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a>` : '—' },
+                { key: 'website', label: 'Website', render: v => v.website && v.website !== 'NA' ? `<a href="${v.website}" target="_blank">${new URL(v.website).hostname.replace('www.', '')}</a>` : '—' },
+                { key: 'notes', label: 'Notes', render: v => `<div class="notes-cell">${v.notes || 'No additional notes.'}</div>` }
+            ];
+            
+            const tbody = document.createElement('tbody');
+            
+            fields.forEach(field => {
+                const row = document.createElement('tr');
+                
+                const labelCell = document.createElement('th');
+                labelCell.className = 'field-header';
+                labelCell.textContent = field.label;
+                row.appendChild(labelCell);
+                
+                venueIds.forEach(id => {
+                    const v = venueData[id] || {};
+                    const td = document.createElement('td');
+                    if (field.cellClass) td.className = field.cellClass;
+                    td.innerHTML = field.render(v);
+                    row.appendChild(td);
+                });
+                
+                tbody.appendChild(row);
+            });
+            
+            tableEl.appendChild(tbody);
+            
+            // Wire up shortlist buttons
+            tableEl.querySelectorAll('.compare-shortlist-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.getAttribute('data-venue-id');
+                    toggleShortlist(id, this);
+                });
+            });
+        }
+        
+        function toggleShortlist(venueId, buttonEl) {
+            if (shortlistedVenues.has(venueId)) {
+                shortlistedVenues.delete(venueId);
+                if (buttonEl) {
+                    buttonEl.classList.remove('shortlisted');
+                    buttonEl.textContent = '⭐ Add to Shortlist';
+                }
+            } else {
+                shortlistedVenues.add(venueId);
+                if (buttonEl) {
+                    buttonEl.classList.add('shortlisted');
+                    buttonEl.textContent = '★ Shortlisted';
+                }
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('status-filter').addEventListener('change', applyFilters);
+        document.getElementById('district-filter').addEventListener('change', applyFilters);
+        document.getElementById('capacity-filter').addEventListener('change', applyFilters);
+        document.getElementById('sort-select').addEventListener('change', applyFilters);
+        
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checked = this.checked;
+            document.querySelectorAll('.venue-row:not(.hidden) .venue-checkbox').forEach(cb => {
+                cb.checked = checked;
+            });
+            updateCompareBar();
+        });
+        
+        // Compare modal controls
+        document.getElementById('compare-btn').addEventListener('click', function() {
+            if (compareSelectionOrder.length > 0) {
+                openCompareModal();
+            }
+        });
+        
+        document.getElementById('compare-modal-close').addEventListener('click', closeCompareModal);
+        document.getElementById('compare-modal-backdrop').addEventListener('click', closeCompareModal);
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('compare-modal').classList.contains('open')) {
+                closeCompareModal();
+            }
+        });
+        
+        // Load and render
+        loadData()
+            .then(renderPage)
+            .catch(err => {
+                console.error(err);
+                document.getElementById('venue-tbody').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#dc3545;">Error loading data. Please refresh the page.</td></tr>';
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 3: Split View with Large Hotel Cards</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5; 
+      color: #333;
+    }
+    
+    .page-header {
+      background: #1e3a5f;
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-title { font-size: 1.3rem; font-weight: 600; }
+    .filters {
+      display: flex;
+      gap: 12px;
+    }
+    .filters select {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .filters select option { color: #333; }
+    
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      min-height: calc(100vh - 60px);
+    }
+    
+    .content-area {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    
+    .map-placeholder {
+      background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #5a8a9a;
+      font-size: 1rem;
+      border-left: 1px solid #ddd;
+    }
+    .map-placeholder .icon { font-size: 3rem; margin-bottom: 12px; }
+    
+    .venue-block {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    
+    .venue-top {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+    .venue-img {
+      height: 180px;
+      object-fit: cover;
+    }
+    .venue-info {
+      padding: 20px;
+    }
+    .venue-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; }
+    .venue-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .venue-meta span {
+      background: #f0f0f0;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .venue-price-tag {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .venue-gallery-strip {
+      display: flex;
+      gap: 8px;
+      padding: 12px 20px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      overflow-x: auto;
+    }
+    .venue-gallery-strip img {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .venue-gallery-strip img:hover { transform: scale(1.05); }
+    
+    .hotels-section {
+      padding: 20px;
+    }
+    .hotels-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .hotels-title { font-weight: 600; color: #666; }
+    .hotels-config {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .hotels-config input {
+      width: 50px;
+      padding: 4px 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .hotel-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    
+    .hotel-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .hotel-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .hotel-card.best {
+      border-color: #059669;
+      border-width: 2px;
+    }
+    .hotel-card.best::before {
+      content: "BEST VALUE";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #059669;
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+      z-index: 1;
+    }
+    
+    .hotel-card-img {
+      height: 140px;
+      object-fit: cover;
+      width: 100%;
+    }
+    
+    .hotel-card-body { padding: 14px; }
+    
+    .hotel-card-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+    .hotel-card-rating { font-size: 0.8rem; color: #666; margin-bottom: 10px; }
+    .hotel-card-rating .stars { color: #f59e0b; }
+    
+    .hotel-card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .stat {
+      background: #f8f9fa;
+      padding: 6px 8px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .stat-label { font-size: 0.7rem; color: #888; }
+    .stat-value { font-size: 0.9rem; font-weight: 600; color: #333; }
+    .stat-value.distance { color: #2563eb; }
+    .stat-value.grab { color: #059669; }
+    
+    .hotel-card-total {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .total-label { font-size: 0.7rem; opacity: 0.8; }
+    .total-amount { font-size: 1.2rem; font-weight: 700; }
+    .total-breakdown { font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
+    
+    .hotel-card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .hotel-card-actions button {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .hotel-card-actions button:hover { background: #f0f0f0; }
+    .hotel-card-actions .primary {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+    .hotel-card-actions .primary:hover { background: #1d4ed8; }
+    
+    .show-more-hotels {
+      text-align: center;
+      padding: 16px;
+      color: #2563eb;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .show-more-hotels:hover { background: #f0f7ff; }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-title">🏢 Singapore Conference Rooms</div>
+    <div class="filters">
+      <select>
+        <option>All Districts</option>
+        <option>CBD Core</option>
+        <option>City Hall</option>
+        <option>Marina Bay</option>
+        <option>Clarke Quay</option>
+        <option>Orchard</option>
+      </select>
+      <select>
+        <option>Any Capacity</option>
+        <option>15+ pax</option>
+        <option>20+ pax</option>
+        <option>50+ pax</option>
+      </select>
+      <select>
+        <option>Sort: Best Value</option>
+        <option>Sort: Lowest Total</option>
+        <option>Sort: Nearest Hotel</option>
+      </select>
+    </div>
+  </header>
+  
+  <div class="main-layout">
+    <div class="content-area">
+      
+      <!-- Venue Block 1 -->
+      <div class="venue-block">
+        <div class="venue-top">
+          <img class="venue-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400" alt="Venue">
+          <div class="venue-info">
+            <div class="venue-name">Singapore EXPO – Opal Room</div>
+            <div class="venue-meta">
+              <span>📍 Expo / Changi</span>
+              <span>👥 15 pax</span>
+              <span>⏰ 08:00–22:00</span>
+              <span>⭐ Virtual tour available</span>
+            </div>
+            <div class="venue-price-tag">S$18,480</div>
+          </div>
+        </div>
+        <div class="venue-gallery-strip">
+          <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=200" alt="">
+          <img src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=200" alt="">
+          <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=200" alt="">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200" alt="">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=200" alt="">
+        </div>
+        
+        <div class="hotels-section">
+          <div class="hotels-header">
+            <div class="hotels-title">🏨 Nearby Hotels (Top 3)</div>
+            <div class="hotels-config">
+              <span>Nights:</span>
+              <input type="number" value="2">
+              <span>Rooms:</span>
+              <input type="number" value="8">
+            </div>
+          </div>
+          
+          <div class="hotel-cards">
+            <div class="hotel-card best">
+              <img class="hotel-card-img" src="https://i.travelapi.com/lodging/35000000/34840000/34834500/34834462/aec32124_b.jpg" alt="Hotel">
+              <div class="hotel-card-body">
+                <div class="hotel-card-name">Capri by Fraser China Square</div>
+                <div class="hotel-card-rating"><span class="stars">★★★★★</span> 8.7 Very good</div>
+                <div class="hotel-card-stats">
+                  <div class="stat">
+                    <div class="stat-label">Distance</div>
+                    <div class="stat-value distance">5.2 km</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Grab fare</div>
+                    <div class="stat-value grab">~$8.40</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Per night</div>
+                    <div class="stat-value">$168</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Hotel total</div>
+                    <div class="stat-value">$2,688</div>
+                  </div>
+                </div>
+                <div class="hotel-card-total">
+                  <div class="total-label">TOTAL PACKAGE</div>
+                  <div class="total-amount">S$21,235</div>
+                  <div class="total-breakdown">$18,480 + $2,688 + $67</div>
+                </div>
+                <div class="hotel-card-actions">
+                  <button>☑ Compare</button>
+                  <button class="primary">Book →</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="hotel-card">
+              <img class="hotel-card-img" src="https://i.travelapi.com/lodging/7000000/6080000/6076600/6076571/w2304h2048x128y192-a006fb69_b.jpg" alt="Hotel">
+              <div class="hotel-card-body">
+                <div class="hotel-card-name">Carlton City Hotel</div>
+                <div class="hotel-card-rating"><span class="stars">★★★★★</span> 8.6 Very good</div>
+                <div class="hotel-card-stats">
+                  <div class="stat">
+                    <div class="stat-label">Distance</div>
+                    <div class="stat-value distance">6.1 km</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Grab fare</div>
+                    <div class="stat-value grab">~$9.20</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Per night</div>
+                    <div class="stat-value">$184</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Hotel total</div>
+                    <div class="stat-value">$2,944</div>
+                  </div>
+                </div>
+                <div class="hotel-card-total">
+                  <div class="total-label">TOTAL PACKAGE</div>
+                  <div class="total-amount">S$21,498</div>
+                  <div class="total-breakdown">$18,480 + $2,944 + $74</div>
+                </div>
+                <div class="hotel-card-actions">
+                  <button>☑ Compare</button>
+                  <button class="primary">Book →</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="hotel-card">
+              <img class="hotel-card-img" src="https://i.travelapi.com/lodging/9000000/8640000/8639100/8639079/e7085d9d_b.jpg" alt="Hotel">
+              <div class="hotel-card-body">
+                <div class="hotel-card-name">Orchid Hotel</div>
+                <div class="hotel-card-rating"><span class="stars">★★★★</span> 8.1 Very good</div>
+                <div class="hotel-card-stats">
+                  <div class="stat">
+                    <div class="stat-label">Distance</div>
+                    <div class="stat-value distance">5.8 km</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Grab fare</div>
+                    <div class="stat-value grab">~$8.80</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Per night</div>
+                    <div class="stat-value">$265</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Hotel total</div>
+                    <div class="stat-value">$4,240</div>
+                  </div>
+                </div>
+                <div class="hotel-card-total">
+                  <div class="total-label">TOTAL PACKAGE</div>
+                  <div class="total-amount">S$22,790</div>
+                  <div class="total-breakdown">$18,480 + $4,240 + $70</div>
+                </div>
+                <div class="hotel-card-actions">
+                  <button>☑ Compare</button>
+                  <button class="primary">Book →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="show-more-hotels">Show all 12 nearby hotels ▾</div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="map-placeholder">
+      <div class="icon">🗺️</div>
+      <div>Map View</div>
+      <div style="font-size: 0.8rem; margin-top: 8px;">(Coming soon)</div>
+    </div>
+  </div>
+</body>
+</html>

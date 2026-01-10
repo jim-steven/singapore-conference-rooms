@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 2: Side-by-Side Comparison Table</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5; 
+      padding: 24px;
+      color: #333;
+    }
+    h1 { margin-bottom: 24px; color: #1a1a1a; }
+    
+    .venue-detail {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      max-width: 1100px;
+      margin-bottom: 24px;
+    }
+    
+    .venue-header-bar {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: #fff;
+      padding: 20px 24px;
+    }
+    .venue-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
+    .venue-meta { display: flex; gap: 20px; opacity: 0.9; font-size: 0.95rem; }
+    
+    .venue-gallery {
+      display: flex;
+      height: 180px;
+      background: #e0e0e0;
+    }
+    .venue-gallery img {
+      flex: 1;
+      object-fit: cover;
+      border-right: 2px solid #fff;
+    }
+    
+    .config-bar {
+      display: flex;
+      gap: 16px;
+      padding: 16px 24px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+    }
+    .config-bar label { font-size: 0.9rem; color: #666; }
+    .config-bar select, .config-bar input {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .config-bar .sort-label { margin-left: auto; }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 16px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .comparison-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #666;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .comparison-table th:first-child { text-align: left; }
+    .comparison-table td:first-child { 
+      text-align: left; 
+      font-weight: 500;
+      color: #666;
+      background: #fafafa;
+    }
+    
+    .hotel-header {
+      background: #fff !important;
+      padding: 16px !important;
+    }
+    .hotel-header .hotel-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .hotel-header .hotel-rating {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .hotel-header .stars { color: #f59e0b; }
+    
+    .hotel-img-cell {
+      padding: 8px !important;
+    }
+    .hotel-img-cell img {
+      width: 140px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    
+    .distance-cell { color: #2563eb; font-weight: 500; }
+    .grab-cell { color: #059669; }
+    
+    .total-row td {
+      background: #f0f7ff !important;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-top: 2px solid #2563eb;
+    }
+    .total-row td:first-child { color: #1a1a1a; }
+    .total-row .total-amount { color: #2563eb; }
+    
+    .best-value {
+      position: relative;
+    }
+    .best-value::after {
+      content: "BEST VALUE";
+      position: absolute;
+      top: -8px;
+      right: 8px;
+      background: #059669;
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .breakdown {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 4px;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: #f8f9fa;
+    }
+    .nav-btn {
+      padding: 10px 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .nav-btn:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Option 2: Side-by-Side Comparison Table</h1>
+  
+  <div class="venue-detail">
+    <div class="venue-header-bar">
+      <div class="venue-name">Raffles Hotel Singapore - Boardroom</div>
+      <div class="venue-meta">
+        <span>📍 City Hall / Beach Road</span>
+        <span>👥 Capacity: 20 pax</span>
+        <span>💰 Venue: S$8,000</span>
+      </div>
+    </div>
+    
+    <div class="venue-gallery">
+      <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=400" alt="Venue">
+      <img src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=400" alt="Venue">
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=400" alt="Venue">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400" alt="Venue">
+    </div>
+    
+    <div class="config-bar">
+      <label>Nights:</label>
+      <input type="number" value="2" min="1" max="14" style="width: 60px;">
+      <label>Attendees:</label>
+      <input type="number" value="15" min="1" max="100" style="width: 60px;">
+      <label>Room sharing:</label>
+      <select>
+        <option>1 per room</option>
+        <option selected>2 per room</option>
+      </select>
+      <span class="sort-label">Sort by:</span>
+      <select>
+        <option selected>Total Package ↑</option>
+        <option>Distance ↑</option>
+        <option>Hotel Rating ↓</option>
+        <option>Per Night ↑</option>
+      </select>
+    </div>
+    
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="width: 160px;"></th>
+          <th style="width: 200px;">Hotel A</th>
+          <th style="width: 200px;">Hotel B</th>
+          <th style="width: 200px;" class="best-value">Hotel C</th>
+          <th style="width: 200px;">Hotel D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td class="hotel-header">
+            <div class="hotel-name">Fairmont Singapore</div>
+            <div class="hotel-rating"><span class="stars">★★★★★</span> 8.8</div>
+          </td>
+          <td class="hotel-header">
+            <div class="hotel-name">Swissotel Stamford</div>
+            <div class="hotel-rating"><span class="stars">★★★★★</span> 8.7</div>
+          </td>
+          <td class="hotel-header">
+            <div class="hotel-name">Carlton Hotel</div>
+            <div class="hotel-rating"><span class="stars">★★★★☆</span> 8.5</div>
+          </td>
+          <td class="hotel-header">
+            <div class="hotel-name">Pan Pacific</div>
+            <div class="hotel-rating"><span class="stars">★★★★★</span> 8.8</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Hotel Image</td>
+          <td class="hotel-img-cell"><img src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg"></td>
+          <td class="hotel-img-cell"><img src="https://i.travelapi.com/lodging/1000000/10000/400/311/27d65d67_b.jpg"></td>
+          <td class="hotel-img-cell"><img src="https://i.travelapi.com/lodging/1000000/900000/892600/892568/896a80bd_b.jpg"></td>
+          <td class="hotel-img-cell"><img src="https://i.travelapi.com/lodging/1000000/10000/6600/6594/f8e34912_b.jpg"></td>
+        </tr>
+        <tr>
+          <td>Distance from Venue</td>
+          <td class="distance-cell">0.3 km</td>
+          <td class="distance-cell">0.2 km</td>
+          <td class="distance-cell">0.4 km</td>
+          <td class="distance-cell">0.8 km</td>
+        </tr>
+        <tr>
+          <td>Est. Grab (one-way)</td>
+          <td class="grab-cell">$4.20</td>
+          <td class="grab-cell">$3.80</td>
+          <td class="grab-cell">$4.50</td>
+          <td class="grab-cell">$5.60</td>
+        </tr>
+        <tr>
+          <td>Per Night</td>
+          <td>$259</td>
+          <td>$227</td>
+          <td>$186</td>
+          <td>$267</td>
+        </tr>
+        <tr>
+          <td>Hotel Total (2 nights × 8 rooms)</td>
+          <td>$4,144</td>
+          <td>$3,632</td>
+          <td>$2,976</td>
+          <td>$4,272</td>
+        </tr>
+        <tr>
+          <td>Transport (4 trips/day × 2 days)</td>
+          <td>$33.60</td>
+          <td>$30.40</td>
+          <td>$36.00</td>
+          <td>$44.80</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL PACKAGE</td>
+          <td class="total-amount">
+            S$12,178
+            <div class="breakdown">$8,000 + $4,144 + $34</div>
+          </td>
+          <td class="total-amount">
+            S$11,662
+            <div class="breakdown">$8,000 + $3,632 + $30</div>
+          </td>
+          <td class="total-amount">
+            S$11,012
+            <div class="breakdown">$8,000 + $2,976 + $36</div>
+          </td>
+          <td class="total-amount">
+            S$12,317
+            <div class="breakdown">$8,000 + $4,272 + $45</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="nav-buttons">
+      <button class="nav-btn">◂ Previous Venue</button>
+      <button class="nav-btn">Next Venue ▸</button>
+    </div>
+  </div>
+</body>
+</html>

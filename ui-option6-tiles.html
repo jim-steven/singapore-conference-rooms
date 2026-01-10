@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 6: Package Tiles Grid</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 24px;
+      color: #333;
+    }
+    
+    .page-header {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .page-header h1 { font-size: 2rem; margin-bottom: 8px; }
+    .page-header p { opacity: 0.9; }
+    
+    .config-bar {
+      background: rgba(255,255,255,0.95);
+      padding: 16px 24px;
+      border-radius: 12px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .config-bar label { font-weight: 500; color: #666; }
+    .config-bar input, .config-bar select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+    
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    
+    .package-tile {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .package-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+    .package-tile.featured {
+      border: 3px solid #10b981;
+    }
+    
+    .tile-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 160px;
+    }
+    .tile-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tile-images .venue-img { border-right: 2px solid #fff; }
+    
+    .tile-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tile-labels span {
+      padding: 6px;
+    }
+    .tile-labels .venue-label { background: #2563eb; color: #fff; }
+    .tile-labels .hotel-label { background: #7c3aed; color: #fff; }
+    
+    .tile-body { padding: 20px; }
+    
+    .tile-names {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .tile-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .tile-meta {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 4px;
+    }
+    .tile-meta .stars { color: #f59e0b; }
+    
+    .tile-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tile-stat {
+      background: #f8f9fa;
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .tile-stat-label { font-size: 0.65rem; color: #888; }
+    .tile-stat-value { font-size: 0.9rem; font-weight: 600; }
+    
+    .tile-breakdown {
+      background: #f0f7ff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .breakdown-row:last-child { margin-bottom: 0; }
+    .breakdown-row .label { color: #666; }
+    
+    .tile-total {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .tile-total .label { font-size: 0.75rem; opacity: 0.8; }
+    .tile-total .amount { font-size: 1.8rem; font-weight: 700; }
+    .tile-total .per-person { font-size: 0.8rem; opacity: 0.9; margin-top: 4px; }
+    
+    .package-tile.featured .tile-total {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    }
+    
+    .featured-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #10b981;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .tile-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .tile-actions button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn-details {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .btn-book {
+      background: #2563eb;
+      color: #fff;
+    }
+    .btn-book:hover { background: #1d4ed8; }
+    
+    .package-tile { position: relative; }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>🏢 + 🏨 Package Finder</h1>
+    <p>Find the best venue + hotel combinations for your Singapore conference</p>
+  </header>
+  
+  <div class="config-bar">
+    <div>
+      <label>Nights:</label>
+      <input type="number" value="2" style="width: 60px;">
+    </div>
+    <div>
+      <label>Attendees:</label>
+      <input type="number" value="15" style="width: 60px;">
+    </div>
+    <div>
+      <label>District:</label>
+      <select>
+        <option>All Districts</option>
+        <option>CBD Core</option>
+        <option>City Hall</option>
+        <option>Clarke Quay</option>
+      </select>
+    </div>
+    <div>
+      <label>Sort:</label>
+      <select>
+        <option>Best Value</option>
+        <option>Lowest Total</option>
+        <option>Shortest Distance</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="packages-grid">
+    <!-- Package 1 - Featured -->
+    <div class="package-tile featured">
+      <span class="featured-badge">BEST VALUE</span>
+      <div class="tile-images">
+        <img class="venue-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=300" alt="Venue">
+        <img class="hotel-img" src="https://i.travelapi.com/lodging/94000000/93490000/93487000/93486994/448947f0_b.jpg" alt="Hotel">
+      </div>
+      <div class="tile-labels">
+        <span class="venue-label">Venue</span>
+        <span class="hotel-label">Hotel</span>
+      </div>
+      <div class="tile-body">
+        <div class="tile-names">
+          <div>
+            <div class="tile-name">HUONE Clarke Quay</div>
+            <div class="tile-meta">Clarke Quay · 25 pax</div>
+          </div>
+          <div>
+            <div class="tile-name">Pullman Hill Street</div>
+            <div class="tile-meta"><span class="stars">★★★★★</span> 8.7</div>
+          </div>
+        </div>
+        <div class="tile-stats">
+          <div class="tile-stat">
+            <div class="tile-stat-label">Distance</div>
+            <div class="tile-stat-value">0.4 km</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Grab</div>
+            <div class="tile-stat-value">~$4.50</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Per Night</div>
+            <div class="tile-stat-value">$201</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Rooms</div>
+            <div class="tile-stat-value">8</div>
+          </div>
+        </div>
+        <div class="tile-breakdown">
+          <div class="breakdown-row">
+            <span class="label">Venue (1 day)</span>
+            <span>$4,100</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Hotel (2 nights × 8)</span>
+            <span>$3,216</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Transport (est.)</span>
+            <span>$36</span>
+          </div>
+        </div>
+        <div class="tile-total">
+          <div class="label">TOTAL PACKAGE</div>
+          <div class="amount">S$7,352</div>
+          <div class="per-person">~S$490 per person</div>
+        </div>
+        <div class="tile-actions">
+          <button class="btn-details">Details</button>
+          <button class="btn-book">Book Package</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Package 2 -->
+    <div class="package-tile">
+      <div class="tile-images">
+        <img class="venue-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=300" alt="Venue">
+        <img class="hotel-img" src="https://i.travelapi.com/lodging/1000000/900000/893000/892942/670c6f3b_b.jpg" alt="Hotel">
+      </div>
+      <div class="tile-labels">
+        <span class="venue-label">Venue</span>
+        <span class="hotel-label">Hotel</span>
+      </div>
+      <div class="tile-body">
+        <div class="tile-names">
+          <div>
+            <div class="tile-name">HUONE Clarke Quay</div>
+            <div class="tile-meta">Clarke Quay · 25 pax</div>
+          </div>
+          <div>
+            <div class="tile-name">Grand Park City Hall</div>
+            <div class="tile-meta"><span class="stars">★★★★★</span> 8.0</div>
+          </div>
+        </div>
+        <div class="tile-stats">
+          <div class="tile-stat">
+            <div class="tile-stat-label">Distance</div>
+            <div class="tile-stat-value">0.6 km</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Grab</div>
+            <div class="tile-stat-value">~$5.20</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Per Night</div>
+            <div class="tile-stat-value">$235</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Rooms</div>
+            <div class="tile-stat-value">8</div>
+          </div>
+        </div>
+        <div class="tile-breakdown">
+          <div class="breakdown-row">
+            <span class="label">Venue (1 day)</span>
+            <span>$4,100</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Hotel (2 nights × 8)</span>
+            <span>$3,760</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Transport (est.)</span>
+            <span>$42</span>
+          </div>
+        </div>
+        <div class="tile-total">
+          <div class="label">TOTAL PACKAGE</div>
+          <div class="amount">S$7,902</div>
+          <div class="per-person">~S$527 per person</div>
+        </div>
+        <div class="tile-actions">
+          <button class="btn-details">Details</button>
+          <button class="btn-book">Book Package</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Package 3 -->
+    <div class="package-tile">
+      <div class="tile-images">
+        <img class="venue-img" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=300" alt="Venue">
+        <img class="hotel-img" src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg" alt="Hotel">
+      </div>
+      <div class="tile-labels">
+        <span class="venue-label">Venue</span>
+        <span class="hotel-label">Hotel</span>
+      </div>
+      <div class="tile-body">
+        <div class="tile-names">
+          <div>
+            <div class="tile-name">Raffles Boardroom</div>
+            <div class="tile-meta">City Hall · 20 pax</div>
+          </div>
+          <div>
+            <div class="tile-name">Fairmont Singapore</div>
+            <div class="tile-meta"><span class="stars">★★★★★</span> 8.8</div>
+          </div>
+        </div>
+        <div class="tile-stats">
+          <div class="tile-stat">
+            <div class="tile-stat-label">Distance</div>
+            <div class="tile-stat-value">0.3 km</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Grab</div>
+            <div class="tile-stat-value">~$4.20</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Per Night</div>
+            <div class="tile-stat-value">$259</div>
+          </div>
+          <div class="tile-stat">
+            <div class="tile-stat-label">Rooms</div>
+            <div class="tile-stat-value">8</div>
+          </div>
+        </div>
+        <div class="tile-breakdown">
+          <div class="breakdown-row">
+            <span class="label">Venue (1 day)</span>
+            <span>$8,000</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Hotel (2 nights × 8)</span>
+            <span>$4,144</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="label">Transport (est.)</span>
+            <span>$34</span>
+          </div>
+        </div>
+        <div class="tile-total">
+          <div class="label">TOTAL PACKAGE</div>
+          <div class="amount">S$12,178</div>
+          <div class="per-person">~S$812 per person</div>
+        </div>
+        <div class="tile-actions">
+          <button class="btn-details">Details</button>
+          <button class="btn-book">Book Package</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template C: Split Panel - Singapore Conference Rooms</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f8f9fa;
+            color: #1a1a2e;
+            font-family: 'Work Sans', system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Layout */
+        .app-layout {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            height: 100vh;
+        }
+        
+        /* Header */
+        .app-header {
+            background: #fff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: #1a1a2e;
+        }
+        .app-meta {
+            font-size: 12px;
+            color: #6c757d;
+            margin-left: 16px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .header-btn {
+            padding: 8px 16px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            color: #495057;
+        }
+        .header-btn:hover {
+            background: #f8f9fa;
+        }
+        .header-btn.primary {
+            background: #0066CC;
+            color: #fff;
+            border-color: #0066CC;
+        }
+        .header-btn.primary:hover {
+            background: #0052a3;
+        }
+        
+        /* Split Layout */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Left Panel - List */
+        .venue-list-panel {
+            background: #fff;
+            border-right: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Search & Filters */
+        .list-header {
+            padding: 16px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #0066CC;
+        }
+        .filter-row {
+            display: flex;
+            gap: 8px;
+        }
+        .filter-chip {
+            padding: 6px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            background: #fff;
+            color: #495057;
+        }
+        .filter-chip:hover {
+            background: #f8f9fa;
+        }
+        .filter-chip.active {
+            background: #1a1a2e;
+            color: #fff;
+            border-color: #1a1a2e;
+        }
+        
+        /* Venue List */
+        .venue-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+        .list-section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6c757d;
+            padding: 12px 12px 8px;
+            font-weight: 600;
+        }
+        .venue-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            position: relative;
+        }
+        .venue-item:hover {
+            background: #f8f9fa;
+        }
+        .venue-item.selected {
+            background: #e3f2fd;
+        }
+        .venue-item.selected::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #0066CC;
+            border-radius: 0 2px 2px 0;
+        }
+        .list-thumb {
+            width: 56px;
+            height: 42px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: #e9ecef;
+            flex-shrink: 0;
+        }
+        .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .item-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1a1a2e;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .item-meta {
+            font-size: 12px;
+            color: #6c757d;
+            display: flex;
+            gap: 8px;
+            margin-top: 2px;
+        }
+        .item-price {
+            color: #2e7d32;
+            font-weight: 500;
+        }
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .status-indicator.available { background: #28a745; }
+        .status-indicator.responded { background: #17a2b8; }
+        .status-indicator.emailed { background: #ffc107; }
+        .status-indicator.waiting { background: #6c757d; }
+        .status-indicator.pass { background: #dc3545; }
+        
+        /* Favorite Star */
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: opacity 0.2s;
+        }
+        .venue-item:hover .favorite-btn {
+            opacity: 0.6;
+        }
+        .favorite-btn.active {
+            opacity: 1;
+        }
+        
+        /* Right Panel - Detail */
+        .venue-detail-panel {
+            background: #f8f9fa;
+            overflow-y: auto;
+            padding: 32px;
+        }
+        
+        /* Detail Card */
+        .detail-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            max-width: 800px;
+        }
+        
+        /* Gallery */
+        .detail-gallery {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+        .detail-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-nav {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+        }
+        .gallery-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .gallery-btn:hover {
+            background: #fff;
+        }
+        .gallery-count {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+        }
+        .virtual-tour-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #0066CC;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .virtual-tour-badge:hover {
+            background: #0052a3;
+        }
+        
+        /* Detail Content */
+        .detail-content {
+            padding: 28px;
+        }
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .detail-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .detail-address {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .detail-status {
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .detail-status.available { background: #d4edda; color: #155724; }
+        .detail-status.responded { background: #d1ecf1; color: #0c5460; }
+        .detail-status.emailed { background: #fff3cd; color: #856404; }
+        .detail-status.waiting { background: #e2e3e5; color: #383d41; }
+        
+        /* Meta Grid */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 28px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .meta-item {
+            text-align: center;
+        }
+        .meta-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .meta-value.price {
+            color: #2e7d32;
+        }
+        .meta-label {
+            font-size: 11px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+        
+        /* Info Sections */
+        .info-section {
+            margin-bottom: 24px;
+        }
+        .info-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6c757d;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .info-content {
+            font-size: 14px;
+            color: #495057;
+            line-height: 1.7;
+        }
+        .info-content p {
+            margin-bottom: 8px;
+        }
+        
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #495057;
+            transition: background 0.2s;
+        }
+        .contact-item:hover {
+            background: #e9ecef;
+        }
+        .contact-icon {
+            font-size: 18px;
+        }
+        .contact-label {
+            font-size: 11px;
+            color: #6c757d;
+        }
+        .contact-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+        
+        /* Action Buttons */
+        .detail-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #e9ecef;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .action-btn.primary {
+            background: #0066CC;
+            color: #fff;
+            border: none;
+        }
+        .action-btn.primary:hover {
+            background: #0052a3;
+        }
+        .action-btn.secondary {
+            background: #fff;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        .action-btn.secondary:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Shortlist Sidebar */
+        .shortlist-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            background: #fff;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+        }
+        .shortlist-panel.visible {
+            transform: translateX(0);
+        }
+        .shortlist-header {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .shortlist-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .shortlist-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        .shortlist-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+        }
+        .shortlist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .shortlist-thumb {
+            width: 40px;
+            height: 30px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        .shortlist-name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .shortlist-remove {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+        }
+        .shortlist-footer {
+            padding: 16px;
+            border-top: 1px solid #e9ecef;
+        }
+        .shortlist-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title">Singapore Conference Rooms</h1>
+                <span class="app-meta">50 venues • January 2026</span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" onclick="document.querySelector('.shortlist-panel').classList.toggle('visible')">
+                    ⭐ Shortlist (3)
+                </button>
+                <button class="header-btn">📤 Export</button>
+                <button class="header-btn primary">+ Add Venue</button>
+            </div>
+        </header>
+        
+        <div class="split-layout">
+            <!-- Left Panel: Venue List -->
+            <aside class="venue-list-panel">
+                <div class="list-header">
+                    <input type="text" class="search-box" placeholder="Search venues...">
+                    <div class="filter-row">
+                        <button class="filter-chip active">All</button>
+                        <button class="filter-chip">Available</button>
+                        <button class="filter-chip">Responded</button>
+                        <button class="filter-chip">Emailed</button>
+                    </div>
+                </div>
+                
+                <div class="venue-list">
+                    <div class="list-section-title">Clarke Quay (4)</div>
+                    
+                    <div class="venue-item selected">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">HUONE Clarke Quay - Time Room</div>
+                            <div class="item-meta">
+                                <span>25 pax</span>
+                                <span class="item-price">S$4,100</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator available"></span>
+                        <button class="favorite-btn active">⭐</button>
+                    </div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">HUONE - Cottage Room</div>
+                            <div class="item-meta">
+                                <span>13-30 pax</span>
+                                <span class="item-price">S$1,435</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator"></span>
+                        <button class="favorite-btn">☆</button>
+                    </div>
+                    
+                    <div class="list-section-title">City Hall (6)</div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">Grand Park City Hall</div>
+                            <div class="item-meta">
+                                <span>18-24 pax</span>
+                                <span class="item-price">S$600</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator emailed"></span>
+                        <button class="favorite-btn active">⭐</button>
+                    </div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423571?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">Carlton Hotel Singapore</div>
+                            <div class="item-meta">
+                                <span>Various</span>
+                                <span>Contact</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator waiting"></span>
+                        <button class="favorite-btn">☆</button>
+                    </div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">Singapore EXPO - Opal</div>
+                            <div class="item-meta">
+                                <span>15 pax</span>
+                                <span class="item-price">S$18,480</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator responded"></span>
+                        <button class="favorite-btn active">⭐</button>
+                    </div>
+                    
+                    <div class="list-section-title">CBD Core (8)</div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">WeWork 71 Robinson Rd</div>
+                            <div class="item-meta">
+                                <span>12 pax</span>
+                                <span class="item-price">S$5,760</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator available"></span>
+                        <button class="favorite-btn">☆</button>
+                    </div>
+                    
+                    <div class="venue-item">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=120&h=90&fit=crop" class="list-thumb" alt="">
+                        <div class="item-info">
+                            <div class="item-name">9 Battery Road</div>
+                            <div class="item-meta">
+                                <span>20 pax</span>
+                                <span class="item-price">S$9,600</span>
+                            </div>
+                        </div>
+                        <span class="status-indicator available"></span>
+                        <button class="favorite-btn">☆</button>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Right Panel: Detail View -->
+            <main class="venue-detail-panel">
+                <div class="detail-card">
+                    <div class="detail-gallery">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop" alt="HUONE Time Room">
+                        <span class="gallery-count">📷 1/8</span>
+                        <a href="#" class="virtual-tour-badge">🎥 Virtual Tour</a>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn">←</button>
+                            <button class="gallery-btn">→</button>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <div>
+                                <h2 class="detail-title">HUONE Clarke Quay - Time Room</h2>
+                                <p class="detail-address">3D River Valley Road, #03-01, Singapore 179023</p>
+                            </div>
+                            <span class="detail-status available">Available</span>
+                        </div>
+                        
+                        <div class="meta-grid">
+                            <div class="meta-item">
+                                <div class="meta-value">25</div>
+                                <div class="meta-label">Capacity</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value price">S$4,100</div>
+                                <div class="meta-label">Per Day</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">S$512</div>
+                                <div class="meta-label">Per Hour</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">8h</div>
+                                <div class="meta-label">Duration</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Operating Hours</h3>
+                            <div class="info-content">
+                                <p>Monday - Friday: 8:00 AM - 10:00 PM</p>
+                                <p>Saturday - Sunday: By arrangement</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Notes</h3>
+                            <div class="info-content">
+                                <p>Themed meeting room with time-travel concept. Includes projector, screen, and whiteboard. AV equipment and catering packages available. Room can be booked for half-day or full-day sessions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3 class="info-title">Contact</h3>
+                            <div class="contact-grid">
+                                <a href="mailto:info.sg@huone.events" class="contact-item">
+                                    <span class="contact-icon">✉️</span>
+                                    <div>
+                                        <div class="contact-label">Email</div>
+                                        <div class="contact-value">info.sg@huone.events</div>
+                                    </div>
+                                </a>
+                                <a href="tel:+6562554793" class="contact-item">
+                                    <span class="contact-icon">📞</span>
+                                    <div>
+                                        <div class="contact-label">Phone</div>
+                                        <div class="contact-value">+65 6255 4793</div>
+                                    </div>
+                                </a>
+                                <a href="https://maps.google.com/?q=HUONE+Clarke+Quay" class="contact-item">
+                                    <span class="contact-icon">📍</span>
+                                    <div>
+                                        <div class="contact-label">Location</div>
+                                        <div class="contact-value">View on Maps</div>
+                                    </div>
+                                </a>
+                                <a href="https://www.huone.events" class="contact-item">
+                                    <span class="contact-icon">🌐</span>
+                                    <div>
+                                        <div class="contact-label">Website</div>
+                                        <div class="contact-value">huone.events</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-actions">
+                            <a href="mailto:info.sg@huone.events" class="action-btn primary">✉️ Send Inquiry</a>
+                            <button class="action-btn secondary">⭐ Add to Shortlist</button>
+                            <button class="action-btn secondary">📋 Compare</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Shortlist Sidebar -->
+    <aside class="shortlist-panel">
+        <div class="shortlist-header">
+            <span class="shortlist-title">⭐ Shortlist (3 venues)</span>
+            <button class="shortlist-close" onclick="this.closest('.shortlist-panel').classList.remove('visible')">×</button>
+        </div>
+        <div class="shortlist-items">
+            <div class="shortlist-item">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=80&h=60&fit=crop" class="shortlist-thumb" alt="">
+                <div class="shortlist-name">HUONE - Time Room</div>
+                <button class="shortlist-remove">×</button>
+            </div>
+            <div class="shortlist-item">
+                <img src="https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=80&h=60&fit=crop" class="shortlist-thumb" alt="">
+                <div class="shortlist-name">Grand Park City Hall</div>
+                <button class="shortlist-remove">×</button>
+            </div>
+            <div class="shortlist-item">
+                <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=80&h=60&fit=crop" class="shortlist-thumb" alt="">
+                <div class="shortlist-name">EXPO - Opal Room</div>
+                <button class="shortlist-remove">×</button>
+            </div>
+        </div>
+        <div class="shortlist-footer">
+            <button class="shortlist-btn">Compare Selected →</button>
+        </div>
+    </aside>
+</body>
+</html>

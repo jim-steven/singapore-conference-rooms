@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Row Option 3: Ultra Minimal with Inline Images</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #fff;
+            color: #1a1a2e;
+            font-family: 'Work Sans', system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .app-layout {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            height: 100vh;
+        }
+        
+        .app-header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+        }
+        .config-inline {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+        .config-inline input, .config-inline select {
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .config-inline input { width: 50px; }
+        
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100%;
+            overflow: hidden;
+            transition: grid-template-columns 0.25s ease;
+        }
+        .split-layout.panel-open {
+            grid-template-columns: 1fr 380px;
+        }
+        
+        .list-panel {
+            overflow-y: auto;
+            padding: 0;
+        }
+        
+        /* Ultra Minimal Row */
+        .pkg-row {
+            display: grid;
+            grid-template-columns: 280px 260px 80px 1fr;
+            align-items: center;
+            padding: 14px 24px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .pkg-row:hover { background: #fafafa; }
+        .pkg-row.active { background: #f0f7ff; }
+        
+        /* Venue Column */
+        .col-venue {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .img-venue {
+            width: 44px;
+            height: 32px;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #eee;
+        }
+        .img-venue:hover { outline: 2px solid #0066CC; outline-offset: 1px; }
+        .txt-venue-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .txt-venue-meta {
+            font-size: 11px;
+            color: #888;
+        }
+        
+        /* Hotel Column */
+        .col-hotel {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .img-hotel {
+            width: 44px;
+            height: 32px;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #eee;
+        }
+        .img-hotel:hover { outline: 2px solid #7c3aed; outline-offset: 1px; }
+        .txt-hotel-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .txt-hotel-meta {
+            font-size: 11px;
+            color: #888;
+        }
+        .stars { color: #f59e0b; font-size: 10px; }
+        
+        /* Distance Column */
+        .col-travel {
+            text-align: center;
+            font-size: 12px;
+        }
+        .travel-dist { font-weight: 600; }
+        .travel-cost { color: #2e7d32; font-size: 11px; }
+        
+        /* Total Column */
+        .col-total {
+            text-align: right;
+        }
+        .total-big {
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .total-small {
+            font-size: 10px;
+            color: #888;
+        }
+        
+        .tag-best {
+            background: #2e7d32;
+            color: #fff;
+            font-size: 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            margin-left: 4px;
+        }
+        
+        /* Side Panel */
+        .side-panel {
+            background: #fff;
+            border-left: 1px solid #eee;
+            display: none;
+            flex-direction: column;
+        }
+        .split-layout.panel-open .side-panel {
+            display: flex;
+        }
+        
+        .side-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .side-tabs {
+            display: flex;
+            gap: 0;
+        }
+        .side-tab {
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #666;
+        }
+        .side-tab:first-child { border-radius: 4px 0 0 4px; }
+        .side-tab:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+        .side-tab.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
+        .side-close {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .side-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .side-img {
+            height: 160px;
+            background: #eee;
+        }
+        .side-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .side-content {
+            padding: 16px;
+        }
+        .side-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+        .side-subtitle {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        
+        .side-table {
+            width: 100%;
+            font-size: 12px;
+        }
+        .side-table tr { border-bottom: 1px solid #f5f5f5; }
+        .side-table td {
+            padding: 8px 0;
+            vertical-align: top;
+        }
+        .side-table td:first-child {
+            color: #888;
+            width: 80px;
+        }
+        .side-table td:last-child {
+            font-weight: 500;
+        }
+        
+        .side-actions {
+            padding: 16px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 8px;
+        }
+        .side-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-secondary {
+            background: #f5f5f5;
+            border: none;
+            color: #333;
+        }
+        .btn-primary {
+            background: #0066CC;
+            border: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <header class="app-header">
+            <h1 class="app-title">Conference Packages</h1>
+            <div class="config-inline">
+                <span>Nights</span><input type="number" value="2">
+                <span>Rooms</span><input type="number" value="8">
+                <select><option>All Districts</option></select>
+                <select><option>Sort: Total ↑</option></select>
+            </div>
+        </header>
+        
+        <div class="split-layout panel-open" id="layout">
+            <div class="list-panel">
+                <div class="pkg-row active">
+                    <div class="col-venue">
+                        <img class="img-venue" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=120" onclick="openPanel('venue')">
+                        <div>
+                            <div class="txt-venue-name">HUONE Time Room</div>
+                            <div class="txt-venue-meta">Clarke Quay · 25p · $4,100</div>
+                        </div>
+                    </div>
+                    <div class="col-hotel">
+                        <img class="img-hotel" src="https://i.travelapi.com/lodging/94000000/93490000/93487000/93486994/448947f0_b.jpg" onclick="openPanel('hotel')">
+                        <div>
+                            <div class="txt-hotel-name">Pullman Hill St <span class="tag-best">BEST</span></div>
+                            <div class="txt-hotel-meta"><span class="stars">★★★★★</span> 8.7 · $201/n</div>
+                        </div>
+                    </div>
+                    <div class="col-travel">
+                        <div class="travel-dist">0.4 km</div>
+                        <div class="travel-cost">$36</div>
+                    </div>
+                    <div class="col-total">
+                        <div class="total-big">S$7,352</div>
+                        <div class="total-small">$490/person</div>
+                    </div>
+                </div>
+                
+                <div class="pkg-row">
+                    <div class="col-venue">
+                        <img class="img-venue" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=120">
+                        <div>
+                            <div class="txt-venue-name">HUONE Time Room</div>
+                            <div class="txt-venue-meta">Clarke Quay · 25p · $4,100</div>
+                        </div>
+                    </div>
+                    <div class="col-hotel">
+                        <img class="img-hotel" src="https://i.travelapi.com/lodging/1000000/900000/893000/892942/670c6f3b_b.jpg">
+                        <div>
+                            <div class="txt-hotel-name">Grand Park City Hall</div>
+                            <div class="txt-hotel-meta"><span class="stars">★★★★★</span> 8.0 · $235/n</div>
+                        </div>
+                    </div>
+                    <div class="col-travel">
+                        <div class="travel-dist">0.6 km</div>
+                        <div class="travel-cost">$42</div>
+                    </div>
+                    <div class="col-total">
+                        <div class="total-big">S$7,902</div>
+                        <div class="total-small">$527/person</div>
+                    </div>
+                </div>
+                
+                <div class="pkg-row">
+                    <div class="col-venue">
+                        <img class="img-venue" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=120">
+                        <div>
+                            <div class="txt-venue-name">Raffles Boardroom</div>
+                            <div class="txt-venue-meta">City Hall · 20p · $8,000</div>
+                        </div>
+                    </div>
+                    <div class="col-hotel">
+                        <img class="img-hotel" src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg">
+                        <div>
+                            <div class="txt-hotel-name">Fairmont Singapore</div>
+                            <div class="txt-hotel-meta"><span class="stars">★★★★★</span> 8.8 · $259/n</div>
+                        </div>
+                    </div>
+                    <div class="col-travel">
+                        <div class="travel-dist">0.3 km</div>
+                        <div class="travel-cost">$34</div>
+                    </div>
+                    <div class="col-total">
+                        <div class="total-big">S$12,178</div>
+                        <div class="total-small">$812/person</div>
+                    </div>
+                </div>
+                
+                <div class="pkg-row">
+                    <div class="col-venue">
+                        <img class="img-venue" src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=120">
+                        <div>
+                            <div class="txt-venue-name">National Gallery</div>
+                            <div class="txt-venue-meta">City Hall · 30p · $3,200</div>
+                        </div>
+                    </div>
+                    <div class="col-hotel">
+                        <img class="img-hotel" src="https://i.travelapi.com/lodging/1000000/10000/400/311/27d65d67_b.jpg">
+                        <div>
+                            <div class="txt-hotel-name">Swissotel Stamford</div>
+                            <div class="txt-hotel-meta"><span class="stars">★★★★★</span> 8.7 · $227/n</div>
+                        </div>
+                    </div>
+                    <div class="col-travel">
+                        <div class="travel-dist">0.5 km</div>
+                        <div class="travel-cost">$38</div>
+                    </div>
+                    <div class="col-total">
+                        <div class="total-big">S$6,870</div>
+                        <div class="total-small">$458/person</div>
+                    </div>
+                </div>
+                
+                <div class="pkg-row">
+                    <div class="col-venue">
+                        <img class="img-venue" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=120">
+                        <div>
+                            <div class="txt-venue-name">Singapore EXPO</div>
+                            <div class="txt-venue-meta">Changi · 15p · $18,480</div>
+                        </div>
+                    </div>
+                    <div class="col-hotel">
+                        <img class="img-hotel" src="https://i.travelapi.com/lodging/35000000/34840000/34834500/34834462/aec32124_b.jpg">
+                        <div>
+                            <div class="txt-hotel-name">Capri by Fraser</div>
+                            <div class="txt-hotel-meta"><span class="stars">★★★★★</span> 8.7 · $168/n</div>
+                        </div>
+                    </div>
+                    <div class="col-travel">
+                        <div class="travel-dist">5.2 km</div>
+                        <div class="travel-cost">$67</div>
+                    </div>
+                    <div class="col-total">
+                        <div class="total-big">S$21,235</div>
+                        <div class="total-small">$1,416/person</div>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="side-panel">
+                <div class="side-header">
+                    <div class="side-tabs">
+                        <div class="side-tab active">Venue</div>
+                        <div class="side-tab">Hotel</div>
+                    </div>
+                    <button class="side-close" onclick="closePanel()">×</button>
+                </div>
+                <div class="side-body">
+                    <div class="side-img">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500" alt="">
+                    </div>
+                    <div class="side-content">
+                        <h2 class="side-title">HUONE Clarke Quay - Time Room</h2>
+                        <p class="side-subtitle">3D River Valley Road, #03-01, Singapore 179023</p>
+                        
+                        <table class="side-table">
+                            <tr><td>District</td><td>Clarke Quay</td></tr>
+                            <tr><td>Capacity</td><td>25 pax</td></tr>
+                            <tr><td>Price</td><td>S$4,100</td></tr>
+                            <tr><td>Hours</td><td>Mon-Fri 8AM-10PM</td></tr>
+                            <tr><td>Phone</td><td>+65 6255 4793</td></tr>
+                            <tr><td>Email</td><td>info.sg@huone.events</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="side-actions">
+                    <button class="side-btn btn-secondary">View Map</button>
+                    <button class="side-btn btn-primary">Book Now</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script>
+        function openPanel(type) {
+            document.getElementById('layout').classList.add('panel-open');
+            document.querySelectorAll('.side-tab').forEach((t, i) => {
+                t.classList.toggle('active', (type === 'venue' && i === 0) || (type === 'hotel' && i === 1));
+            });
+        }
+        function closePanel() {
+            document.getElementById('layout').classList.remove('panel-open');
+        }
+        
+        document.querySelectorAll('.side-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.side-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

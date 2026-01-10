@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 7: Kanban-Style District Columns</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5; 
+      color: #333;
+    }
+    
+    .top-bar {
+      background: #fff;
+      padding: 16px 24px;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar h1 { font-size: 1.3rem; }
+    .top-bar-config {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .top-bar-config input, .top-bar-config select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    
+    .kanban-container {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      overflow-x: auto;
+      min-height: calc(100vh - 70px);
+    }
+    
+    .kanban-column {
+      background: #fff;
+      border-radius: 12px;
+      width: 360px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 100px);
+    }
+    
+    .column-header {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .column-title { font-weight: 600; font-size: 1rem; }
+    .column-count {
+      background: #e5e5e5;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .column-body {
+      padding: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .package-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .package-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .card-images {
+      display: flex;
+      height: 80px;
+    }
+    .card-images img {
+      flex: 1;
+      object-fit: cover;
+    }
+    .card-images img:first-child { border-right: 2px solid #fff; }
+    
+    .card-body { padding: 12px; }
+    
+    .card-venue-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    .card-hotel-name {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .card-hotel-name .stars { color: #f59e0b; }
+    
+    .card-stats {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .card-stat {
+      background: #f8f9fa;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .card-stat .value { font-weight: 600; }
+    
+    .card-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f0f7ff;
+      margin: 0 -12px -12px;
+      padding: 10px 12px;
+    }
+    .card-total .label { font-size: 0.75rem; color: #666; }
+    .card-total .amount { font-size: 1.1rem; font-weight: 700; color: #2563eb; }
+    .card-total .per-person { font-size: 0.7rem; color: #888; }
+    
+    .card-actions button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: #2563eb;
+      color: #fff;
+    }
+    
+    .best-card { border-color: #10b981; border-width: 2px; }
+    .best-card .card-total { background: #ecfdf5; }
+    .best-card .card-total .amount { color: #059669; }
+    .best-badge {
+      background: #10b981;
+      color: #fff;
+      font-size: 0.6rem;
+      padding: 2px 5px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    
+    .column-clarke .column-header { border-top: 3px solid #f59e0b; }
+    .column-city .column-header { border-top: 3px solid #2563eb; }
+    .column-marina .column-header { border-top: 3px solid #7c3aed; }
+    .column-cbd .column-header { border-top: 3px solid #059669; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>🏢 Singapore Conference Packages</h1>
+    <div class="top-bar-config">
+      <span>Nights:</span>
+      <input type="number" value="2" style="width: 60px;">
+      <span>Attendees:</span>
+      <input type="number" value="15" style="width: 60px;">
+      <span>Sort:</span>
+      <select>
+        <option>Best Value</option>
+        <option>Lowest Price</option>
+        <option>Nearest Hotel</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="kanban-container">
+    <!-- Clarke Quay Column -->
+    <div class="kanban-column column-clarke">
+      <div class="column-header">
+        <span class="column-title">📍 Clarke Quay</span>
+        <span class="column-count">4</span>
+      </div>
+      <div class="column-body">
+        <div class="package-card best-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/94000000/93490000/93487000/93486994/448947f0_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">HUONE Time Room <span class="best-badge">BEST</span></div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> Pullman Hill Street</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.4 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$4.50</span></div>
+              <div class="card-stat"><span class="value">$201</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$7,352</div>
+                <div class="per-person">~$490/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="package-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/1000000/900000/893000/892942/670c6f3b_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">HUONE Time Room</div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> Grand Park City Hall</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.6 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$5.20</span></div>
+              <div class="card-stat"><span class="value">$235</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$7,902</div>
+                <div class="per-person">~$527/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- City Hall Column -->
+    <div class="kanban-column column-city">
+      <div class="column-header">
+        <span class="column-title">📍 City Hall</span>
+        <span class="column-count">8</span>
+      </div>
+      <div class="column-body">
+        <div class="package-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/1000000/870000/861900/861823/8346b5e3_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">Raffles Boardroom</div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> Fairmont Singapore</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.3 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$4.20</span></div>
+              <div class="card-stat"><span class="value">$259</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$12,178</div>
+                <div class="per-person">~$812/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="package-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1462826303086-329426d1afd5?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/1000000/10000/400/311/27d65d67_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">National Gallery</div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> Swissotel Stamford</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.5 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$4.80</span></div>
+              <div class="card-stat"><span class="value">$227</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$6,870</div>
+                <div class="per-person">~$458/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Marina Bay Column -->
+    <div class="kanban-column column-marina">
+      <div class="column-header">
+        <span class="column-title">📍 Marina Bay</span>
+        <span class="column-count">5</span>
+      </div>
+      <div class="column-body">
+        <div class="package-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/1000000/330000/328800/328749/5eb099d7_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">Marina Square Venue</div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> PARKROYAL Marina Bay</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.2 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$3.80</span></div>
+              <div class="card-stat"><span class="value">$309</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$9,478</div>
+                <div class="per-person">~$632/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CBD Column -->
+    <div class="kanban-column column-cbd">
+      <div class="column-header">
+        <span class="column-title">📍 CBD Core</span>
+        <span class="column-count">6</span>
+      </div>
+      <div class="column-body">
+        <div class="package-card">
+          <div class="card-images">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200" alt="">
+            <img src="https://i.travelapi.com/lodging/3000000/2110000/2110000/2109912/afbcaad9_b.jpg" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-venue-name">71 Robinson Road</div>
+            <div class="card-hotel-name"><span class="stars">★★★★★</span> Ascott Raffles Place</div>
+            <div class="card-stats">
+              <div class="card-stat"><span class="value">0.4 km</span></div>
+              <div class="card-stat">Grab <span class="value">~$4.50</span></div>
+              <div class="card-stat"><span class="value">$226</span>/night</div>
+            </div>
+            <div class="card-total">
+              <div>
+                <div class="label">TOTAL</div>
+                <div class="amount">S$9,412</div>
+                <div class="per-person">~$627/person</div>
+              </div>
+              <div class="card-actions">
+                <button>Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
