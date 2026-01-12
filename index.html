@@ -265,7 +265,7 @@
             document.getElementById('tabPackages').textContent = `Packages (${combinations.length})`;
             document.getElementById('tabHotels').textContent = `Hotels (${hotelsData.length})`;
             document.getElementById('tabVenues').textContent = `Venues (${venuesData.length})`;
-            document.getElementById('tabTravel').textContent = `Travel (9)`;
+            document.getElementById('tabTravel').textContent = `Travel (21)`;
         }
         function switchMainTab(tab) {
             currentMainTab = tab;
@@ -280,7 +280,7 @@
             if (tab === 'packages') { count = combinations.length; label = 'combinations'; }
             else if (tab === 'hotels') { count = hotelsData.length; label = 'hotels'; }
             else if (tab === 'venues') { count = venuesData.length; label = 'venues'; }
-            else { count = 9; label = 'travelers'; }
+            else { count = 21; label = 'travelers'; }
             document.getElementById('comboCount').textContent = count.toLocaleString() + ' ' + label;
             closePanel();
         }
