@@ -11,8 +11,6 @@
         .container { max-width: 1200px; margin: 0 auto; }
         h1 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 8px; }
         .subtitle { color: #6c757d; margin-bottom: 24px; }
-        .back-link { display: inline-block; margin-bottom: 16px; color: #0066CC; text-decoration: none; font-size: 13px; }
-        .back-link:hover { text-decoration: underline; }
         
         .timeline-container { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow-x: auto; }
         .timeline-header { display: grid; grid-template-columns: 140px repeat(8, 1fr); border-bottom: 2px solid #e9ecef; padding-bottom: 12px; margin-bottom: 8px; }
@@ -26,15 +24,14 @@
         .person { font-weight: 600; font-size: 13px; }
         .person-origin { font-size: 10px; color: #6c757d; }
         
-        .day-cell { position: relative; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .presence-bar { position: absolute; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; color: #fff; }
+        .day-cell { position: relative; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
         
-        .arrival-marker { position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 9px; color: #2e7d32; font-weight: 600; white-space: nowrap; }
-        .departure-marker { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 9px; color: #c62828; font-weight: 600; white-space: nowrap; }
+        .arrival-marker { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #2e7d32; font-weight: 600; white-space: nowrap; }
+        .departure-marker { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #c62828; font-weight: 600; white-space: nowrap; }
         
-        .legend { display: flex; gap: 24px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e9ecef; }
+        .legend { display: flex; gap: 24px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e9ecef; flex-wrap: wrap; }
         .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6c757d; }
-        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 4px; }
         
         .summary { margin-top: 24px; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .summary h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 12px; }
@@ -69,141 +66,14 @@
                 <div class="day"><div class="day-name">Fri</div><div class="day-date">27</div></div>
                 <div class="day weekend"><div class="day-name">Sat</div><div class="day-date">28</div></div>
             </div>
-            
-            <!-- Brady: Sun 22 5:45am → Fri 27 7:55pm -->
-            <div class="timeline-row">
-                <div class="person">Brady<div class="person-origin">→ SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 5:45a</div></div>
-                <div class="day-cell" style="background:#ffebee;"></div>
-                <div class="day-cell" style="background:#ffebee;"></div>
-                <div class="day-cell" style="background:#ffebee;"></div>
-                <div class="day-cell" style="background:#ffebee;"></div>
-                <div class="day-cell" style="background:#ffebee;"><div class="departure-marker">7:55p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Dario: Sun 22 4:55pm → Fri 27 11:55pm -->
-            <div class="timeline-row">
-                <div class="person">Dario<div class="person-origin">FRA → SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 4:55p</div></div>
-                <div class="day-cell" style="background:#e8f5e9;"></div>
-                <div class="day-cell" style="background:#e8f5e9;"></div>
-                <div class="day-cell" style="background:#e8f5e9;"></div>
-                <div class="day-cell" style="background:#e8f5e9;"></div>
-                <div class="day-cell" style="background:#e8f5e9;"><div class="departure-marker">11:55p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Thorsten: Sun 22 5pm → Fri 27 11:55pm -->
-            <div class="timeline-row">
-                <div class="person">Thorsten<div class="person-origin">FRA → SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 5:00p</div></div>
-                <div class="day-cell" style="background:#e3f2fd;"></div>
-                <div class="day-cell" style="background:#e3f2fd;"></div>
-                <div class="day-cell" style="background:#e3f2fd;"></div>
-                <div class="day-cell" style="background:#e3f2fd;"></div>
-                <div class="day-cell" style="background:#e3f2fd;"><div class="departure-marker">11:55p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Hitesh: Mon 23 6am → Sat 28 2:25am -->
-            <div class="timeline-row">
-                <div class="person">Hitesh<div class="person-origin">→ SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 6:00a</div></div>
-                <div class="day-cell" style="background:#fff3e0;"></div>
-                <div class="day-cell" style="background:#fff3e0;"></div>
-                <div class="day-cell" style="background:#fff3e0;"></div>
-                <div class="day-cell" style="background:#fff3e0;"></div>
-                <div class="day-cell" style="background:#fff3e0;"><div class="departure-marker">2:25a ✈</div></div>
-            </div>
-            
-            <!-- Harry: Sun 22 9:10pm → Fri 28 7:50pm -->
-            <div class="timeline-row">
-                <div class="person">Harry<div class="person-origin">SYD → SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 9:10p</div></div>
-                <div class="day-cell" style="background:#fce4ec;"></div>
-                <div class="day-cell" style="background:#fce4ec;"></div>
-                <div class="day-cell" style="background:#fce4ec;"></div>
-                <div class="day-cell" style="background:#fce4ec;"></div>
-                <div class="day-cell" style="background:#fce4ec;"></div>
-                <div class="day-cell" style="background:#fce4ec;"><div class="departure-marker">7:50p ✈</div></div>
-            </div>
-            
-            <!-- Ryan: Mon 23 8am → Fri 27 9pm -->
-            <div class="timeline-row">
-                <div class="person">Ryan<div class="person-origin">BOS → SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 8:00a</div></div>
-                <div class="day-cell" style="background:#f3e5f5;"></div>
-                <div class="day-cell" style="background:#f3e5f5;"></div>
-                <div class="day-cell" style="background:#f3e5f5;"></div>
-                <div class="day-cell" style="background:#f3e5f5;"><div class="departure-marker">9:00p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Quinn: Mon 23 8am → Fri 27 10:20pm -->
-            <div class="timeline-row">
-                <div class="person">Quinn<div class="person-origin">SFO → SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 8:00a</div></div>
-                <div class="day-cell" style="background:#e0f2f1;"></div>
-                <div class="day-cell" style="background:#e0f2f1;"></div>
-                <div class="day-cell" style="background:#e0f2f1;"></div>
-                <div class="day-cell" style="background:#e0f2f1;"><div class="departure-marker">10:20p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Lewis: Mon 23 7:15am → Fri 27 9pm -->
-            <div class="timeline-row">
-                <div class="person">Lewis<div class="person-origin">→ SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 7:15a</div></div>
-                <div class="day-cell" style="background:#fffde7;"></div>
-                <div class="day-cell" style="background:#fffde7;"></div>
-                <div class="day-cell" style="background:#fffde7;"></div>
-                <div class="day-cell" style="background:#fffde7;"><div class="departure-marker">9:00p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Isuru: Sun 22 5:35pm → Thu 26 8:40pm -->
-            <div class="timeline-row">
-                <div class="person">Isuru<div class="person-origin">→ SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 5:35p</div></div>
-                <div class="day-cell" style="background:#e8eaf6;"></div>
-                <div class="day-cell" style="background:#e8eaf6;"></div>
-                <div class="day-cell" style="background:#e8eaf6;"></div>
-                <div class="day-cell" style="background:#e8eaf6;"><div class="departure-marker">8:40p ✈</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"></div>
-            </div>
-            
-            <!-- Tim: Sun 22 8pm → Fri 27 7:40pm -->
-            <div class="timeline-row">
-                <div class="person">Tim<div class="person-origin">→ SIN</div></div>
-                <div class="day-cell"></div>
-                <div class="day-cell"><div class="arrival-marker">✈ 8:00p</div></div>
-                <div class="day-cell" style="background:#efebe9;"></div>
-                <div class="day-cell" style="background:#efebe9;"></div>
-                <div class="day-cell" style="background:#efebe9;"></div>
-                <div class="day-cell" style="background:#efebe9;"></div>
-                <div class="day-cell" style="background:#efebe9;"><div class="departure-marker">7:40p ✈</div></div>
-                <div class="day-cell"></div>
-            </div>
+            <div id="timelineRows"></div>
             
             <div class="legend">
                 <div class="legend-item"><span style="color:#2e7d32;font-weight:600;">✈</span> Arrival</div>
                 <div class="legend-item"><span style="color:#c62828;font-weight:600;">✈</span> Departure</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#e8f5e9;border:1px solid #c8e6c9;"></div> In Singapore</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,1);"></div> Full day (100%)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,0.5);"></div> Partial day (50%)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,0.25);"></div> Few hours (25%)</div>
             </div>
         </div>
         
@@ -212,19 +82,19 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="label">Total Team</div>
-                    <div class="value">21 people</div>
+                    <div class="value" id="totalTeam">21 people</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Booked</div>
+                    <div class="value" id="bookedCount">10 people</div>
                 </div>
                 <div class="summary-card">
                     <div class="label">First Arrival</div>
-                    <div class="value">Sun Feb 22, 6:00a</div>
+                    <div class="value" id="firstArrival">—</div>
                 </div>
                 <div class="summary-card">
                     <div class="label">Last Departure</div>
-                    <div class="value">Sat Feb 28, 7:50p</div>
-                </div>
-                <div class="summary-card">
-                    <div class="label">Full Team Present</div>
-                    <div class="value">Mon 23 – Fri 27</div>
+                    <div class="value" id="lastDeparture">—</div>
                 </div>
             </div>
         </div>
@@ -235,58 +105,7 @@
                 <thead>
                     <tr><th>Name</th><th>Arrival</th><th>Departure</th></tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Brady</strong></td>
-                        <td class="arrive">Sun Feb 22, 5:45 AM</td>
-                        <td class="depart">Fri Feb 27, 7:55 PM</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Dario</strong></td>
-                        <td class="arrive">Sun Feb 22, 4:55 PM · LH780 FRA→SIN</td>
-                        <td class="depart">Fri Feb 27, 11:55 PM · LH781 SIN→FRA</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Thorsten</strong></td>
-                        <td class="arrive">Sun Feb 22, 5:00 PM · SQ325 FRA→SIN</td>
-                        <td class="depart">Fri Feb 27, 11:55 PM · SQ26 SIN→FRA</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hitesh</strong></td>
-                        <td class="arrive">Mon Feb 23, 6:00 AM · SQ403</td>
-                        <td class="depart">Sat Feb 28, 2:25 AM · SQ402</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Harry</strong></td>
-                        <td class="arrive">Sun Feb 22, 9:10 PM · QF53</td>
-                        <td class="depart">Fri Feb 28, 7:50 PM · QF52</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ryan</strong></td>
-                        <td class="arrive">Mon Feb 23, 8:00 AM · BOS→SIN</td>
-                        <td class="depart">Fri Feb 27, 9:00 PM · SIN→CPT</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Quinn</strong></td>
-                        <td class="arrive">Mon Feb 23, 8:00 AM · UA1 SFO→SIN</td>
-                        <td class="depart">Fri Feb 27, 10:20 PM · UA28 SIN→SFO</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lewis</strong></td>
-                        <td class="arrive">Mon Feb 23, 7:15 AM</td>
-                        <td class="depart">Fri Feb 27, 9:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Isuru</strong></td>
-                        <td class="arrive">Sun Feb 22, 5:35 PM</td>
-                        <td class="depart">Thu Feb 26, 8:40 PM</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tim</strong></td>
-                        <td class="arrive">Sun Feb 22, 8:00 PM</td>
-                        <td class="depart">Fri Feb 27, 7:40 PM</td>
-                    </tr>
-                </tbody>
+                <tbody id="flightTableBody"></tbody>
             </table>
         </div>
         
@@ -297,22 +116,162 @@
                 <thead>
                     <tr><th>Name</th><th>Status</th></tr>
                 </thead>
-                <tbody>
-                    <tr><td><strong>Beyang Liu</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    
-                    <tr><td><strong>Brett Jones</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Camden Cheek</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Connor O'Brien</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Jesse Edelstein</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Jim Steven</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Karl Clement</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Nicolay Gerold</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Alex Kemper</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>Tim Culverhouse</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                    <tr><td><strong>William Dollman</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>
-                </tbody>
+                <tbody id="pendingTableBody"></tbody>
             </table>
         </div>
     </div>
+    
+    <script>
+        // Travel data - days are 21-28 (index 0-7)
+        const travelers = [
+            { name: 'Brady', origin: '→ SIN', arriveDay: 22, arriveTime: 5.75, departDay: 27, departTime: 19.92 },
+            { name: 'Dario', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 16.92, departDay: 27, departTime: 23.92, flight: { arr: 'LH780 FRA→SIN', dep: 'LH781 SIN→FRA' } },
+            { name: 'Thorsten', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 17, departDay: 27, departTime: 23.92, flight: { arr: 'SQ325 FRA→SIN', dep: 'SQ26 SIN→FRA' } },
+            { name: 'Hitesh', origin: '→ SIN', arriveDay: 23, arriveTime: 6, departDay: 28, departTime: 2.42, flight: { arr: 'SQ403', dep: 'SQ402' } },
+            { name: 'Harry', origin: 'SYD → SIN', arriveDay: 22, arriveTime: 21.17, departDay: 28, departTime: 19.83, flight: { arr: 'QF53', dep: 'QF52' } },
+            { name: 'Ryan', origin: 'BOS → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 21, flight: { arr: 'BOS→SIN', dep: 'SIN→CPT' } },
+            { name: 'Quinn', origin: 'SFO → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33, flight: { arr: 'UA1 SFO→SIN', dep: 'UA28 SIN→SFO' } },
+            { name: 'Lewis', origin: '→ SIN', arriveDay: 23, arriveTime: 7.25, departDay: 27, departTime: 21 },
+            { name: 'Isuru', origin: '→ SIN', arriveDay: 22, arriveTime: 17.58, departDay: 26, departTime: 20.67 },
+            { name: 'Tim', origin: '→ SIN', arriveDay: 22, arriveTime: 20, departDay: 27, departTime: 19.67 },
+        ];
+        
+        const pending = [
+            'Beyang Liu', 'Brett Jones', 'Camden Cheek', 'Connor O\'Brien', 
+            'Jesse Edelstein', 'Jim Steven', 'Karl Clement', 'Nicolay Gerold',
+            'Alex Kemper', 'Tim Culverhouse', 'William Dollman'
+        ];
+        
+        const days = [21, 22, 23, 24, 25, 26, 27, 28];
+        const baseColor = [76, 175, 80]; // Green RGB
+        
+        function getPresencePercent(traveler, day) {
+            if (day < traveler.arriveDay || day > traveler.departDay) return 0;
+            if (day > traveler.arriveDay && day < traveler.departDay) return 1;
+            
+            if (day === traveler.arriveDay && day === traveler.departDay) {
+                // Same day arrival and departure
+                return (traveler.departTime - traveler.arriveTime) / 24;
+            }
+            if (day === traveler.arriveDay) {
+                // Arrival day: hours from arrival to midnight
+                return (24 - traveler.arriveTime) / 24;
+            }
+            if (day === traveler.departDay) {
+                // Departure day: hours from midnight to departure
+                return traveler.departTime / 24;
+            }
+            return 0;
+        }
+        
+        function formatTime(hours) {
+            const h = Math.floor(hours);
+            const m = Math.round((hours - h) * 60);
+            const period = h >= 12 ? 'p' : 'a';
+            const hour12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
+            return m > 0 ? `${hour12}:${m.toString().padStart(2,'0')}${period}` : `${hour12}${period}`;
+        }
+        
+        function formatTimeDisplay(hours) {
+            const h = Math.floor(hours);
+            const m = Math.round((hours - h) * 60);
+            const period = h >= 12 ? 'PM' : 'AM';
+            const hour12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
+            return m > 0 ? `${hour12}:${m.toString().padStart(2,'0')} ${period}` : `${hour12}:00 ${period}`;
+        }
+        
+        function getDayName(day) {
+            const names = { 21: 'Sat', 22: 'Sun', 23: 'Mon', 24: 'Tue', 25: 'Wed', 26: 'Thu', 27: 'Fri', 28: 'Sat' };
+            return names[day];
+        }
+        
+        function renderTimeline() {
+            const container = document.getElementById('timelineRows');
+            
+            // Sort by arrival time
+            const sorted = [...travelers].sort((a, b) => {
+                if (a.arriveDay !== b.arriveDay) return a.arriveDay - b.arriveDay;
+                return a.arriveTime - b.arriveTime;
+            });
+            
+            let html = '';
+            sorted.forEach(t => {
+                html += `<div class="timeline-row">
+                    <div class="person">${t.name}<div class="person-origin">${t.origin}</div></div>`;
+                
+                days.forEach(day => {
+                    const pct = getPresencePercent(t, day);
+                    const opacity = pct;
+                    const bgColor = pct > 0 ? `rgba(${baseColor.join(',')},${opacity})` : 'transparent';
+                    
+                    let marker = '';
+                    if (day === t.arriveDay) {
+                        marker = `<div class="arrival-marker">✈ ${formatTime(t.arriveTime)}</div>`;
+                    }
+                    if (day === t.departDay) {
+                        marker += `<div class="departure-marker">${formatTime(t.departTime)} ✈</div>`;
+                    }
+                    
+                    html += `<div class="day-cell" style="background:${bgColor};">${marker}</div>`;
+                });
+                
+                html += '</div>';
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function renderFlightTable() {
+            const tbody = document.getElementById('flightTableBody');
+            
+            const sorted = [...travelers].sort((a, b) => {
+                if (a.arriveDay !== b.arriveDay) return a.arriveDay - b.arriveDay;
+                return a.arriveTime - b.arriveTime;
+            });
+            
+            tbody.innerHTML = sorted.map(t => {
+                const arrDate = `${getDayName(t.arriveDay)} Feb ${t.arriveDay}, ${formatTimeDisplay(t.arriveTime)}`;
+                const depDate = `${getDayName(t.departDay)} Feb ${t.departDay}, ${formatTimeDisplay(t.departTime)}`;
+                const arrFlight = t.flight?.arr ? ` · ${t.flight.arr}` : '';
+                const depFlight = t.flight?.dep ? ` · ${t.flight.dep}` : '';
+                return `<tr>
+                    <td><strong>${t.name}</strong></td>
+                    <td class="arrive">${arrDate}${arrFlight}</td>
+                    <td class="depart">${depDate}${depFlight}</td>
+                </tr>`;
+            }).join('');
+        }
+        
+        function renderPendingTable() {
+            const tbody = document.getElementById('pendingTableBody');
+            tbody.innerHTML = pending.sort().map(name => 
+                `<tr><td><strong>${name}</strong></td><td style="color:#f59e0b;">Awaiting booking</td></tr>`
+            ).join('');
+        }
+        
+        function updateStats() {
+            document.getElementById('totalTeam').textContent = `${travelers.length + pending.length} people`;
+            document.getElementById('bookedCount').textContent = `${travelers.length} people`;
+            
+            // Find first arrival and last departure
+            let firstArr = travelers[0], lastDep = travelers[0];
+            travelers.forEach(t => {
+                if (t.arriveDay < firstArr.arriveDay || (t.arriveDay === firstArr.arriveDay && t.arriveTime < firstArr.arriveTime)) {
+                    firstArr = t;
+                }
+                if (t.departDay > lastDep.departDay || (t.departDay === lastDep.departDay && t.departTime > lastDep.departTime)) {
+                    lastDep = t;
+                }
+            });
+            
+            document.getElementById('firstArrival').textContent = `${getDayName(firstArr.arriveDay)} Feb ${firstArr.arriveDay}, ${formatTime(firstArr.arriveTime)}`;
+            document.getElementById('lastDeparture').textContent = `${getDayName(lastDep.departDay)} Feb ${lastDep.departDay}, ${formatTime(lastDep.departTime)}`;
+        }
+        
+        renderTimeline();
+        renderFlightTable();
+        renderPendingTable();
+        updateStats();
+    </script>
 </body>
 </html>
