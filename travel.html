@@ -24,10 +24,11 @@
         .person { font-weight: 600; font-size: 13px; }
         .person-origin { font-size: 10px; color: #6c757d; }
         
-        .day-cell { position: relative; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+        .day-cell { position: relative; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 4px; background: #f8f9fa; }
+        .presence-bar { position: absolute; top: 6px; bottom: 6px; background: #4caf50; border-radius: 3px; }
         
-        .arrival-marker { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #2e7d32; font-weight: 600; white-space: nowrap; }
-        .departure-marker { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #c62828; font-weight: 600; white-space: nowrap; }
+        .arrival-marker { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #1a1a2e; font-weight: 600; white-space: nowrap; z-index: 1; }
+        .departure-marker { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #1a1a2e; font-weight: 600; white-space: nowrap; z-index: 1; }
         
         .legend { display: flex; gap: 24px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e9ecef; flex-wrap: wrap; }
         .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6c757d; }
@@ -69,11 +70,8 @@
             <div id="timelineRows"></div>
             
             <div class="legend">
-                <div class="legend-item"><span style="color:#2e7d32;font-weight:600;">✈</span> Arrival</div>
-                <div class="legend-item"><span style="color:#c62828;font-weight:600;">✈</span> Departure</div>
-                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,1);"></div> Full day (100%)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,0.5);"></div> Partial day (50%)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:rgba(76,175,80,0.25);"></div> Few hours (25%)</div>
+                <div class="legend-item"><span style="font-weight:600;">✈</span> Arrival/Departure time</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#4caf50;"></div> Hours present (bar width = % of day)</div>
             </div>
         </div>
         
@@ -145,23 +143,33 @@
         const days = [21, 22, 23, 24, 25, 26, 27, 28];
         const baseColor = [76, 175, 80]; // Green RGB
         
-        function getPresencePercent(traveler, day) {
-            if (day < traveler.arriveDay || day > traveler.departDay) return 0;
-            if (day > traveler.arriveDay && day < traveler.departDay) return 1;
+        function getPresenceBar(traveler, day) {
+            if (day < traveler.arriveDay || day > traveler.departDay) return null;
+            
+            let left = 0, right = 0; // percentages from left and right edges
+            
+            if (day > traveler.arriveDay && day < traveler.departDay) {
+                // Full day
+                return { left: 0, right: 0 };
+            }
             
             if (day === traveler.arriveDay && day === traveler.departDay) {
                 // Same day arrival and departure
-                return (traveler.departTime - traveler.arriveTime) / 24;
+                left = (traveler.arriveTime / 24) * 100;
+                right = ((24 - traveler.departTime) / 24) * 100;
+                return { left, right };
             }
             if (day === traveler.arriveDay) {
-                // Arrival day: hours from arrival to midnight
-                return (24 - traveler.arriveTime) / 24;
+                // Arrival day: bar starts at arrival time
+                left = (traveler.arriveTime / 24) * 100;
+                return { left, right: 0 };
             }
             if (day === traveler.departDay) {
-                // Departure day: hours from midnight to departure
-                return traveler.departTime / 24;
+                // Departure day: bar ends at departure time
+                right = ((24 - traveler.departTime) / 24) * 100;
+                return { left: 0, right };
             }
-            return 0;
+            return null;
         }
         
         function formatTime(hours) {
@@ -200,11 +208,15 @@
                     <div class="person">${t.name}<div class="person-origin">${t.origin}</div></div>`;
                 
                 days.forEach(day => {
-                    const pct = getPresencePercent(t, day);
-                    const opacity = pct;
-                    const bgColor = pct > 0 ? `rgba(${baseColor.join(',')},${opacity})` : 'transparent';
+                    const bar = getPresenceBar(t, day);
                     
+                    let barHtml = '';
                     let marker = '';
+                    
+                    if (bar) {
+                        barHtml = `<div class="presence-bar" style="left:${bar.left}%;right:${bar.right}%;"></div>`;
+                    }
+                    
                     if (day === t.arriveDay) {
                         marker = `<div class="arrival-marker">✈ ${formatTime(t.arriveTime)}</div>`;
                     }
@@ -212,7 +224,7 @@
                         marker += `<div class="departure-marker">${formatTime(t.departTime)} ✈</div>`;
                     }
                     
-                    html += `<div class="day-cell" style="background:${bgColor};">${marker}</div>`;
+                    html += `<div class="day-cell">${barHtml}${marker}</div>`;
                 });
                 
                 html += '</div>';
