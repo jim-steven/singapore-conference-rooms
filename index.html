@@ -83,14 +83,14 @@
             </div>
         </header>
         <nav class="main-tabs">
-            <div class="main-tab active" onclick="switchMainTab('packages')" id="tabPackages">Packages</div>
+            <div class="main-tab active" onclick="switchMainTab('travel')" id="tabTravel">Travel</div>
+            <div class="main-tab" onclick="switchMainTab('packages')" id="tabPackages">Packages</div>
             <div class="main-tab" onclick="switchMainTab('hotels')" id="tabHotels">Hotels</div>
             <div class="main-tab" onclick="switchMainTab('venues')" id="tabVenues">Venues</div>
-            <div class="main-tab" onclick="switchMainTab('travel')" id="tabTravel">Travel</div>
         </nav>
         <div class="split-layout" id="splitLayout">
             <div class="table-panel">
-                <table class="package-table" id="packagesTable">
+                <table class="package-table" id="packagesTable" style="display:none;">
                     <thead><tr><th>Workspace</th><th>Hotel</th><th style="text-align:center;">Travel</th><th style="text-align:right;">Total Cost</th></tr></thead>
                     <tbody id="tableBody"><tr><td colspan="4" style="text-align:center;padding:40px;color:#6c757d;">Loading combinations...</td></tr></tbody>
                 </table>
@@ -102,7 +102,7 @@
                     <thead><tr><th>Venue</th><th style="text-align:center;">Capacity</th><th style="text-align:center;">Rate</th><th style="text-align:right;">Total (8h × 5 days)</th></tr></thead>
                     <tbody id="venuesTableBody"></tbody>
                 </table>
-                <div id="travelPanel" style="display:none;padding:24px;">
+                <div id="travelPanel" style="padding:24px;">
                     <iframe src="travel.html" style="width:100%;height:calc(100vh - 180px);border:none;border-radius:8px;"></iframe>
                 </div>
             </div>
@@ -119,7 +119,7 @@
         </div>
     </div>
     <script>
-        let venuesData = [], hotelsData = [], combinations = [], currentTab = 'venue', currentCombo = null, currentMainTab = 'packages';
+        let venuesData = [], hotelsData = [], combinations = [], currentTab = 'venue', currentCombo = null, currentMainTab = 'travel';
         const defaultVenueImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=200';
         const SGD_TO_USD = 0.74; // Exchange rate: 1 SGD = 0.74 USD
         
@@ -270,7 +270,7 @@
         function switchMainTab(tab) {
             currentMainTab = tab;
             document.querySelectorAll('.main-tab').forEach((t, i) => {
-                t.classList.toggle('active', (tab === 'packages' && i === 0) || (tab === 'hotels' && i === 1) || (tab === 'venues' && i === 2) || (tab === 'travel' && i === 3));
+                t.classList.toggle('active', (tab === 'travel' && i === 0) || (tab === 'packages' && i === 1) || (tab === 'hotels' && i === 2) || (tab === 'venues' && i === 3));
             });
             document.getElementById('packagesTable').style.display = tab === 'packages' ? '' : 'none';
             document.getElementById('hotelsTable').style.display = tab === 'hotels' ? '' : 'none';
