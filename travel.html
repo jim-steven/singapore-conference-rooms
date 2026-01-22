@@ -120,6 +120,16 @@
                 <tbody id="pendingTableBody"></tbody>
             </table>
         </div>
+        
+        <div class="flight-table" style="margin-top:24px;">
+            <h2>❌ Can't Join</h2>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Status</th></tr>
+                </thead>
+                <tbody id="cantJoinTableBody"></tbody>
+            </table>
+        </div>
     </div>
     
     <script>
@@ -138,12 +148,18 @@
             { name: 'Beyang', origin: '→ SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33 },
             { name: 'William', origin: '→ SIN', arriveDay: 20, arriveTime: 7.83, departDay: 30, departTime: 12.75 },
             { name: 'Karl', origin: '→ SIN', arriveDay: 22, arriveTime: 7, departDay: null, departTime: null },
+            { name: 'Bret Jones', origin: 'PER → SIN', arriveDay: 23, arriveTime: 19.83, departDay: 27, departTime: 18.92, flight: { arr: 'SQ226 PER→SIN', dep: 'SQ215 SIN→PER' } },
+            { name: 'Connor O\'Brien', origin: '→ SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 10.17 },
+            { name: 'Nicolay Gerold', origin: 'MUC → SIN', arriveDay: 22, arriveTime: 17.42, departDay: 27, departTime: 23.75, flight: { arr: 'MUC→SIN', dep: 'SIN→MUC' } },
         ];
         
         const pending = [
-            'Brett Jones', 'Camden Cheek', 'Connor O\'Brien', 
-            'Jesse Edelstein', 'Jim Steven', 'Nicolay Gerold',
+            'Jesse Edelstein', 'Jim Steven',
             'Alex Kemper', 'Tim Culverhouse'
+        ];
+        
+        const cantJoin = [
+            'Camden Cheek'
         ];
         
         const days = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
@@ -282,6 +298,13 @@
             ).join('');
         }
         
+        function renderCantJoinTable() {
+            const tbody = document.getElementById('cantJoinTableBody');
+            tbody.innerHTML = cantJoin.sort().map(name => 
+                `<tr><td><strong>${name}</strong></td><td style="color:#dc2626;">Can't join</td></tr>`
+            ).join('');
+        }
+        
         function updateStats() {
             document.getElementById('totalTeam').textContent = `${travelers.length + pending.length} people`;
             document.getElementById('bookedCount').textContent = `${travelers.length} people`;
@@ -306,6 +329,7 @@
         renderTimeline();
         renderFlightTable();
         renderPendingTable();
+        renderCantJoinTable();
         updateStats();
     </script>
 </body>
