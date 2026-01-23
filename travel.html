@@ -133,26 +133,26 @@
     </div>
     
     <script>
-        // Travel data - days are 21-28 (index 0-7)
+        // Travel data - sorted by arrival (earliest to latest)
         const travelers = [
+            { name: 'William', origin: '→ SIN', arriveDay: 20, arriveTime: 7.83, departDay: 30, departTime: 12.75 },
+            { name: 'Jim Steven', origin: '→ SIN', arriveDay: 22, arriveTime: 0.67, departDay: 27, departTime: 12 },
             { name: 'Brady', origin: '→ SIN', arriveDay: 22, arriveTime: 5.75, departDay: 27, departTime: 19.92 },
+            { name: 'Karl', origin: '→ SIN', arriveDay: 22, arriveTime: 7, departDay: null, departTime: null },
             { name: 'Dario', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 16.92, departDay: 27, departTime: 23.92, flight: { arr: 'LH780 FRA→SIN', dep: 'LH781 SIN→FRA' } },
             { name: 'Thorsten', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 17, departDay: 27, departTime: 23.92, flight: { arr: 'SQ325 FRA→SIN', dep: 'SQ26 SIN→FRA' } },
-            { name: 'Hitesh', origin: '→ SIN', arriveDay: 23, arriveTime: 6, departDay: 28, departTime: 2.42, flight: { arr: 'SQ403', dep: 'SQ402' } },
-            { name: 'Harry', origin: 'SYD → SIN', arriveDay: 22, arriveTime: 21.17, departDay: 28, departTime: 19.83, flight: { arr: 'QF53', dep: 'QF52' } },
-            { name: 'Ryan', origin: 'BOS → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 21, flight: { arr: 'BOS→SIN', dep: 'SIN→CPT' } },
-            { name: 'Quinn', origin: 'SFO → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33, flight: { arr: 'UA1 SFO→SIN', dep: 'UA28 SIN→SFO' } },
-            { name: 'Lewis', origin: '→ SIN', arriveDay: 23, arriveTime: 7.25, departDay: 27, departTime: 21 },
+            { name: 'Nicolay Gerold', origin: 'MUC → SIN', arriveDay: 22, arriveTime: 17.42, departDay: 27, departTime: 23.75, flight: { arr: 'MUC→SIN', dep: 'SIN→MUC' } },
             { name: 'Isuru', origin: '→ SIN', arriveDay: 22, arriveTime: 17.58, departDay: 26, departTime: 20.67 },
             { name: 'Tim', origin: '→ SIN', arriveDay: 22, arriveTime: 20, departDay: 27, departTime: 19.67 },
+            { name: 'Harry', origin: 'SYD → SIN', arriveDay: 22, arriveTime: 21.17, departDay: 28, departTime: 19.83, flight: { arr: 'QF53', dep: 'QF52' } },
+            { name: 'Hitesh', origin: '→ SIN', arriveDay: 23, arriveTime: 6, departDay: 28, departTime: 2.42, flight: { arr: 'SQ403', dep: 'SQ402' } },
+            { name: 'Lewis', origin: '→ SIN', arriveDay: 23, arriveTime: 7.25, departDay: 27, departTime: 21 },
+            { name: 'Ryan', origin: 'BOS → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 21, flight: { arr: 'BOS→SIN', dep: 'SIN→CPT' } },
+            { name: 'Quinn', origin: 'SFO → SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33, flight: { arr: 'UA1 SFO→SIN', dep: 'UA28 SIN→SFO' } },
             { name: 'Beyang', origin: '→ SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33 },
-            { name: 'William', origin: '→ SIN', arriveDay: 20, arriveTime: 7.83, departDay: 30, departTime: 12.75 },
-            { name: 'Karl', origin: '→ SIN', arriveDay: 22, arriveTime: 7, departDay: null, departTime: null },
-            { name: 'Bret Jones', origin: 'PER → SIN', arriveDay: 23, arriveTime: 19.83, departDay: 27, departTime: 18.92, flight: { arr: 'SQ226 PER→SIN', dep: 'SQ215 SIN→PER' } },
             { name: 'Connor O\'Brien', origin: '→ SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 10.17 },
-            { name: 'Nicolay Gerold', origin: 'MUC → SIN', arriveDay: 22, arriveTime: 17.42, departDay: 27, departTime: 23.75, flight: { arr: 'MUC→SIN', dep: 'SIN→MUC' } },
-            { name: 'Jim Steven', origin: '→ SIN', arriveDay: 22, arriveTime: 0.67, departDay: 27, departTime: 12 },
             { name: 'Tim Culverhouse', origin: '→ SIN', arriveDay: 23, arriveTime: 8, departDay: 27, departTime: 22.33 },
+            { name: 'Bret Jones', origin: 'PER → SIN', arriveDay: 23, arriveTime: 19.83, departDay: 27, departTime: 18.92, flight: { arr: 'SQ226 PER→SIN', dep: 'SQ215 SIN→PER' } },
         ];
         
         const pending = [
