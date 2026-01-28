@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary - Singapore Conference</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f8f9fa; color: #1a1a2e; font-family: 'Work Sans', system-ui, sans-serif; font-size: 13px; line-height: 1.4; }
+        .header { background: #fff; border-bottom: 1px solid #e9ecef; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .header h1 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        .btn { padding: 6px 14px; border-radius: 5px; font-size: 12px; cursor: pointer; border: none; text-decoration: none; }
+        .btn-secondary { background: #e9ecef; color: #495057; }
+        .schedule-container { padding: 24px; overflow-x: auto; }
+        .schedule { 
+            display: grid; 
+            grid-template-columns: 80px repeat(7, minmax(120px, 1fr)); 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
+            border: 1px solid #e9ecef;
+            min-width: 900px;
+        }
+        .schedule-header { 
+            background: #f8f9fa; 
+            padding: 12px 8px; 
+            font-weight: 600; 
+            text-align: center; 
+            border-bottom: 2px solid #dee2e6;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #495057;
+        }
+        .schedule-header.time-col { border-right: 1px solid #e9ecef; }
+        .time-slot { 
+            padding: 6px 8px; 
+            font-size: 11px; 
+            color: #6c757d; 
+            border-right: 1px solid #e9ecef; 
+            border-bottom: 1px solid #f1f3f4;
+            text-align: right;
+            background: #fafbfc;
+        }
+        .cell { 
+            border-bottom: 1px solid #f1f3f4; 
+            border-right: 1px solid #f1f3f4;
+            position: relative;
+            min-height: 28px;
+        }
+        .cell:last-child { border-right: none; }
+        .event {
+            position: absolute;
+            left: 2px;
+            right: 2px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 5;
+            overflow: hidden;
+        }
+        .event-time { font-size: 9px; font-weight: 400; opacity: 0.8; margin-top: 2px; }
+        .event-arrivals { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+        .event-breakfast { background: #e8f5e9; color: #2e7d32; border: 1px solid #81c784; }
+        .event-lunch { background: #e3f2fd; color: #1565c0; border: 1px solid #64b5f6; }
+        .event-dinner { background: #fce4ec; color: #c2185b; border: 1px solid #f48fb1; }
+        .event-hacking { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+        .event-meetup { background: #ede7f6; color: #5e35b1; border: 1px solid #b39ddb; }
+        .event-departures { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
+        .date-label { font-size: 10px; font-weight: 400; color: #6c757d; display: block; }
+    </style>
+</head>
+<body>
+    <script>
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="header">
+        <h1>Singapore Offsite Itinerary</h1>
+        <div class="header-actions">
+            <span style="font-size:12px;color:#6c757d;">Feb 22 - Feb 27, 2026</span>
+            <a href="index.html" class="btn btn-secondary">← Back to Packages</a>
+        </div>
+    </div>
+    <div class="schedule-container">
+        <div class="schedule" id="schedule"></div>
+    </div>
+    <script>
+        const days = [
+            { name: 'Sunday', date: 'Feb 22' },
+            { name: 'Monday', date: 'Feb 23' },
+            { name: 'Tuesday', date: 'Feb 24' },
+            { name: 'Wednesday', date: 'Feb 25' },
+            { name: 'Thursday', date: 'Feb 26' },
+            { name: 'Friday', date: 'Feb 27' },
+            { name: 'Saturday', date: 'Feb 28' }
+        ];
+
+        const timeSlots = [];
+        for (let h = 7; h <= 21; h++) {
+            timeSlots.push(`${h > 12 ? h - 12 : h}:00 ${h >= 12 ? 'PM' : 'AM'}`);
+            timeSlots.push(`${h > 12 ? h - 12 : h}:30 ${h >= 12 ? 'PM' : 'AM'}`);
+        }
+
+        const events = [
+            // Sunday - Scattered Arrivals all day
+            { day: 0, startHour: 7, endHour: 22, title: 'Scattered Arrivals', type: 'arrivals' },
+            
+            // Monday
+            { day: 1, startHour: 7, endHour: 12, title: 'Scattered Arrivals', type: 'arrivals' },
+            { day: 1, startHour: 12, endHour: 13, title: 'Lunch', subtitle: '(order from Grab at 11am)', type: 'lunch' },
+            { day: 1, startHour: 13, endHour: 19, title: 'Hacking', type: 'hacking' },
+            { day: 1, startHour: 19, endHour: 21, title: 'Dinner', type: 'dinner' },
+            
+            // Tuesday
+            { day: 2, startHour: 7, endHour: 9, title: 'Breakfast', subtitle: '(Appt or on your own)', type: 'breakfast' },
+            { day: 2, startHour: 9, endHour: 12, title: 'Hacking', type: 'hacking' },
+            { day: 2, startHour: 12, endHour: 13, title: 'Lunch', subtitle: '(order from Grab at 11am)', type: 'lunch' },
+            { day: 2, startHour: 13, endHour: 19, title: 'Hacking', type: 'hacking' },
+            { day: 2, startHour: 19, endHour: 21, title: 'Dinner', type: 'dinner' },
+            
+            // Wednesday
+            { day: 3, startHour: 7, endHour: 9, title: 'Breakfast', subtitle: '(Appt or on your own)', type: 'breakfast' },
+            { day: 3, startHour: 9, endHour: 12, title: 'Hacking', type: 'hacking' },
+            { day: 3, startHour: 12, endHour: 13, title: 'Lunch', subtitle: '(order from Grab at 11am)', type: 'lunch' },
+            { day: 3, startHour: 13, endHour: 19, title: 'Hacking', type: 'hacking' },
+            { day: 3, startHour: 19, endHour: 21, title: 'Dinner', type: 'dinner' },
+            
+            // Thursday
+            { day: 4, startHour: 7, endHour: 9, title: 'Breakfast', subtitle: '(Appt or on your own)', type: 'breakfast' },
+            { day: 4, startHour: 9, endHour: 12, title: 'Hacking', type: 'hacking' },
+            { day: 4, startHour: 12, endHour: 13, title: 'Lunch', subtitle: '(order from Grab at 11am)', type: 'lunch' },
+            { day: 4, startHour: 13, endHour: 19, title: 'Hacking', type: 'hacking' },
+            { day: 4, startHour: 19, endHour: 21, title: 'Dinner', type: 'dinner' },
+            
+            // Friday
+            { day: 5, startHour: 7, endHour: 9, title: 'Breakfast', subtitle: '(Appt or on your own)', type: 'breakfast' },
+            { day: 5, startHour: 9, endHour: 12, title: 'Hacking', type: 'hacking' },
+            { day: 5, startHour: 12, endHour: 13, title: 'Lunch', subtitle: '(order from Grab at 11am)', type: 'lunch' },
+            { day: 5, startHour: 13, endHour: 17.5, title: 'Hacking', type: 'hacking' },
+            { day: 5, startHour: 17.5, endHour: 21, title: 'Meetup', type: 'meetup' },
+            
+            // Saturday - Departures
+            { day: 6, startHour: 7, endHour: 22, title: 'Scattered Departures', type: 'departures' }
+        ];
+
+        function formatTime(hour) {
+            const h = Math.floor(hour);
+            const m = (hour % 1) * 60;
+            const period = h >= 12 ? 'PM' : 'AM';
+            const displayH = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+            return m > 0 ? `${displayH}:${m.toString().padStart(2, '0')} ${period}` : `${displayH} ${period}`;
+        }
+
+        function render() {
+            const schedule = document.getElementById('schedule');
+            let html = '';
+            
+            // Header row
+            html += '<div class="schedule-header time-col">Time</div>';
+            days.forEach(d => {
+                html += `<div class="schedule-header">${d.name}<span class="date-label">${d.date}</span></div>`;
+            });
+            
+            // Time rows
+            timeSlots.forEach((slot, slotIdx) => {
+                const hour = 7 + slotIdx * 0.5;
+                html += `<div class="time-slot">${slot}</div>`;
+                
+                days.forEach((_, dayIdx) => {
+                    html += `<div class="cell" data-day="${dayIdx}" data-hour="${hour}"></div>`;
+                });
+            });
+            
+            schedule.innerHTML = html;
+            
+            // Add events
+            events.forEach(event => {
+                const startSlot = (event.startHour - 7) * 2;
+                const endSlot = (event.endHour - 7) * 2;
+                const duration = endSlot - startSlot;
+                
+                const cell = document.querySelector(`.cell[data-day="${event.day}"][data-hour="${event.startHour}"]`);
+                if (cell) {
+                    const eventEl = document.createElement('div');
+                    eventEl.className = `event event-${event.type}`;
+                    eventEl.style.top = '1px';
+                    eventEl.style.height = `calc(${duration * 28}px - 2px)`;
+                    
+                    let content = `<span>${event.title}</span>`;
+                    if (event.subtitle) {
+                        content += `<span class="event-time">${event.subtitle}</span>`;
+                    }
+                    content += `<span class="event-time">${formatTime(event.startHour)} - ${formatTime(event.endHour)}</span>`;
+                    
+                    eventEl.innerHTML = content;
+                    cell.appendChild(eventEl);
+                }
+            });
+        }
+        
+        render();
+    </script>
+</body>
+</html>
