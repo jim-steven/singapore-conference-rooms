@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Conference Packages</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f8f9fa; color: #1a1a2e; font-family: 'Work Sans', system-ui, sans-serif; font-size: 14px; line-height: 1.5; height: 100vh; overflow: hidden; }
+        .app-layout { display: grid; grid-template-rows: auto 1fr; height: 100vh; }
+        .app-header { background: #fff; border-bottom: 1px solid #e9ecef; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .app-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #1a1a2e; }
+        .combo-count { font-size: 12px; color: #6c757d; background: #e9ecef; padding: 4px 10px; border-radius: 12px; }
+        .config-bar { background: #fff; border-bottom: 1px solid #e9ecef; padding: 12px 24px; display: flex; gap: 20px; align-items: center; }
+        .config-group { display: flex; align-items: center; gap: 6px; }
+        .config-label { font-size: 11px; color: #6c757d; font-weight: 500; }
+        .config-input { padding: 6px 10px; border: 1px solid #dee2e6; border-radius: 5px; font-size: 12px; width: 70px; }
+        .config-select { padding: 6px 10px; border: 1px solid #dee2e6; border-radius: 5px; font-size: 12px; min-width: 100px; }
+        .main-tabs { display: flex; gap: 0; background: #fff; border-bottom: 1px solid #e9ecef; padding: 0 24px; }
+        .main-tab { padding: 12px 20px; font-size: 13px; font-weight: 500; cursor: pointer; color: #6c757d; border-bottom: 2px solid transparent; transition: all 0.15s; }
+        .main-tab:hover { color: #1a1a2e; }
+        .main-tab.active { color: #0066CC; border-bottom-color: #0066CC; }
+        .split-layout { display: grid; grid-template-columns: 1fr; height: 100%; overflow: hidden; transition: grid-template-columns 0.3s ease; }
+        .split-layout.panel-open { grid-template-columns: 1fr 420px; }
+        .table-panel { background: #fff; overflow: auto; }
+        .package-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .package-table th { text-align: left; padding: 10px 14px; background: #f8f9fa; border-bottom: 2px solid #dee2e6; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #495057; white-space: nowrap; position: sticky; top: 0; z-index: 10; }
+        .package-table td { padding: 12px 14px; border-bottom: 1px solid #f1f3f4; vertical-align: middle; }
+        .package-table tbody tr { cursor: pointer; transition: background 0.15s; }
+        .package-table tbody tr:hover { background: #f8f9fa; }
+        .venue-cell { display: flex; align-items: center; gap: 10px; min-width: 240px; }
+        .venue-thumb { width: 48px; height: 36px; border-radius: 4px; object-fit: cover; background: #e9ecef; flex-shrink: 0; cursor: pointer; }
+        .venue-thumb:hover { opacity: 0.8; }
+        .venue-name { font-weight: 600; color: #1a1a2e; font-size: 12px; }
+        .venue-meta { font-size: 10px; color: #6c757d; margin-top: 1px; }
+        .venue-price { font-weight: 600; color: #0066CC; font-size: 11px; margin-top: 1px; }
+        .hotel-cell { display: flex; align-items: center; gap: 10px; min-width: 220px; }
+        .hotel-thumb { width: 48px; height: 36px; border-radius: 4px; object-fit: cover; background: #e9ecef; flex-shrink: 0; cursor: pointer; }
+        .hotel-thumb:hover { opacity: 0.8; }
+        .hotel-name { font-weight: 600; color: #1a1a2e; font-size: 12px; }
+        .hotel-rating { font-size: 10px; color: #6c757d; margin-top: 1px; }
+        .hotel-rating .stars { color: #f59e0b; }
+        .hotel-price { font-size: 10px; color: #495057; margin-top: 1px; }
+        .travel-cell { text-align: center; }
+        .travel-distance { font-weight: 600; color: #1a1a2e; font-size: 12px; }
+        .travel-fare { font-size: 10px; color: #2e7d32; margin-top: 1px; }
+        .total-cell { text-align: right; min-width: 100px; }
+        .total-amount { font-weight: 700; color: #1a1a2e; font-size: 14px; }
+        .total-breakdown { font-size: 9px; color: #6c757d; margin-top: 1px; }
+        .detail-panel { background: #fff; border-left: 1px solid #e9ecef; display: none; flex-direction: column; overflow: hidden; }
+        .split-layout.panel-open .detail-panel { display: flex; }
+        .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #e9ecef; }
+        .detail-tabs { display: flex; gap: 4px; }
+        .detail-tab { padding: 6px 14px; font-size: 12px; font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.15s; color: #495057; }
+        .detail-tab:hover { background: #f1f3f4; }
+        .detail-tab.active { background: #0066CC; color: #fff; }
+        .detail-close { background: none; border: none; font-size: 20px; cursor: pointer; color: #6c757d; padding: 4px 8px; }
+        .detail-close:hover { color: #1a1a2e; }
+        .detail-content { flex: 1; overflow-y: auto; padding: 16px; }
+        .detail-gallery { width: 100%; height: 180px; border-radius: 8px; margin-bottom: 16px; overflow: hidden; background: #e9ecef; }
+        .detail-gallery img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 4px; }
+        .detail-subtitle { font-size: 11px; color: #6c757d; margin-bottom: 14px; }
+        .detail-section { margin-bottom: 16px; }
+        .detail-section-title { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: #6c757d; margin-bottom: 6px; font-weight: 600; }
+        .detail-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f1f3f4; font-size: 12px; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-row .label { color: #6c757d; }
+        .detail-row .value { font-weight: 500; }
+    </style>
+</head>
+<body>
+    <script>
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="app-layout">
+        <header class="app-header">
+            <h1 class="app-title">Singapore Conference Packages</h1>
+            <div style="display:flex;align-items:center;gap:16px;">
+                <span class="config-label">15 people · 7 nights · 5 work days</span>
+                <span class="config-label" style="color:#2e7d32;">1 SGD = $0.74 USD</span>
+                <select class="config-select" id="districtSelect"><option value="">All Districts</option></select>
+                <span class="combo-count" id="comboCount">Loading...</span>
+                <a href="index.html" style="padding:6px 12px;background:#6c757d;color:#fff;border-radius:5px;font-size:12px;text-decoration:none;">← Home</a>
+                <a href="itinerary.html" style="padding:6px 12px;background:#2e7d32;color:#fff;border-radius:5px;font-size:12px;text-decoration:none;">Itinerary</a>
+                <a href="edit.html" style="padding:6px 12px;background:#0066CC;color:#fff;border-radius:5px;font-size:12px;text-decoration:none;">Edit Data</a>
+            </div>
+        </header>
+        <nav class="main-tabs">
+            <div class="main-tab active" onclick="switchMainTab('travel')" id="tabTravel">Travel</div>
+            <div class="main-tab" onclick="switchMainTab('packages')" id="tabPackages">Packages</div>
+            <div class="main-tab" onclick="switchMainTab('hotels')" id="tabHotels">Hotels</div>
+            <div class="main-tab" onclick="switchMainTab('venues')" id="tabVenues">Venues</div>
+        </nav>
+        <div class="split-layout" id="splitLayout">
+            <div class="table-panel">
+                <table class="package-table" id="packagesTable" style="display:none;">
+                    <thead><tr><th>Workspace</th><th>Hotel</th><th style="text-align:center;">Travel</th><th style="text-align:right;">Total Cost</th></tr></thead>
+                    <tbody id="tableBody"><tr><td colspan="4" style="text-align:center;padding:40px;color:#6c757d;">Loading combinations...</td></tr></tbody>
+                </table>
+                <table class="package-table" id="hotelsTable" style="display:none;">
+                    <thead><tr><th>Hotel</th><th style="text-align:center;">Star Rating</th><th style="text-align:center;">Per Night</th><th style="text-align:right;">Total (15 ppl × 7 nights)</th></tr></thead>
+                    <tbody id="hotelsTableBody"></tbody>
+                </table>
+                <table class="package-table" id="venuesTable" style="display:none;">
+                    <thead><tr><th>Venue</th><th style="text-align:center;">Capacity</th><th style="text-align:center;">Rate</th><th style="text-align:right;">Total (8h × 5 days)</th></tr></thead>
+                    <tbody id="venuesTableBody"></tbody>
+                </table>
+                <div id="travelPanel" style="padding:24px;">
+                    <iframe src="travel.html" style="width:100%;height:calc(100vh - 180px);border:none;border-radius:8px;"></iframe>
+                </div>
+            </div>
+            <aside class="detail-panel">
+                <div class="detail-header">
+                    <div class="detail-tabs">
+                        <div class="detail-tab active" onclick="switchTab('venue')">Venue</div>
+                        <div class="detail-tab" onclick="switchTab('hotel')">Hotel</div>
+                    </div>
+                    <button class="detail-close" onclick="closePanel()">×</button>
+                </div>
+                <div class="detail-content" id="detailContent"></div>
+            </aside>
+        </div>
+    </div>
+    <script>
+        let venuesData = [], hotelsData = [], combinations = [], currentTab = 'venue', currentCombo = null, currentMainTab = 'travel';
+        const defaultVenueImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=200';
+        const SGD_TO_USD = 0.74; // Exchange rate: 1 SGD = 0.74 USD
+        
+        function toUSD(amount, currency) {
+            if (!amount) return 0;
+            return currency === 'USD' ? amount : Math.round(amount * SGD_TO_USD);
+        }
+
+        async function init() {
+            try {
+                const [vRes, hRes] = await Promise.all([fetch('venues.json'), fetch('hotels.json')]);
+                const venuesJson = await vRes.json();
+                hotelsData = (await hRes.json()).filter(h => h.latitude && h.longitude);
+                venuesData = [];
+                venuesJson.sections.forEach(s => s.venues.forEach(v => venuesData.push(v)));
+                const districts = [...new Set(venuesData.map(v => v.district))].filter(Boolean);
+                const sel = document.getElementById('districtSelect');
+                districts.forEach(d => { const o = document.createElement('option'); o.value = d; o.textContent = d.replace(/-/g,' ').replace(/\b\w/g,l=>l.toUpperCase()); sel.appendChild(o); });
+                generateCombinations();
+                renderHotelsTable();
+                renderVenuesTable();
+                updateTabCounts();
+            } catch (e) {
+                document.getElementById('tableBody').innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px;color:#dc3545;">Error loading data. Run via a local server (e.g., python -m http.server)</td></tr>';
+            }
+        }
+
+        function calcDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLng = (lng2-lng1)*Math.PI/180;
+            const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        function parsePrice(s) { const m = s?.match(/[\d,]+/); return m ? parseInt(m[0].replace(/,/g,'')) : 0; }
+
+        function generateCombinations() {
+            const nights = 7, people = 15, workDays = 5, hoursPerDay = 8;
+            const dist = document.getElementById('districtSelect').value;
+            combinations = [];
+            const venues = dist ? venuesData.filter(v => v.district === dist) : venuesData;
+            venues.forEach(venue => {
+                if (!venue.lat || !venue.lng) return;
+                hotelsData.forEach(hotel => {
+                    const distance = calcDistance(venue.lat, venue.lng, hotel.latitude, hotel.longitude);
+                    const grabFareSGD = Math.round(3.5 + distance * 1.2);
+                    const grabTotalUSD = toUSD(grabFareSGD * people * 2 * workDays, 'SGD');
+                    
+                    const hotelPerNight = parsePrice(hotel.perNight);
+                    const hotelTotal = parsePrice(hotel.total);
+                    const hotelCurrency = hotel.currency || 'USD';
+                    // If hotel has perNight, calculate: perNight × people × nights
+                    // If only total (no perNight), use total as-is (already includes all people)
+                    const hotelTotalUSD = hotelPerNight 
+                        ? toUSD(hotelPerNight * people * nights, hotelCurrency) 
+                        : toUSD(hotelTotal, hotelCurrency);
+                    
+                    let venueTotalUSD = 0, venuePending = false;
+                    const venueCurrency = venue.currency || 'SGD';
+                    if (venue.hourlyRate) {
+                        venueTotalUSD = toUSD(venue.hourlyRate * hoursPerDay * workDays, venueCurrency);
+                    } else if (venue.price) {
+                        venueTotalUSD = toUSD(venue.price, venueCurrency);
+                    } else {
+                        venuePending = true;
+                    }
+                    
+                    const totalCostUSD = hotelTotalUSD + venueTotalUSD + grabTotalUSD;
+                    combinations.push({ 
+                        venue, hotel, distance, 
+                        grabFareSGD, grabTotalUSD, 
+                        venueTotalUSD, venuePending, venueCurrency,
+                        hotelPerNight, hotelTotal, hotelTotalUSD, hotelCurrency,
+                        totalCostUSD, nights, people, workDays 
+                    });
+                });
+            });
+            combinations.sort((a, b) => {
+                if (a.venuePending && !b.venuePending) return 1;
+                if (!a.venuePending && b.venuePending) return -1;
+                return a.totalCostUSD - b.totalCostUSD;
+            });
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            document.getElementById('comboCount').textContent = combinations.length.toLocaleString() + ' combinations';
+            if (!combinations.length) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:40px;">No combinations</td></tr>'; return; }
+            tbody.innerHTML = combinations.map((c, i) => {
+                const rm = c.hotel.navanRating?.match(/(\d+\.?\d*)/), rating = rm ? rm[1] : '';
+                const stars = c.hotel.starRating?.includes('5') ? '★★★★★' : c.hotel.starRating?.includes('4') ? '★★★★' : '★★★';
+                const vcur = c.venueCurrency === 'USD' ? '$' : 'S$';
+                const venuePriceLabel = c.venue.hourlyRate ? `${vcur}${c.venue.hourlyRate}/hr × 8h × 5d → $${c.venueTotalUSD.toLocaleString()}` : (c.venue.price ? `${vcur}${c.venue.price} → $${c.venueTotalUSD.toLocaleString()}` : 'Waiting on Response');
+                const hcur = c.hotelCurrency === 'USD' ? '$' : 'S$';
+                const hotelPriceLabel = c.hotelTotal ? `${hcur}${c.hotelTotal.toLocaleString()} → $${c.hotelTotalUSD.toLocaleString()}` : `${hcur}${c.hotelPerNight} × ${c.people} × ${c.nights}n → $${c.hotelTotalUSD.toLocaleString()}`;
+                const totalLabel = c.venuePending ? 'Waiting on Response' : `$${c.totalCostUSD.toLocaleString()}`;
+                const perPersonLabel = c.venuePending ? '—' : `$${Math.round(c.totalCostUSD/c.people)}/person`;
+                const noteAttr = c.venue.notes ? `title="${c.venue.notes.replace(/"/g, '&quot;')}"` : '';
+                const venueImg = c.venue.picture || defaultVenueImg;
+                return `<tr data-idx="${i}" ${c.venuePending ? 'style="opacity:0.6"' : ''}>
+                    <td onclick="openPanel(${i},'venue',event)"><div class="venue-cell"><img class="venue-thumb" src="${venueImg}" onerror="this.src='${defaultVenueImg}'"><div><div class="venue-name" ${noteAttr}>${c.venue.name}${c.venue.notes ? ' ⚠️' : ''}</div><div class="venue-meta">${c.venue.district?.replace(/-/g,' ')||''} · ${c.venue.capacityDisplay||'—'}</div><div class="venue-price">${venuePriceLabel}</div></div></div></td>
+                    <td onclick="openPanel(${i},'hotel',event)"><div class="hotel-cell"><img class="hotel-thumb" src="${c.hotel.picture}"><div><div class="hotel-name">${c.hotel.name}</div><div class="hotel-rating"><span class="stars">${stars}</span> ${rating}</div><div class="hotel-price">${hotelPriceLabel}</div></div></div></td>
+                    <td class="travel-cell"><div class="travel-distance">${c.distance.toFixed(1)} km</div><div class="travel-fare">~$${c.grabTotalUSD} Grab</div></td>
+                    <td class="total-cell"><div class="total-amount">${totalLabel}</div><div class="total-breakdown">Hotel $${c.hotelTotalUSD.toLocaleString()} · Venue $${c.venueTotalUSD.toLocaleString()} · Travel $${c.grabTotalUSD.toLocaleString()}</div></td>
+                </tr>`;
+            }).join('');
+        }
+
+        function openPanel(idx, type, e) {
+            e?.stopPropagation();
+            const layout = document.getElementById('splitLayout');
+            if (currentCombo === combinations[idx] && currentTab === type && layout.classList.contains('panel-open')) {
+                closePanel();
+                return;
+            }
+            currentCombo = combinations[idx];
+            currentTab = type;
+            layout.classList.add('panel-open');
+            updateTabs();
+            updateContent();
+        }
+        function switchTab(type) { currentTab = type; updateTabs(); updateContent(); }
+        function updateTabs() { document.querySelectorAll('.detail-tab').forEach((t,i) => t.classList.toggle('active', (currentTab==='venue'&&i===0)||(currentTab==='hotel'&&i===1))); }
+        function updateContent() {
+            if (!currentCombo) return;
+            const c = document.getElementById('detailContent');
+            if (currentTab === 'venue') {
+                const v = currentCombo.venue;
+                const notesHtml = v.notes ? `<div class="detail-section"><div class="detail-section-title">Notes</div><div style="padding:8px 10px;background:#fff3cd;border-radius:4px;font-size:12px;color:#856404;">⚠️ ${v.notes}</div></div>` : '';
+                const venueDetailImg = v.picture || defaultVenueImg.replace('w=200','w=600');
+                c.innerHTML = `<div class="detail-gallery"><img src="${venueDetailImg}" onerror="this.src='${defaultVenueImg.replace('w=200','w=600')}'"></div><h2 class="detail-title">${v.name}</h2><p class="detail-subtitle">${v.address||'Singapore'}</p>${notesHtml}<div class="detail-section"><div class="detail-section-title">Details</div><div class="detail-row"><span class="label">District</span><span class="value">${v.district?.replace(/-/g,' ')||'—'}</span></div><div class="detail-row"><span class="label">Capacity</span><span class="value">${v.capacityDisplay||'—'}</span></div><div class="detail-row"><span class="label">Price</span><span class="value">${v.priceDisplay||'Contact'}</span></div><div class="detail-row"><span class="label">Hours</span><span class="value">${v.hours||'—'}</span></div></div><div class="detail-section"><div class="detail-section-title">Contact</div><div class="detail-row"><span class="label">Phone</span><span class="value">${v.phone||'—'}</span></div><div class="detail-row"><span class="label">Email</span><span class="value">${v.email||'—'}</span></div></div>`;
+            } else {
+                const h = currentCombo.hotel, rm = h.navanRating?.match(/(\d+\.?\d*)/), rating = rm?rm[1]:'', stars = h.starRating?.includes('5')?'★★★★★':h.starRating?.includes('4')?'★★★★':'★★★';
+                const navanBtn = h.navanLink ? `<a href="${h.navanLink}" target="_blank" style="display:inline-block;margin-top:12px;padding:10px 16px;background:#0066CC;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Book on Navan →</a>` : '';
+                const bookingCalc = currentCombo.hotelPerNight 
+                    ? `${currentCombo.hotelPerNight} × ${currentCombo.people} ppl × ${currentCombo.nights} nights = $${currentCombo.hotelTotalUSD.toLocaleString()}`
+                    : `$${currentCombo.hotelTotalUSD.toLocaleString()} (total)`;
+                c.innerHTML = `<div class="detail-gallery"><img src="${h.picture}"></div><h2 class="detail-title">${h.name}</h2><p class="detail-subtitle">Singapore</p><div class="detail-section"><div class="detail-section-title">Details</div><div class="detail-row"><span class="label">Rating</span><span class="value"><span style="color:#f59e0b">${stars}</span> ${rating}</span></div><div class="detail-row"><span class="label">Star Rating</span><span class="value">${h.starRating||'—'}</span></div><div class="detail-row"><span class="label">Per Night</span><span class="value">${h.perNight||'—'}</span></div><div class="detail-row"><span class="label">Booking</span><span class="value">${bookingCalc}</span></div></div>${navanBtn}`;
+            }
+        }
+        function closePanel() { document.getElementById('splitLayout').classList.remove('panel-open'); currentCombo = null; }
+        function updateTabCounts() {
+            document.getElementById('tabPackages').textContent = `Packages (${combinations.length})`;
+            document.getElementById('tabHotels').textContent = `Hotels (${hotelsData.length})`;
+            document.getElementById('tabVenues').textContent = `Venues (${venuesData.length})`;
+            document.getElementById('tabTravel').textContent = `Travel (21)`;
+        }
+        function switchMainTab(tab) {
+            currentMainTab = tab;
+            document.querySelectorAll('.main-tab').forEach((t, i) => {
+                t.classList.toggle('active', (tab === 'travel' && i === 0) || (tab === 'packages' && i === 1) || (tab === 'hotels' && i === 2) || (tab === 'venues' && i === 3));
+            });
+            document.getElementById('packagesTable').style.display = tab === 'packages' ? '' : 'none';
+            document.getElementById('hotelsTable').style.display = tab === 'hotels' ? '' : 'none';
+            document.getElementById('venuesTable').style.display = tab === 'venues' ? '' : 'none';
+            document.getElementById('travelPanel').style.display = tab === 'travel' ? '' : 'none';
+            let count, label;
+            if (tab === 'packages') { count = combinations.length; label = 'combinations'; }
+            else if (tab === 'hotels') { count = hotelsData.length; label = 'hotels'; }
+            else if (tab === 'venues') { count = venuesData.length; label = 'venues'; }
+            else { count = 21; label = 'travelers'; }
+            document.getElementById('comboCount').textContent = count.toLocaleString() + ' ' + label;
+            closePanel();
+        }
+
+        function renderHotelsTable() {
+            const nights = 7, people = 15;
+            const sorted = [...hotelsData].map(h => {
+                const perNight = parsePrice(h.perNight);
+                const total = parsePrice(h.total);
+                const currency = h.currency || 'USD';
+                const totalUSD = perNight ? toUSD(perNight * people * nights, currency) : toUSD(total, currency);
+                return { ...h, perNight, total, currency, totalUSD };
+            }).sort((a, b) => a.totalUSD - b.totalUSD);
+            
+            const tbody = document.getElementById('hotelsTableBody');
+            tbody.innerHTML = sorted.map(h => {
+                const stars = h.starRating?.includes('5') ? '★★★★★' : h.starRating?.includes('4') ? '★★★★' : '★★★';
+                const rm = h.navanRating?.match(/(\d+\.?\d*)/), rating = rm ? rm[1] : '';
+                const cur = h.currency === 'USD' ? '$' : 'S$';
+                const rateDisplay = h.perNight ? `${cur}${h.perNight}/night` : '—';
+                const navanBtn = h.navanLink ? `<a href="${h.navanLink}" target="_blank" style="color:#0066CC;text-decoration:none;font-size:11px;">Book →</a>` : '';
+                return `<tr>
+                    <td><div class="hotel-cell"><img class="hotel-thumb" src="${h.picture}"><div><div class="hotel-name">${h.name}</div><div class="hotel-rating"><span class="stars">${stars}</span> ${rating}</div>${navanBtn}</div></div></td>
+                    <td style="text-align:center;">${h.starRating || '—'}</td>
+                    <td style="text-align:center;">${rateDisplay}</td>
+                    <td style="text-align:right;font-weight:600;">$${h.totalUSD.toLocaleString()}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function renderVenuesTable() {
+            const workDays = 5, hoursPerDay = 8;
+            const sorted = [...venuesData].map(v => {
+                const currency = v.currency || 'SGD';
+                let totalUSD = 0, pending = false;
+                if (v.hourlyRate) {
+                    totalUSD = toUSD(v.hourlyRate * hoursPerDay * workDays, currency);
+                } else if (v.price) {
+                    totalUSD = toUSD(v.price, currency);
+                } else {
+                    pending = true;
+                }
+                return { ...v, currency, totalUSD, pending };
+            }).sort((a, b) => {
+                if (a.pending && !b.pending) return 1;
+                if (!a.pending && b.pending) return -1;
+                return a.totalUSD - b.totalUSD;
+            });
+            
+            const tbody = document.getElementById('venuesTableBody');
+            tbody.innerHTML = sorted.map(v => {
+                const cur = v.currency === 'USD' ? '$' : 'S$';
+                const rateDisplay = v.hourlyRate ? `${cur}${v.hourlyRate}/hr` : (v.price ? `${cur}${v.price}` : 'Contact');
+                const totalDisplay = v.pending ? 'Waiting on Response' : `$${v.totalUSD.toLocaleString()}`;
+                const noteAttr = v.notes ? `title="${v.notes.replace(/"/g, '&quot;')}"` : '';
+                const venueImg = v.picture || defaultVenueImg;
+                return `<tr ${v.pending ? 'style="opacity:0.6"' : ''}>
+                    <td><div class="venue-cell"><img class="venue-thumb" src="${venueImg}" onerror="this.src='${defaultVenueImg}'"><div><div class="venue-name" ${noteAttr}>${v.name}${v.notes ? ' ⚠️' : ''}</div><div class="venue-meta">${v.district?.replace(/-/g,' ') || ''}</div></div></div></td>
+                    <td style="text-align:center;">${v.capacityDisplay || '—'}</td>
+                    <td style="text-align:center;">${rateDisplay}</td>
+                    <td style="text-align:right;font-weight:600;">${totalDisplay}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        document.getElementById('districtSelect').addEventListener('change', generateCombinations);
+        init();
+    </script>
+</body>
+</html>
