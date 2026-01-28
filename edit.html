@@ -42,6 +42,11 @@
     </style>
 </head>
 <body>
+    <script>
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
     <div class="header">
         <h1>Edit Data</h1>
         <div class="header-actions">
