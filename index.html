@@ -72,6 +72,32 @@
         .view-full { display: inline-block; margin-top: 24px; color: #e07b5a; text-decoration: none; font-weight: 500; font-size: 13px; }
         .view-full:hover { text-decoration: underline; }
         
+        /* Accommodation */
+        .accommodation-section { padding: 80px 32px; background: #f8f9fa; }
+        .accommodation-container { max-width: 1100px; margin: 0 auto; }
+        .accommodation-header { text-align: center; margin-bottom: 48px; }
+        .accommodation-label { font-size: 11px; letter-spacing: 0.2em; color: #6c757d; font-weight: 600; margin-bottom: 12px; }
+        .accommodation-title { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: #3d4f5f; }
+        .accommodation-address { font-size: 14px; color: #6c757d; margin-top: 8px; }
+        .accommodation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+        .accommodation-card { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .accommodation-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #3d4f5f; margin-bottom: 16px; }
+        .amenity-list { list-style: none; }
+        .amenity-list li { padding: 8px 0; border-bottom: 1px solid #f1f3f4; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+        .amenity-list li:last-child { border-bottom: none; }
+        .amenity-icon { color: #2e7d32; }
+        .room-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .room-table th { text-align: left; padding: 10px 8px; background: #f8f9fa; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #6c757d; }
+        .room-table td { padding: 10px 8px; border-bottom: 1px solid #f1f3f4; }
+        .room-table a { color: #e07b5a; text-decoration: none; }
+        .room-table a:hover { text-decoration: underline; }
+        .assignments-section { margin-top: 48px; }
+        .assignments-table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .assignments-table th { text-align: left; padding: 14px 16px; background: #3d4f5f; color: #fff; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .assignments-table td { padding: 12px 16px; border-bottom: 1px solid #f1f3f4; }
+        .assignments-table tr:last-child td { border-bottom: none; }
+        .level-badge { display: inline-block; padding: 3px 8px; background: #e9ecef; border-radius: 4px; font-size: 11px; font-weight: 500; }
+        
         /* FAQs */
         .faq-section { padding: 0 32px 80px; }
         .faq-hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920') center/cover; padding: 100px 32px; text-align: center; color: #fff; margin-bottom: -60px; }
@@ -229,6 +255,174 @@
         </div>
     </section>
     
+    <section class="accommodation-section" id="accommodation">
+        <div class="accommodation-container">
+            <div class="accommodation-header">
+                <div class="accommodation-label">WHERE WE'RE STAYING</div>
+                <h2 class="accommodation-title">Fraser Suites Singapore</h2>
+                <p class="accommodation-address">491B River Valley Road #16-01 Valley Point, Singapore 248373</p>
+            </div>
+            
+            <div class="accommodation-grid">
+                <div class="accommodation-card">
+                    <h3>Services</h3>
+                    <ul class="amenity-list">
+                        <li><span class="amenity-icon">✓</span> Full Utilities</li>
+                        <li><span class="amenity-icon">✓</span> 24-hour Reception</li>
+                        <li><span class="amenity-icon">✓</span> Daily Breakfast</li>
+                        <li><span class="amenity-icon">✓</span> Complimentary Internet (1 Gbps)</li>
+                        <li><span class="amenity-icon">✓</span> Car Park (one lot per apartment)</li>
+                        <li><span class="amenity-icon">✓</span> Daily Housekeeping (except Sun & PH)</li>
+                        <li><span class="amenity-icon">✓</span> Gym Access</li>
+                    </ul>
+                </div>
+                <div class="accommodation-card">
+                    <h3>In-Room Amenities</h3>
+                    <ul class="amenity-list">
+                        <li><span class="amenity-icon">✓</span> Fully Furnished (living, dining, kitchen, bedroom)</li>
+                        <li><span class="amenity-icon">✓</span> Modern Kitchen with Microwave</li>
+                        <li><span class="amenity-icon">✓</span> Nespresso Coffee Machine</li>
+                        <li><span class="amenity-icon">✓</span> Washer/Dryer</li>
+                        <li><span class="amenity-icon">✓</span> Steam Iron & Ironing Board</li>
+                        <li><span class="amenity-icon">✓</span> Entertainment System & Wi-Fi</li>
+                        <li><span class="amenity-icon">✓</span> In-room Safe</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accommodation-card" style="margin-bottom: 32px;">
+                <h3>Room Rates</h3>
+                <table class="room-table">
+                    <thead>
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Bedding</th>
+                            <th>Size</th>
+                            <th>Daily Rate (SGD)</th>
+                            <th>Max Occupants</th>
+                            <th>Tour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1 Bedroom Deluxe</td>
+                            <td>King</td>
+                            <td>50 sqm / 538 sqft</td>
+                            <td>$290+GST ($308.49 nett)</td>
+                            <td>2</td>
+                            <td><a href="https://my.matterport.com/show/?m=LNQ9zXzNE9t" target="_blank">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>1 Bedroom Premier</td>
+                            <td>King</td>
+                            <td>62 sqm / 667 sqft</td>
+                            <td>$310+GST ($328.46 nett)</td>
+                            <td>3</td>
+                            <td><a href="https://my.matterport.com/show/?m=LNQ9zXzNE9t" target="_blank">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom Deluxe</td>
+                            <td>King, Queen</td>
+                            <td>86 sqm / 925 sqft</td>
+                            <td>$480+GST ($510.11 nett)</td>
+                            <td>4</td>
+                            <td><a href="https://my.matterport.com/show/?m=7T36px32wKz" target="_blank">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom Premier</td>
+                            <td>King, Queen / King, 2 Singles</td>
+                            <td>93 sqm / 1,001 sqft</td>
+                            <td>$500+GST ($530.84 nett)</td>
+                            <td>5</td>
+                            <td><a href="https://my.matterport.com/show/?m=d3Uu3Xo33DW" target="_blank">View →</a></td>
+                        </tr>
+                        <tr>
+                            <td>3 Bedroom Premier</td>
+                            <td>King, Queen, Single</td>
+                            <td>107 sqm / 1,154 sqft</td>
+                            <td>$600+GST ($637.71 nett)</td>
+                            <td>6</td>
+                            <td><a href="https://my.matterport.com/show/?m=Qx6BMTAhgSq" target="_blank">View →</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="assignments-section">
+                <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #3d4f5f; margin-bottom: 20px; text-align: center;">Room Assignments</h3>
+                <table class="assignments-table">
+                    <thead>
+                        <tr>
+                            <th>Apartment Type</th>
+                            <th>Guests</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3 Bedroom Premier</td>
+                            <td>Dario Hamidi, Thorsten Ball, Isuru Fernando</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 7</span></td>
+                        </tr>
+                        <tr>
+                            <td>3 Bedroom Premier</td>
+                            <td>Tim Culverhouse, Harry Wolff, Nicolay Gerold</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 6</span></td>
+                        </tr>
+                        <tr>
+                            <td>3 Bedroom Premier</td>
+                            <td>Brady Jeong, Karl Clement, William Dollman</td>
+                            <td>Feb 21</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 6</span></td>
+                        </tr>
+                        <tr>
+                            <td>3 Bedroom Premier</td>
+                            <td>Hitesh Agarwal, Quinn Slack, Lewis Jones</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 7</span></td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom Premier</td>
+                            <td>Bret Jones, Tim Lucas</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 7</span></td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom Premier</td>
+                            <td>Connor O'Brien, Jesse Edelstein</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 7</span></td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom Deluxe</td>
+                            <td>Jim Steven, Alex Kemper</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 7</span></td>
+                        </tr>
+                        <tr>
+                            <td>1 Bedroom Premier</td>
+                            <td>Beyang Liu</td>
+                            <td>Feb 22</td>
+                            <td>Feb 27</td>
+                            <td><span class="level-badge">Level 6</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
     <section class="faq-section" id="faq">
         <div class="faq-hero">
             <div class="faq-hero-label">READ OUR</div>
@@ -252,10 +446,17 @@
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do I need to fill out an arrival card?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes! Complete the <a href="https://eservices.ica.gov.sg/sgarrivalcard/fvipa" target="_blank" style="color:#e07b5a;">Singapore Arrival Card</a> online before arriving.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
                     <span>How do I get from the airport to the hotel?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">We recommend using Grab (similar to Uber). The ride from Changi Airport to the city center takes about 20-30 minutes and costs around S$20-30.</div>
+                <div class="faq-answer">We recommend using Grab (similar to Uber). The ride from Changi Airport to Fraser Suites takes about 20-30 minutes and costs around S$20-30.</div>
             </div>
             
             <h3 class="faq-category">Accommodation</h3>
@@ -264,14 +465,44 @@
                     <span>Where will we be staying?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Hotel details will be confirmed soon. Check the Packages page for the options we're considering.</div>
+                <div class="faq-answer">Fraser Suites Singapore, 491B River Valley Road #16-01 Valley Point, Singapore 248373. Check the Accommodation section above for room assignments.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Will I have my own room?</span>
+                    <span>What time is check-in and check-out?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Yes, everyone will have their own private room.</div>
+                <div class="faq-answer">Check-in is at 2pm and check-out is at 12pm. One night charge applies for early arrival or late check-out.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is there a gym?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes, the property has a gym available for all guests.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is there a washer/dryer?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes, each apartment has its own washer/dryer in-unit.</div>
+            </div>
+            
+            <h3 class="faq-category">Policies</h3>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is the cancellation policy?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">For bookings less than 1 month: 48 hours cancellation notice required, otherwise one night charge applies.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I extend my stay?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">For bookings less than 1 month: Extension requests are subject to availability and rate changes.</div>
             </div>
             
             <h3 class="faq-category">Schedule</h3>
@@ -321,15 +552,15 @@
                 { time: '7 - 9AM', title: 'Breakfast', detail: 'At apartment or on your own' },
                 { time: '9AM - 12PM', title: 'Hacking', detail: '' },
                 { time: '12 - 1PM', title: 'Lunch', detail: 'Order from Grab at 11am' },
-                { time: '1 - 7PM', title: 'Hacking', detail: '' },
-                { time: '7 - 9PM', title: 'Dinner', detail: '' }
+                { time: '1 - 5:30PM', title: 'Hacking', detail: '' },
+                { time: '5:30 - 9PM', title: 'Meetup', detail: '' }
             ],
             5: [
                 { time: '7 - 9AM', title: 'Breakfast', detail: 'At apartment or on your own' },
                 { time: '9AM - 12PM', title: 'Hacking', detail: '' },
                 { time: '12 - 1PM', title: 'Lunch', detail: 'Order from Grab at 11am' },
-                { time: '1 - 5:30PM', title: 'Hacking', detail: '' },
-                { time: '5:30 - 9PM', title: 'Meetup', detail: '' }
+                { time: '1 - 7PM', title: 'Hacking', detail: '' },
+                { time: '7 - 9PM', title: 'Dinner', detail: '' }
             ],
             6: [
                 { time: 'ALL DAY', title: 'Scattered Departures', detail: 'Safe travels!' }
