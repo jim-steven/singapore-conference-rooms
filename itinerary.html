@@ -78,6 +78,22 @@
         .event-meetup { background: #ede7f6; color: #5e35b1; border: 1px solid #b39ddb; }
         .event-departures { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
         .date-label { font-size: 10px; font-weight: 400; color: #6c757d; display: block; }
+        
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: var(--header-bg, #fff); transition: background 0.3s; border-bottom: 1px solid var(--border-color, #e9ecef); }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 48px; height: 21px; color: var(--text-primary); }
+        .header-right { display: flex; align-items: center; gap: 16px; }
+        .contact-btn { background: var(--accent, #e07b5a); color: #fff; padding: 12px 28px; border: none; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .hamburger { background: none; border: none; cursor: pointer; padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); transition: background 0.3s; }
+        .mobile-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: var(--bg-card, #fff); box-shadow: -4px 0 20px rgba(0,0,0,0.1); z-index: 200; transition: right 0.3s ease; padding: 80px 32px 32px; }
+        .mobile-menu.open { right: 0; }
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 150; display: none; }
+        .menu-overlay.open { display: block; }
+        .mobile-menu a { display: block; padding: 16px 0; font-size: 16px; color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--border-color, #eee); font-weight: 500; }
+        .menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-muted, #6c757d); }
+        .schedule-container { padding-top: 80px; }
     </style>
 </head>
 <body>
@@ -86,18 +102,35 @@
             window.location.href = 'login.html';
         }
     </script>
-    <div class="header">
-        <h1>Singapore Offsite Itinerary</h1>
-        <div class="header-actions">
-            <span style="font-size:12px;color:#6c757d;">Feb 22 - Feb 27, 2026</span>
-            <a href="index.html#top" class="btn btn-secondary">← Home</a>
-            <a href="packages.html" class="btn btn-secondary">Research</a>
+    
+    <header class="header">
+        <a href="index.html#top" class="logo">
+            <svg class="logo-icon" viewBox="0 0 281 124" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M236.014 0C260.431 9.71106e-05 280.602 17.4115 280.603 44.7432C280.602 73.5337 260.065 94.1657 233.52 94.166C224.158 94.166 215.639 92.4222 208.63 88.4902C202.886 85.2698 198.203 80.6054 194.919 74.3379L188.115 121.822L187.946 123.016H174.214L174.448 121.423L191.772 2.49414H205.372L203.937 11.3369C212.143 3.86078 223.2 0.000153635 236.014 0ZM47.082 0.154297C56.4435 0.154297 65.0012 1.8991 72.0488 5.84863C77.8222 9.08305 82.5323 13.7713 85.8271 20.085L88.1201 3.69238L88.2861 2.49316H101.863L89.1611 90.6328L88.9873 91.8262H75.4092L76.7227 82.8555C68.5854 90.4564 57.3981 94.3231 44.5889 94.3232C20.1709 94.3232 0.000167223 76.9087 0 49.5771C0.000149745 20.7854 20.54 0.154871 47.082 0.154297ZM116.234 90.6357L116.061 91.8271H102.485L115.351 3.68555L115.521 2.49414H129.083L116.234 90.6357ZM140.673 90.6357L140.499 91.8271H126.924L139.789 3.68555L139.96 2.49414H153.521L140.673 90.6357ZM177.958 2.49414L165.108 90.6357L164.935 91.8271H151.36L164.225 3.68555L164.396 2.49414H177.958ZM48.4854 11.9844C27.8638 11.985 14.0133 28.3799 14.0127 48.9521C14.0127 57.7907 16.8094 66.1771 22.3145 72.334C27.7973 78.4657 36.0631 82.4932 47.2402 82.4932C67.8534 82.4925 81.7122 65.9487 81.7129 45.3682C81.7129 35.4076 78.2493 27.0792 72.4131 21.2441C66.5794 15.4088 58.2871 11.9844 48.4854 11.9844ZM233.362 11.8291C212.749 11.8297 198.89 28.3716 198.89 48.9521C198.89 58.9123 202.356 67.2403 208.189 73.0742C214.023 78.9107 222.315 82.3358 232.116 82.3359C252.738 82.3355 266.589 65.9407 266.59 45.3682C266.59 36.5296 263.795 28.1424 258.29 21.9863C252.807 15.8551 244.542 11.8291 233.362 11.8291Z"/></svg>
+            Singapore Offsite
+        </a>
+        <div class="header-right">
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
                 <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             </button>
+            <a href="tel:+16503183480" class="contact-btn">CONTACT</a>
+            <button class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </div>
+    </header>
+    
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+    <nav class="mobile-menu">
+        <button class="menu-close" onclick="toggleMenu()">×</button>
+        <a href="index.html#top">Home</a>
+        <a href="itinerary.html">Itinerary</a>
+        <a href="travel.html">Travel</a>
+        <a href="accommodation.html">Accommodation</a>
+        <a href="team-details.html">Team Details</a>
+        <a href="packages.html">Research</a>
+        <span class="disabled">Edit Data</span>
+    </nav>
     <div class="schedule-container">
         <div class="schedule" id="schedule"></div>
     </div>
@@ -214,6 +247,11 @@
         }
         
         render();
+        
+        function toggleMenu() {
+            document.querySelector('.mobile-menu').classList.toggle('open');
+            document.querySelector('.menu-overlay').classList.toggle('open');
+        }
     </script>
     <script src="theme.js"></script>
 </body>
