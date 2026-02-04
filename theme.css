@@ -207,6 +207,51 @@ body {
     color: #4ade80;
 }
 
+/* Accommodation cards text in dark mode */
+[data-theme="dark"] .accommodation-card {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .accommodation-card h3 {
+    color: #fff !important;
+}
+
+[data-theme="dark"] .accommodation-card li {
+    color: var(--text-primary) !important;
+}
+
+/* Assignments table body - ensure readable text in dark mode */
+[data-theme="dark"] .assignments-table {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .assignments-table tbody {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .assignments-table tbody td {
+    color: var(--text-primary) !important;
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .assignments-table tbody tr {
+    background: var(--bg-card) !important;
+}
+
+/* Room table body rows in dark mode */
+[data-theme="dark"] .room-table tbody {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .room-table tbody td {
+    color: var(--text-primary) !important;
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .room-table tbody tr {
+    background: var(--bg-card) !important;
+}
+
 /* Level badge */
 .level-badge {
     background: var(--bg-secondary) !important;
