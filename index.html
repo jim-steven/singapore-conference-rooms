@@ -460,10 +460,10 @@
     <script>
         const schedules = {
             0: [
-                { time: 'ALL DAY', title: 'Scattered Arrivals', detail: 'Arrive at your own pace' }
+                { time: 'ALL DAY', title: 'Scattered Arrivals', detail: 'Arrive at your own pace', link: 'travel.html' }
             ],
             1: [
-                { time: '7AM - 12PM', title: 'Scattered Arrivals', detail: 'Late arrivals continue' },
+                { time: '7AM - 12PM', title: 'Scattered Arrivals', detail: 'Late arrivals continue', link: 'travel.html' },
                 { time: '12 - 1PM', title: 'Lunch', detail: 'Order from Grab at 11am' },
                 { time: '1 - 7PM', title: 'Hacking', detail: '' },
                 { time: '7 - 9PM', title: 'Dinner', detail: '' }
@@ -493,25 +493,29 @@
                 { time: '7 - 9AM', title: 'Breakfast', detail: 'At apartment or on your own' },
                 { time: '9AM - 12PM', title: 'Hacking', detail: '' },
                 { time: '12PM', title: 'Check-out', detail: 'Fraser Suites' },
-                { time: '12PM+', title: 'Scattered Departures', detail: 'Safe travels!' }
+                { time: '12PM+', title: 'Scattered Departures', detail: 'Safe travels!', link: 'travel.html' }
             ],
             6: [
-                { time: 'ALL DAY', title: 'Scattered Departures', detail: 'Safe travels!' }
+                { time: 'ALL DAY', title: 'Scattered Departures', detail: 'Safe travels!', link: 'travel.html' }
             ]
         };
         
         function renderSchedule(day) {
             const container = document.getElementById('daySchedule');
             const items = schedules[day] || [];
-            container.innerHTML = items.map(item => `
-                <div class="schedule-item">
+            container.innerHTML = items.map(item => {
+                const titleContent = item.link 
+                    ? `<a href="${item.link}" style="color:inherit;text-decoration:none;">${item.title} <span style="color:#e07b5a;font-size:12px;">→</span></a>`
+                    : item.title;
+                return `
+                <div class="schedule-item"${item.link ? ' style="cursor:pointer;" onclick="window.location.href=\''+item.link+'\'"' : ''}>
                     <div class="schedule-time">${item.time}</div>
                     <div>
-                        <div class="schedule-title">${item.title}</div>
+                        <div class="schedule-title">${titleContent}</div>
                         ${item.detail ? `<div class="schedule-detail">${item.detail}</div>` : ''}
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
         
         document.querySelectorAll('.day-tab').forEach(tab => {
