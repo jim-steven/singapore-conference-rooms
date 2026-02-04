@@ -52,8 +52,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Team Travel Schedule</h1>
-        <p class="subtitle">Singapore · February 20 – March 2, 2026</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div>
+                <h1>Team Travel Schedule</h1>
+                <p class="subtitle" style="margin-bottom:0;">Singapore · February 20 – March 2, 2026</p>
+            </div>
+            <a href="index.html#top" style="padding:10px 20px;background:#e07b5a;color:#fff;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;">← Home</a>
+        </div>
         
         <div class="timeline-container">
             <div class="timeline-header">
@@ -121,15 +126,7 @@
             </table>
         </div>
         
-        <div class="flight-table" style="margin-top:24px;">
-            <h2>❌ Can't Join</h2>
-            <table>
-                <thead>
-                    <tr><th>Name</th><th>Status</th></tr>
-                </thead>
-                <tbody id="cantJoinTableBody"></tbody>
-            </table>
-        </div>
+
     </div>
     
     <script>
@@ -142,7 +139,7 @@
             { name: 'Dario', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 16.92, departDay: 27, departTime: 23.92, flight: { arr: 'LH780 FRA→SIN', dep: 'LH781 SIN→FRA' } },
             { name: 'Thorsten', origin: 'FRA → SIN', arriveDay: 22, arriveTime: 17, departDay: 27, departTime: 23.92, flight: { arr: 'SQ325 FRA→SIN', dep: 'SQ26 SIN→FRA' } },
             { name: 'Nicolay Gerold', origin: 'MUC → SIN', arriveDay: 22, arriveTime: 17.42, departDay: 27, departTime: 23.75, flight: { arr: 'MUC→SIN', dep: 'SIN→MUC' } },
-            { name: 'Isuru', origin: '→ SIN', arriveDay: 22, arriveTime: 17.58, departDay: 26, departTime: 20.67 },
+
             { name: 'Tim', origin: '→ SIN', arriveDay: 22, arriveTime: 20, departDay: 27, departTime: 19.67 },
             { name: 'Harry', origin: 'SYD → SIN', arriveDay: 22, arriveTime: 21.17, departDay: 28, departTime: 19.83, flight: { arr: 'QF53', dep: 'QF52' } },
             { name: 'Hitesh', origin: '→ SIN', arriveDay: 23, arriveTime: 6, departDay: 28, departTime: 2.42, flight: { arr: 'SQ403', dep: 'SQ402' } },
@@ -160,9 +157,7 @@
             'Alex Kemper'
         ];
         
-        const cantJoin = [
-            'Camden Cheek'
-        ];
+        const cantJoin = [];
         
         const days = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
         const baseColor = [76, 175, 80]; // Green RGB
