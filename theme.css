@@ -194,6 +194,10 @@ body {
     color: var(--accent) !important;
 }
 
+.info-box a.directions-btn {
+    color: #fff !important;
+}
+
 /* Amenity icons */
 .amenity-icon {
     color: #2e7d32;
