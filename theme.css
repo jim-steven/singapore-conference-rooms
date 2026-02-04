@@ -342,10 +342,16 @@ body {
 }
 
 /* Disabled nav items */
-.mobile-menu a.disabled {
+.mobile-menu a.disabled,
+.mobile-menu span.disabled {
     opacity: 0.4;
     pointer-events: none;
     cursor: default;
+    display: block;
+    padding: 16px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 500;
 }
 
 /* Flight table improvements */
