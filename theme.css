@@ -301,3 +301,81 @@ body {
 .legend-item {
     color: var(--text-muted) !important;
 }
+
+/* Travel page fixes */
+.container {
+    background: var(--bg-primary);
+}
+
+.arrival-marker, .departure-marker {
+    color: var(--text-primary) !important;
+}
+
+/* Team details page fixes */
+.main-content {
+    background: var(--bg-primary);
+}
+
+.card, .info-card {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+.card h3, .section-title {
+    color: var(--text-primary) !important;
+}
+
+.note-box {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+}
+
+/* Accommodation section text contrast */
+.accommodation-container p {
+    color: var(--text-primary) !important;
+}
+
+/* Get directions button fix */
+.directions-btn {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* Disabled nav items */
+.mobile-menu a.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Flight table improvements */
+.flight-table .arrive {
+    color: #2e7d32 !important;
+}
+
+.flight-table .depart {
+    color: #c62828 !important;
+}
+
+[data-theme="dark"] .flight-table .arrive {
+    color: #4ade80 !important;
+}
+
+[data-theme="dark"] .flight-table .depart {
+    color: #f87171 !important;
+}
+
+/* Pending table */
+.pending-table, .cant-join-table {
+    background: var(--bg-card) !important;
+}
+
+.pending-table th, .cant-join-table th {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+}
+
+.pending-table td, .cant-join-table td {
+    color: var(--text-primary) !important;
+    border-bottom-color: var(--border-color) !important;
+}
