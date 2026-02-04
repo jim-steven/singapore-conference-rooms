@@ -337,8 +337,13 @@ body {
 
 /* Get directions button fix */
 .directions-btn {
+    background: #e07b5a !important;
     color: #fff !important;
     text-decoration: none !important;
+}
+
+.directions-btn:hover {
+    background: #c96a4a !important;
 }
 
 /* Disabled nav items */
