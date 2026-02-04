@@ -1,0 +1,303 @@
+/* Amp Chronicle Theme - Shared Styles */
+:root {
+    --bg-primary: #fff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #fff;
+    --bg-dark-section: #0d1117;
+    --text-primary: #1a1a2e;
+    --text-secondary: #3d4f5f;
+    --text-muted: #6c757d;
+    --accent: #e07b5a;
+    --accent-hover: #c96a4a;
+    --border-color: #f1f3f4;
+    --border-dark: #21262d;
+    --shadow: rgba(0,0,0,0.1);
+    --header-bg: #fff;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #091c1e;
+    --bg-secondary: #0d2528;
+    --bg-card: #1c2520;
+    --bg-dark-section: #091c1e;
+    --text-primary: #f6fff5;
+    --text-secondary: #dfdfcf;
+    --text-muted: #9ca49c;
+    --accent: #f6833b;
+    --accent-hover: #e07330;
+    --border-color: #2a3530;
+    --border-dark: #2a3530;
+    --shadow: rgba(0,0,0,0.3);
+    --header-bg: #091c1e;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Header */
+.header {
+    background: var(--header-bg) !important;
+    transition: background 0.3s;
+}
+
+.logo {
+    color: var(--text-primary) !important;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 21px;
+    color: var(--text-primary);
+}
+
+.hamburger span {
+    background: var(--text-primary) !important;
+    transition: background 0.3s;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-primary);
+    stroke: var(--text-primary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.3s;
+}
+
+.theme-toggle .sun-icon {
+    display: none;
+    fill: none;
+}
+
+.theme-toggle .moon-icon {
+    display: block;
+    fill: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: none;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    background: var(--bg-card) !important;
+    box-shadow: -4px 0 20px var(--shadow);
+    transition: right 0.3s ease, background 0.3s;
+}
+
+.mobile-menu a {
+    color: var(--text-primary) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+.mobile-menu a:hover {
+    color: var(--accent) !important;
+}
+
+.menu-close {
+    color: var(--text-muted) !important;
+}
+
+/* Buttons */
+.contact-btn, .btn-primary, .directions-btn, .hero-cta {
+    background: var(--accent) !important;
+    transition: background 0.2s;
+}
+
+.contact-btn:hover, .btn-primary:hover, .directions-btn:hover, .hero-cta:hover {
+    background: var(--accent-hover) !important;
+}
+
+/* Cards */
+.accommodation-card, .summary-card, .flight-table, .summary, .timeline-container {
+    background: var(--bg-card) !important;
+    box-shadow: 0 2px 12px var(--shadow) !important;
+    transition: background 0.3s;
+}
+
+/* Sections */
+.accommodation-section, .schedule-container {
+    background: var(--bg-secondary) !important;
+    transition: background 0.3s;
+}
+
+/* Tables */
+.assignments-table th, .room-table th, .flight-table th {
+    background: var(--text-secondary) !important;
+    color: #fff !important;
+}
+
+.assignments-table td, .room-table td, .flight-table td {
+    border-bottom-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.room-table a, .flight-table a {
+    color: var(--accent) !important;
+}
+
+/* Labels and text */
+.accommodation-label, .info-label, .save-label {
+    color: var(--text-muted) !important;
+}
+
+.accommodation-title, .accommodation-card h3, .info-box h3 {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .info-box h3 {
+    color: #fff !important;
+}
+
+.accommodation-address {
+    color: var(--text-muted) !important;
+}
+
+/* Info banner */
+.info-banner {
+    background: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .info-banner {
+    background: #1c2520 !important;
+}
+
+/* Links */
+.info-box a, .view-full {
+    color: var(--accent) !important;
+}
+
+/* Amenity icons */
+.amenity-icon {
+    color: #2e7d32;
+}
+
+[data-theme="dark"] .amenity-icon {
+    color: #4ade80;
+}
+
+/* Level badge */
+.level-badge {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Schedule grid */
+.schedule {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+}
+
+.schedule-header {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+.time-slot {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+    border-color: var(--border-color) !important;
+}
+
+.cell {
+    border-color: var(--border-color) !important;
+}
+
+/* Timeline header */
+.timeline-header .day {
+    color: var(--text-muted) !important;
+}
+
+.timeline-header .day-date {
+    color: var(--text-primary) !important;
+}
+
+.timeline-row {
+    border-bottom-color: var(--border-color) !important;
+}
+
+.person {
+    color: var(--text-primary) !important;
+}
+
+.person-origin {
+    color: var(--text-muted) !important;
+}
+
+.day-cell {
+    background: var(--bg-secondary) !important;
+}
+
+/* Summary */
+.summary-card {
+    background: var(--bg-secondary) !important;
+}
+
+.summary-card .label {
+    color: var(--text-muted) !important;
+}
+
+.summary-card .value {
+    color: var(--text-primary) !important;
+}
+
+/* Buttons secondary */
+.btn-secondary {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Home button in header */
+.header-actions a {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .header-actions span {
+    color: var(--text-muted) !important;
+}
+
+/* h1, h2 in schedule pages */
+.header h1, h1, h2 {
+    color: var(--text-primary) !important;
+}
+
+.subtitle {
+    color: var(--text-muted) !important;
+}
+
+/* Legend */
+.legend {
+    border-top-color: var(--border-color) !important;
+}
+
+.legend-item {
+    color: var(--text-muted) !important;
+}
