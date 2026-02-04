@@ -101,20 +101,21 @@
         .assignments-table tr:last-child td { border-bottom: none; }
         .level-badge { display: inline-block; padding: 3px 8px; background: #e9ecef; border-radius: 4px; font-size: 11px; font-weight: 500; }
         
-        /* FAQs */
-        .faq-section { padding: 0 32px 80px; }
-        .faq-hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920') center/cover; padding: 100px 32px; text-align: center; color: #fff; margin-bottom: -60px; }
-        .faq-hero-label { font-size: 12px; letter-spacing: 0.2em; margin-bottom: 12px; }
-        .faq-hero-title { font-family: 'DM Serif Display', serif; font-size: 3rem; }
-        .faq-container { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); padding: 40px; position: relative; }
-        .faq-category { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #3d4f5f; margin-bottom: 24px; margin-top: 32px; }
+        /* FAQs - Amp Chronicle style */
+        .faq-section { padding: 80px 32px; background: #0d1117; }
+        .faq-header { max-width: 900px; margin: 0 auto 48px; }
+        .faq-title { font-family: 'Work Sans', system-ui, sans-serif; font-size: 2rem; font-weight: 600; color: #fff; letter-spacing: -0.02em; }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-category { font-family: 'Work Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; margin-top: 40px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
         .faq-category:first-of-type { margin-top: 0; }
-        .faq-item { border: 1px solid #e9ecef; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
-        .faq-question { padding: 20px 24px; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; }
-        .faq-question:hover { background: #fafbfc; }
-        .faq-icon { font-size: 20px; color: #6c757d; transition: transform 0.2s; }
-        .faq-item.open .faq-icon { transform: rotate(45deg); }
-        .faq-answer { padding: 0 24px 20px; color: #495057; font-size: 14px; display: none; }
+        .faq-item { border-bottom: 1px solid #21262d; }
+        .faq-item:last-of-type { border-bottom: none; }
+        .faq-question { padding: 20px 0; font-weight: 500; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: transparent; color: #c9d1d9; transition: color 0.15s; }
+        .faq-question:hover { color: #fff; }
+        .faq-icon { font-size: 18px; color: #8b949e; transition: transform 0.2s; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: #e07b5a; }
+        .faq-answer { padding: 0 0 20px; color: #8b949e; font-size: 14px; display: none; line-height: 1.7; }
+        .faq-answer a { color: #e07b5a; }
         .faq-item.open .faq-answer { display: block; }
         
         @media (max-width: 768px) {
@@ -283,9 +284,8 @@
     </section>
     
     <section class="faq-section" id="faq">
-        <div class="faq-hero">
-            <div class="faq-hero-label">READ OUR</div>
-            <h2 class="faq-hero-title">FAQs</h2>
+        <div class="faq-header">
+            <h2 class="faq-title">FAQs</h2>
         </div>
         <div class="faq-container">
             <h3 class="faq-category">Travel</h3>
