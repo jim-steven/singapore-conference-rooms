@@ -449,3 +449,128 @@ body {
     color: var(--text-primary) !important;
     border-bottom-color: var(--border-color) !important;
 }
+
+/* Packages page (Venue Research) dark mode */
+[data-theme="dark"] .app-layout {
+    background: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .app-header {
+    background: var(--bg-card) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .app-title {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .config-label {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .combo-count {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .config-select,
+[data-theme="dark"] .config-input {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .main-tabs {
+    background: var(--bg-card) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .main-tab {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .main-tab.active {
+    color: var(--accent) !important;
+    border-bottom-color: var(--accent) !important;
+}
+
+[data-theme="dark"] .table-panel {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .package-table th {
+    background: var(--bg-secondary) !important;
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .package-table td {
+    border-bottom-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .package-table tbody tr:hover {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .venue-name,
+[data-theme="dark"] .hotel-name,
+[data-theme="dark"] .travel-distance,
+[data-theme="dark"] .total-amount {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .venue-meta,
+[data-theme="dark"] .hotel-rating,
+[data-theme="dark"] .total-breakdown {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .venue-price {
+    color: var(--accent) !important;
+}
+
+[data-theme="dark"] .detail-panel {
+    background: var(--bg-card) !important;
+    border-left-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .detail-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .detail-tab {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .detail-tab:hover {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .detail-tab.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+
+[data-theme="dark"] .detail-title {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .detail-subtitle {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .detail-section-title {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .detail-row {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .detail-row .label {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .detail-row .value {
+    color: var(--text-primary) !important;
+}
