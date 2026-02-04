@@ -216,40 +216,50 @@ body {
     color: #fff !important;
 }
 
-[data-theme="dark"] .accommodation-card li {
-    color: var(--text-primary) !important;
+[data-theme="dark"] .accommodation-card li,
+[data-theme="dark"] .amenity-list li {
+    color: #f6fff5 !important;
 }
 
 /* Assignments table body - ensure readable text in dark mode */
 [data-theme="dark"] .assignments-table {
-    background: var(--bg-card) !important;
+    background: #1c2520 !important;
 }
 
 [data-theme="dark"] .assignments-table tbody {
-    background: var(--bg-card) !important;
+    background: #1c2520 !important;
 }
 
 [data-theme="dark"] .assignments-table tbody td {
-    color: var(--text-primary) !important;
-    background: var(--bg-card) !important;
+    color: #f6fff5 !important;
+    background: #1c2520 !important;
 }
 
 [data-theme="dark"] .assignments-table tbody tr {
-    background: var(--bg-card) !important;
+    background: #1c2520 !important;
 }
 
 /* Room table body rows in dark mode */
+[data-theme="dark"] .room-table {
+    background: #1c2520 !important;
+}
+
 [data-theme="dark"] .room-table tbody {
-    background: var(--bg-card) !important;
+    background: #1c2520 !important;
 }
 
 [data-theme="dark"] .room-table tbody td {
-    color: var(--text-primary) !important;
-    background: var(--bg-card) !important;
+    color: #f6fff5 !important;
+    background: #1c2520 !important;
 }
 
 [data-theme="dark"] .room-table tbody tr {
-    background: var(--bg-card) !important;
+    background: #1c2520 !important;
+}
+
+[data-theme="dark"] .room-table th {
+    color: #1a1a2e !important;
+    background: #dfdfcf !important;
 }
 
 /* Level badge */
