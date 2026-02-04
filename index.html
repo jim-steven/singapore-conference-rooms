@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singapore Offsite - Feb 2026</title>
+    <title>Amp SG Offsite - Feb 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,6 +44,9 @@
         .info-label { font-size: 11px; letter-spacing: 0.15em; color: #6c757d; font-weight: 600; margin-bottom: 4px; }
         .info-value { font-size: 16px; color: #1a1a2e; }
         .info-detail { font-size: 14px; color: #e07b5a; }
+        .info-detail a { color: #e07b5a; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+        .info-detail a:hover { text-decoration: underline; }
+        .direction-icon { width: 14px; height: 14px; }
         
         /* Save the Date */
         .save-date { padding: 80px 32px; max-width: 900px; margin: 0 auto; }
@@ -161,16 +164,18 @@
     <nav class="mobile-menu">
         <button class="menu-close" onclick="toggleMenu()">×</button>
         <a href="index.html">Home</a>
-        <a href="packages.html">Packages</a>
         <a href="itinerary.html">Itinerary</a>
         <a href="travel.html">Travel</a>
+        <a href="accommodation.html">Accommodation</a>
+        <a href="team-details.html">Team Details</a>
+        <a href="packages.html">Venues</a>
         <a href="edit.html">Edit Data</a>
     </nav>
     
     <section class="hero">
         <div class="hero-subtitle">WELCOME TO</div>
-        <h1 class="hero-title">SINGAPORE OFFSITE!</h1>
-        <a href="packages.html" class="hero-cta">VIEW PACKAGES</a>
+        <h1 class="hero-title">Amp SG Offsite</h1>
+        <a href="#agenda" class="hero-cta">AGENDA</a>
     </section>
     
     <section class="info-section">
@@ -185,8 +190,16 @@
                 </div>
                 <div>
                     <div class="info-label">LOCATION</div>
-                    <div class="info-value">Singapore</div>
-                    <div class="info-detail">The Lion City</div>
+                    <div class="info-value">Fraser Suites River Valley, Singapore</div>
+                    <div class="info-detail">
+                        491A River Valley Road Singapore 248372
+                        <a href="https://maps.app.goo.gl/acQLcnrHBsPf3yDr5" target="_blank" style="margin-left: 8px;">
+                            <svg class="direction-icon" viewBox="0 0 24 24" fill="none" stroke="#e07b5a" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                            Get Directions
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="info-card">
@@ -232,7 +245,7 @@
         <h2 class="save-title">Sunday Feb 22 –<br>Friday Feb 27, 2026</h2>
     </section>
     
-    <section class="agenda-section">
+    <section class="agenda-section" id="agenda">
         <div class="agenda-hero">
             <div class="agenda-hero-label">CHECK OUT THE</div>
             <h2 class="agenda-hero-title">Agenda</h2>
@@ -256,170 +269,16 @@
     </section>
     
     <section class="accommodation-section" id="accommodation">
-        <div class="accommodation-container">
+        <div class="accommodation-container" style="text-align: center;">
             <div class="accommodation-header">
                 <div class="accommodation-label">WHERE WE'RE STAYING</div>
                 <h2 class="accommodation-title">Fraser Suites Singapore</h2>
-                <p class="accommodation-address">491B River Valley Road #16-01 Valley Point, Singapore 248373</p>
+                <p class="accommodation-address">491A River Valley Road, Singapore 248372</p>
             </div>
-            
-            <div class="accommodation-grid">
-                <div class="accommodation-card">
-                    <h3>Services</h3>
-                    <ul class="amenity-list">
-                        <li><span class="amenity-icon">✓</span> Full Utilities</li>
-                        <li><span class="amenity-icon">✓</span> 24-hour Reception</li>
-                        <li><span class="amenity-icon">✓</span> Daily Breakfast</li>
-                        <li><span class="amenity-icon">✓</span> Complimentary Internet (1 Gbps)</li>
-                        <li><span class="amenity-icon">✓</span> Car Park (one lot per apartment)</li>
-                        <li><span class="amenity-icon">✓</span> Daily Housekeeping (except Sun & PH)</li>
-                        <li><span class="amenity-icon">✓</span> Gym Access</li>
-                    </ul>
-                </div>
-                <div class="accommodation-card">
-                    <h3>In-Room Amenities</h3>
-                    <ul class="amenity-list">
-                        <li><span class="amenity-icon">✓</span> Fully Furnished (living, dining, kitchen, bedroom)</li>
-                        <li><span class="amenity-icon">✓</span> Modern Kitchen with Microwave</li>
-                        <li><span class="amenity-icon">✓</span> Nespresso Coffee Machine</li>
-                        <li><span class="amenity-icon">✓</span> Washer/Dryer</li>
-                        <li><span class="amenity-icon">✓</span> Steam Iron & Ironing Board</li>
-                        <li><span class="amenity-icon">✓</span> Entertainment System & Wi-Fi</li>
-                        <li><span class="amenity-icon">✓</span> In-room Safe</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="accommodation-card" style="margin-bottom: 32px;">
-                <h3>Room Rates</h3>
-                <table class="room-table">
-                    <thead>
-                        <tr>
-                            <th>Room Type</th>
-                            <th>Bedding</th>
-                            <th>Size</th>
-                            <th>Daily Rate (SGD)</th>
-                            <th>Max Occupants</th>
-                            <th>Tour</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1 Bedroom Deluxe</td>
-                            <td>King</td>
-                            <td>50 sqm / 538 sqft</td>
-                            <td>$290+GST ($308.49 nett)</td>
-                            <td>2</td>
-                            <td><a href="https://my.matterport.com/show/?m=LNQ9zXzNE9t" target="_blank">View →</a></td>
-                        </tr>
-                        <tr>
-                            <td>1 Bedroom Premier</td>
-                            <td>King</td>
-                            <td>62 sqm / 667 sqft</td>
-                            <td>$310+GST ($328.46 nett)</td>
-                            <td>3</td>
-                            <td><a href="https://my.matterport.com/show/?m=LNQ9zXzNE9t" target="_blank">View →</a></td>
-                        </tr>
-                        <tr>
-                            <td>2 Bedroom Deluxe</td>
-                            <td>King, Queen</td>
-                            <td>86 sqm / 925 sqft</td>
-                            <td>$480+GST ($510.11 nett)</td>
-                            <td>4</td>
-                            <td><a href="https://my.matterport.com/show/?m=7T36px32wKz" target="_blank">View →</a></td>
-                        </tr>
-                        <tr>
-                            <td>2 Bedroom Premier</td>
-                            <td>King, Queen / King, 2 Singles</td>
-                            <td>93 sqm / 1,001 sqft</td>
-                            <td>$500+GST ($530.84 nett)</td>
-                            <td>5</td>
-                            <td><a href="https://my.matterport.com/show/?m=d3Uu3Xo33DW" target="_blank">View →</a></td>
-                        </tr>
-                        <tr>
-                            <td>3 Bedroom Premier</td>
-                            <td>King, Queen, Single</td>
-                            <td>107 sqm / 1,154 sqft</td>
-                            <td>$600+GST ($637.71 nett)</td>
-                            <td>6</td>
-                            <td><a href="https://my.matterport.com/show/?m=Qx6BMTAhgSq" target="_blank">View →</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="assignments-section">
-                <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #3d4f5f; margin-bottom: 20px; text-align: center;">Room Assignments</h3>
-                <table class="assignments-table">
-                    <thead>
-                        <tr>
-                            <th>Apartment Type</th>
-                            <th>Guests</th>
-                            <th>Check In</th>
-                            <th>Check Out</th>
-                            <th>Level</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>3 Bedroom Premier</td>
-                            <td>Dario Hamidi, Thorsten Ball, Isuru Fernando</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 7</span></td>
-                        </tr>
-                        <tr>
-                            <td>3 Bedroom Premier</td>
-                            <td>Tim Culverhouse, Harry Wolff, Nicolay Gerold</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 6</span></td>
-                        </tr>
-                        <tr>
-                            <td>3 Bedroom Premier</td>
-                            <td>Brady Jeong, Karl Clement, William Dollman</td>
-                            <td>Feb 21</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 6</span></td>
-                        </tr>
-                        <tr>
-                            <td>3 Bedroom Premier</td>
-                            <td>Hitesh Agarwal, Quinn Slack, Lewis Jones</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 7</span></td>
-                        </tr>
-                        <tr>
-                            <td>2 Bedroom Premier</td>
-                            <td>Bret Jones, Tim Lucas</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 7</span></td>
-                        </tr>
-                        <tr>
-                            <td>2 Bedroom Premier</td>
-                            <td>Connor O'Brien, Jesse Edelstein</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 7</span></td>
-                        </tr>
-                        <tr>
-                            <td>2 Bedroom Deluxe</td>
-                            <td>Jim Steven, Alex Kemper</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 7</span></td>
-                        </tr>
-                        <tr>
-                            <td>1 Bedroom Premier</td>
-                            <td>Beyang Liu</td>
-                            <td>Feb 22</td>
-                            <td>Feb 27</td>
-                            <td><span class="level-badge">Level 6</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <p style="font-size: 15px; color: #495057; margin: 24px 0 32px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                We're staying in serviced apartments with full amenities including free breakfast, gym access, in-unit washer/dryer, and high-speed Wi-Fi. Each teammate has their own private room.
+            </p>
+            <a href="accommodation.html" class="hero-cta" style="display: inline-block;">VIEW ACCOMMODATION DETAILS</a>
         </div>
     </section>
     
@@ -439,54 +298,89 @@
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Do I need a visa for Singapore?</span>
+                    <span>Do I need a passport for Singapore?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Most nationalities can enter Singapore visa-free for up to 90 days. Check with the Singapore Immigration & Checkpoints Authority for your specific country.</div>
+                <div class="faq-answer">A valid passport is required for entry into Singapore. Ensure your passport does not expire within 6 months of our travel dates (Feb 22-27, 2026), or you may be denied entry. If renewal is needed, start immediately as processing can take several weeks. Amp teammates are responsible for any passport renewal costs.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     <span>Do I need to fill out an arrival card?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Yes! Complete the <a href="https://eservices.ica.gov.sg/sgarrivalcard/fvipa" target="_blank" style="color:#e07b5a;">Singapore Arrival Card</a> online before arriving.</div>
+                <div class="faq-answer">Yes! Complete the <a href="https://eservices.ica.gov.sg/sgarrivalcard/fvipa" target="_blank" style="color:#e07b5a;">Singapore Arrival Card (SGAC)</a> online within 3 days before arrival. When filling out the form, select "Others" for accommodation type. Keep your confirmation email handy for immigration.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     <span>How do I get from the airport to the hotel?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">We recommend using Grab (similar to Uber). The ride from Changi Airport to Fraser Suites takes about 20-30 minutes and costs around S$20-30.</div>
+                <div class="faq-answer">We recommend using Grab (similar to Uber). The ride from Changi Airport to Fraser Suites takes about 20-30 minutes and costs around S$20-30. <strong>Ride pooling is encouraged!</strong> Check the <a href="travel.html" style="color:#e07b5a;">Travel page</a> for teammate arrival times to coordinate rides.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Should I get a Singapore eSIM?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Recommended! Get an eSIM for data before you arrive. Popular options: <strong>Airalo</strong>, <strong>Holafly</strong>, or <strong>Nomad</strong>. A 5-7 day plan with 3-5GB is usually sufficient. The apartments have 1 Gbps Wi-Fi, so eSIM is mainly for transit and outings.</div>
             </div>
             
             <h3 class="faq-category">Accommodation</h3>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Where will we be staying?</span>
+                    <span>Where are we staying?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Fraser Suites Singapore, 491B River Valley Road #16-01 Valley Point, Singapore 248373. Check the Accommodation section above for room assignments.</div>
+                <div class="faq-answer"><a href="https://www.frasershospitality.com/en/singapore/fraser-suites-singapore/" target="_blank" style="color:#e07b5a;">Fraser Suites River Valley</a>, 491A River Valley Road, Singapore 248372. See <a href="accommodation.html" style="color:#e07b5a;">Accommodation Details</a> for room assignments and amenities. <a href="https://maps.app.goo.gl/acQLcnrHBsPf3yDr5" target="_blank" style="color:#e07b5a;">Get Directions →</a></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Will I have my own room?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes! Each teammate has their own private room in a serviced apartment (shared living/kitchen areas with 1-2 other teammates).</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     <span>What time is check-in and check-out?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Check-in is at 2pm on Sunday (Feb 22). Check-out is at 12pm on Friday (Feb 27), followed by scattered departures.</div>
+                <div class="faq-answer">Check-in is at 2pm on Sunday (Feb 22). Check-out is at 12pm on Friday (Feb 27). Early check-in and late check-out are subject to availability—coordinate with Jim. See <a href="accommodation.html" style="color:#e07b5a;">Accommodation</a> for pricing details.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Is there a gym?</span>
+                    <span>Is breakfast included?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Yes, the property has a gym available for all guests.</div>
+                <div class="faq-answer">Yes! Daily breakfast is included at the property. See <a href="accommodation.html" style="color:#e07b5a;">Accommodation Details</a> for full amenities.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Is there a washer/dryer?</span>
+                    <span>Will there be Wi-Fi?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">Yes, each apartment has its own washer/dryer in-unit.</div>
+                <div class="faq-answer">Yes! Each apartment has complimentary 1 Gbps internet. We'll be working primarily from the apartments.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I request a room near someone else?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes! Rooms are currently arranged based on similar arrival times, but we can switch. Coordinate with Jim if you'd like to change.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Does the hotel supply plug adapters?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">No, bring your own. Singapore uses Type G plugs (same as UK—3 rectangular pins). A universal travel adapter is recommended.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is there a gym and washer/dryer?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">Yes! The property has a gym, and each apartment has its own washer/dryer in-unit.</div>
             </div>
             
             <h3 class="faq-category">Policies</h3>
@@ -502,7 +396,7 @@
                     <span>Can I extend my stay?</span>
                     <span class="faq-icon">+</span>
                 </div>
-                <div class="faq-answer">For bookings less than 1 month: Extension requests are subject to availability and rate changes.</div>
+                <div class="faq-answer">Extension requests are subject to availability and rate changes. Coordinate with Jim.</div>
             </div>
             
             <h3 class="faq-category">Schedule</h3>
@@ -512,6 +406,13 @@
                     <span class="faq-icon">+</span>
                 </div>
                 <div class="faq-answer">Breakfast is available 7-9am. Hacking sessions begin at 9am. Check the full itinerary for detailed schedules.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Are we using a co-working space?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">No, we'll be working primarily from the apartments. Each has a fully furnished living area with fast Wi-Fi suitable for remote work.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
@@ -553,7 +454,7 @@
                 { time: '9AM - 12PM', title: 'Hacking', detail: '' },
                 { time: '12 - 1PM', title: 'Lunch', detail: 'Order from Grab at 11am' },
                 { time: '1 - 5:30PM', title: 'Hacking', detail: '' },
-                { time: '5:30 - 9PM', title: 'Meetup', detail: '' }
+                { time: '6 - 9PM', title: 'AMP IT UP Meetup', detail: '<a href="https://luma.com/i5mgwggx" target="_blank" style="color:#e07b5a;">Antler Singapore</a> – Meet the Amp team! Live coding demos and feature showcases. 128 Prinsep St, #01-01' }
             ],
             5: [
                 { time: '7 - 9AM', title: 'Breakfast', detail: 'At apartment or on your own' },

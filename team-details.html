@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Details - Singapore Offsite</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #fff; color: #1a1a2e; font-family: 'Work Sans', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+        
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: #fff; }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #1a1a2e; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 28px; height: 28px; }
+        .header-right { display: flex; align-items: center; gap: 16px; }
+        .contact-btn { background: #e07b5a; color: #fff; padding: 12px 28px; border: none; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; cursor: pointer; text-decoration: none; }
+        .contact-btn:hover { background: #c96a4a; }
+        .hamburger { background: none; border: none; cursor: pointer; padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: #1a1a2e; }
+        
+        /* Mobile Menu */
+        .mobile-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: #fff; box-shadow: -4px 0 20px rgba(0,0,0,0.1); z-index: 200; transition: right 0.3s ease; padding: 80px 32px 32px; }
+        .mobile-menu.open { right: 0; }
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 150; display: none; }
+        .menu-overlay.open { display: block; }
+        .mobile-menu a { display: block; padding: 16px 0; font-size: 16px; color: #1a1a2e; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 500; }
+        .mobile-menu a:hover { color: #e07b5a; }
+        .menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 28px; cursor: pointer; color: #6c757d; }
+        
+        /* Page Hero */
+        .page-hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920') center/cover; padding: 140px 32px 100px; text-align: center; color: #fff; }
+        .page-hero-label { font-size: 12px; letter-spacing: 0.2em; margin-bottom: 12px; }
+        .page-hero-title { font-family: 'DM Serif Display', serif; font-size: 3rem; }
+        
+        /* Main Content */
+        .main-content { max-width: 1100px; margin: 0 auto; padding: 60px 32px; }
+        
+        /* Cards */
+        .section-card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 32px; }
+        .section-card h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #3d4f5f; margin-bottom: 20px; }
+        
+        /* Placeholder Notice */
+        .placeholder-notice { background: #f8f9fa; border-left: 4px solid #e07b5a; padding: 20px 24px; border-radius: 0 8px 8px 0; }
+        .placeholder-notice p { color: #495057; margin-bottom: 8px; }
+        .placeholder-notice .note { font-size: 12px; color: #6c757d; font-style: italic; }
+        
+        /* Table Styles */
+        .booking-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .booking-table th { text-align: left; padding: 14px 16px; background: #3d4f5f; color: #fff; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .booking-table th:first-child { border-radius: 8px 0 0 0; }
+        .booking-table th:last-child { border-radius: 0 8px 0 0; }
+        .booking-table td { padding: 14px 16px; border-bottom: 1px solid #f1f3f4; }
+        .booking-table tr:last-child td { border-bottom: none; }
+        .booking-table tr:hover { background: #fafbfc; }
+        .apt-badge { display: inline-block; padding: 4px 10px; background: #e07b5a; color: #fff; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .placeholder-row td { color: #6c757d; font-style: italic; }
+        
+        /* Back Link */
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #e07b5a; text-decoration: none; font-weight: 500; margin-bottom: 24px; }
+        .back-link:hover { text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .page-hero-title { font-size: 2rem; }
+            .booking-table { font-size: 12px; }
+            .booking-table th, .booking-table td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    
+    <header class="header">
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="8" fill="#e07b5a"/>
+                <circle cx="50" cy="20" r="6" fill="#e07b5a"/>
+                <circle cx="76" cy="35" r="6" fill="#e07b5a"/>
+                <circle cx="76" cy="65" r="6" fill="#e07b5a"/>
+                <circle cx="50" cy="80" r="6" fill="#e07b5a"/>
+                <circle cx="24" cy="65" r="6" fill="#e07b5a"/>
+                <circle cx="24" cy="35" r="6" fill="#e07b5a"/>
+                <line x1="50" y1="50" x2="50" y2="20" stroke="#e07b5a" stroke-width="3"/>
+                <line x1="50" y1="50" x2="76" y2="35" stroke="#e07b5a" stroke-width="3"/>
+                <line x1="50" y1="50" x2="76" y2="65" stroke="#e07b5a" stroke-width="3"/>
+                <line x1="50" y1="50" x2="50" y2="80" stroke="#e07b5a" stroke-width="3"/>
+                <line x1="50" y1="50" x2="24" y2="65" stroke="#e07b5a" stroke-width="3"/>
+                <line x1="50" y1="50" x2="24" y2="35" stroke="#e07b5a" stroke-width="3"/>
+            </svg>
+            Singapore Offsite
+        </a>
+        <div class="header-right">
+            <a href="index.html#faq" class="contact-btn">CONTACT</a>
+            <button class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+    <nav class="mobile-menu">
+        <button class="menu-close" onclick="toggleMenu()">×</button>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="itinerary.html">Itinerary</a>
+        <a href="travel.html">Travel</a>
+        <a href="team-details.html">Team Details</a>
+        <a href="edit.html">Edit Data</a>
+    </nav>
+    
+    <section class="page-hero">
+        <div class="page-hero-label">OFFSITE RESOURCES</div>
+        <h1 class="page-hero-title">Team Details</h1>
+    </section>
+    
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        
+        <div class="section-card">
+            <h2>Team Contact Information</h2>
+            <div class="placeholder-notice">
+                <p>Team phone numbers will be added here</p>
+                <span class="note">Note for Jim: Add everyone's phone numbers before the offsite</span>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>Booking References</h2>
+            <table class="booking-table">
+                <thead>
+                    <tr>
+                        <th>Apartment No</th>
+                        <th>Reference</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="apt-badge">705</span></td>
+                        <td>Ref: Hamidi, Dario, Rental for period 22-FEB-2026 to 26-FEB-2026</td>
+                        <td>6012R27909</td>
+                    </tr>
+                    <tr class="placeholder-row">
+                        <td><span class="apt-badge" style="background: #6c757d;">TBD</span></td>
+                        <td>Booking reference to be added</td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="placeholder-row">
+                        <td><span class="apt-badge" style="background: #6c757d;">TBD</span></td>
+                        <td>Booking reference to be added</td>
+                        <td>—</td>
+                    </tr>
+                    <tr class="placeholder-row">
+                        <td><span class="apt-badge" style="background: #6c757d;">TBD</span></td>
+                        <td>Booking reference to be added</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <script>
+        function toggleMenu() {
+            document.querySelector('.mobile-menu').classList.toggle('open');
+            document.querySelector('.menu-overlay').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
